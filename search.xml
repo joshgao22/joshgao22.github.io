@@ -2009,10 +2009,10 @@ X_s\left( j\Omega \right) =\frac{1}{2\pi}X_c\left( j\Omega \right) \ast \frac{2\
 \end{equation}\]</span></p>
 <p>其中 <span class="math inline">\(\Omega_s = \displaystyle\frac{2\pi}{T}=2\pi F_s\)</span> 为采样角频率 (亦简称为采样率) 。</p>
 <p>  式 <span class="math inline">\(\eqref{Relationship between the spectrum of the sampled signal and the original signal}\)</span> 说明，采样信号的频谱是将原始信号频谱以 <span class="math inline">\(\Omega_s\)</span> 进行周期延拓，且幅度变为原来的 <span class="math inline">\(1/T\)</span>，<a href="#图1.1">图 1.1</a> 给出了该过程的示意图。显然，若采样率过低则会造成相邻周期的频谱交叠在一起产生失真，这种现象称为混叠 (aliasing)。为避免混叠，采样率应大于信号最高频率的 2 倍。在此条件下，通过适当选取一个低通滤波器，可以从采样信号的频谱恢复出原始信号的频谱。这就是著名的 Nyquist-Shannon 采样定理。</p>
-<a id="图1.1"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2021-12-08-josh-msp-part-1/2021-12-08-josh-msp-part-1-010-RelationshipBetweenSampledSignalandAnalogSignal.png" width="500px" alt="图1.1 采样信号与模拟信号的关系"></p>
-</div>
+<p><a id="图1.1"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2021-12-08-josh-msp-part-1/2021-12-08-josh-msp-part-1-010-RelationshipBetweenSampledSignalandAnalogSignal.png?imageMogr2/thumbnail/!100p%7Cwatermark/2/text/QEpvc2ggR2Fv/font/YWhyb25iZC50dGY=/fontsize/14/dissolve/20/gravity/southeast/dx/5/dy/5" alt="图1.1 采样信号与模拟信号的关系" width="500"><figcaption>图1.1 采样信号与模拟信号的关系</figcaption>
+</figure>
 <p><strong>定理 1.1 (Nyquist-Shannon 采样定理)</strong> 设 <span class="math inline">\(x\left(t\right)\)</span> 是带限信号，频带范围为 <span class="math inline">\(\left(-\Omega_M,\Omega_M\right)\)</span>。如果采样率满足</p>
 <p><span class="math display">\[
 \Omega_s &gt; 2\Omega_M
@@ -2047,10 +2047,10 @@ X\left( z \right) =\sum_{n=-\infty}^{\infty}{x\left[ n \right] z^{-n}}
 y_D\left( nT_2 \right) =x\left( nDT_1 \right)
 \end{equation}\]</span></p>
 <p>其中 <span class="math inline">\(T_1\)</span>、<span class="math inline">\(T_2\)</span> 分别为抽取前后的采样间隔，且 <span class="math inline">\(T_2 = DT_1\)</span>。<a href="#图1.2">图 1.2(a)</a> 给出了 <span class="math inline">\(D=3\)</span> 时抽取过程的示意图。</p>
-<a id="图1.2"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2021-12-08-josh-msp-part-1/2021-12-08-josh-msp-part-1-020-DecimationDemostration.png" width="500px" alt="图1.2 抽取"></p>
-</div>
+<p><a id="图1.2"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2021-12-08-josh-msp-part-1/2021-12-08-josh-msp-part-1-020-DecimationDemostration.png?imageMogr2/thumbnail/!100p%7Cwatermark/2/text/QEpvc2ggR2Fv/font/YWhyb25iZC50dGY=/fontsize/14/dissolve/20/gravity/southeast/dx/5/dy/5" alt="图1.2 抽取" width="500"><figcaption>图1.2 抽取</figcaption>
+</figure>
 <p>  上述关系也可以简记为</p>
 <p><span class="math display">\[\begin{equation}\label{1.2.2}
 y_D\left[ n \right] =x\left[ Dn \right]
@@ -2109,7 +2109,7 @@ Y_D\left( e^{j\omega} \right) =\frac{1}{D}\sum_{k=0}^{D-1}{X\left( e^{j\frac{\om
         <tag>抽样率转换</tag>
         <tag>抽取</tag>
         <tag>内插</tag>
-        <tag>分数被抽样</tag>
+        <tag>分数倍抽样</tag>
       </tags>
   </entry>
   <entry>
@@ -3773,6 +3773,7 @@ F\left(a,b,c\right) = aF\left(a,b,c\right) +\bar{a}F\left(a,b,c\right)
 <li><p><strong><mark class="label ">B2</mark></strong> (<em>British English</em>)</p>
 <p>(<em>also</em> <strong>field</strong> <em>North American English</em>, <em>British English</em>)</p>
 <p>[countable] an area of ground specially prepared and marked for playing a sports game</p>
+<span id="more"></span>
 <ul>
 <li><em>a <strong>football pitch</strong></em> 足球场</li>
 <li><em>a cricket/rugby/hockey pitch</em> 板球/橄榄球/曲棍球场</li>
@@ -3820,7 +3821,6 @@ F\left(a,b,c\right) = aF\left(a,b,c\right) +\bar{a}F\left(a,b,c\right)
 
 </details></li>
 </ol>
-<span id="more"></span>
 <h3 id="section-1"><mark class="label primary">of sound 声音</mark></h3>
 <ol start="2" type="1">
 <li><p>[singular, uncountable] how high or low a sound is, especially a musical note（尤指乐音的）音高</p>
@@ -4455,6 +4455,7 @@ F\left(a,b,c\right) = aF\left(a,b,c\right) +\bar{a}F\left(a,b,c\right)
 </tr>
 </tbody>
 </table>
+<span id="more"></span>
 <h1 id="导数基本公式">2. 导数基本公式</h1>
 <table>
 <colgroup>
@@ -4520,7 +4521,6 @@ F\left(a,b,c\right) = aF\left(a,b,c\right) +\bar{a}F\left(a,b,c\right)
 \]</span></p>
 <p>可以注意到 Newton-Leibniz 公式具有类似二项式定理展开的形式。</p></li>
 </ul>
-<span id="more"></span>
 <h1 id="几个初等函数的-maclaurin-公式">3. 几个初等函数的 Maclaurin 公式</h1>
 <h2 id="taylor-公式的一般形式">3.1 Taylor 公式的一般形式</h2>
 <p><span class="math display">\[
@@ -4804,6 +4804,7 @@ R_n(x) = \frac{\alpha(\alpha -1)\cdots(\alpha-n)}{(n+1)!}(1+\theta x)^{\alpha-n-
 <p><span class="math display">\[\begin{equation}
 \hat{x}\left(t\right)=\sum_{n=-\infty}^{\infty}{x_a\left(nT\right)\delta\left(t-nT\right)}
 \end{equation}\]</span></p>
+<span id="more"></span>
 <p>  将单位周期冲激串 <span class="math inline">\(p_\delta\left(t\right)\)</span> 按指数形式的傅氏级数展开<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>，有</p>
 <p><span class="math display">\[\begin{equation}
 p_\delta\left(t\right)=\sum_{n=-\infty}^{\infty}\delta\left(t-nT\right)=\sum_{m=-\infty}^{\infty}{c_me^{jm\frac{2\pi}{T}\cdot t}}
@@ -4820,7 +4821,6 @@ c_m=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}{\delta\left(t\right)e^{-jm\frac
 <p><span class="math display">\[\begin{equation}
 p_\delta\left(t\right)=\sum_{n=-\infty}^{\infty}\delta\left(t-nT\right)=\frac{1}{T}\sum_{m=-\infty}^{\infty}e^{jm\frac{2\pi}{T}\cdot t}
 \end{equation}\]</span></p>
-<span id="more"></span>
 <p>  理想取样信号 <span class="math inline">\(\hat{x}\left(t\right)\)</span> 的傅里叶变换（取样角频率 <span class="math inline">\(\Omega_s=\dfrac{2\pi}{T}\)</span>）</p>
 <p><span class="math display">\[\begin{equation}
 \begin{aligned}
@@ -8525,6 +8525,7 @@ X_a\left(j\Omega\right)=\int_{-\infty}^{\infty}{x_a\left(t\right)e^{-j\Omega t}\
 <p><span class="math display">\[\begin{equation}
 x_a\left(t\right)=\frac{1}{2\pi}\int_{-\infty}^{\infty}{X_a\left(j\Omega\right)e^{j\Omega t}\mathrm{d}\Omega}
 \end{equation}\]</span></p>
+<span id="more"></span>
 <h2 id="周期连续时间信号的傅里叶变换">1.2 周期连续时间信号的傅里叶变换</h2>
 <p>  周期连续时间信号的傅里叶变换（连续傅里叶级数，Continous Fourier Series, CFS）的形式为：</p>
 <p><span class="math display">\[\begin{equation}
@@ -8534,7 +8535,6 @@ X\left(m\Omega\right)=\frac{1}{t_p}\int_{-\frac{t_p}{2}}^{\frac{t_p}{2}}{x_a\lef
 x_a\left(t\right)=\sum_{m=-\infty}^{\infty}{X\left(m\Omega\right)e^{jm\Omega t}}
 \end{equation}\]</span></p>
 <p>其中 <span class="math inline">\(t_p\)</span> 为信号的周期，频域相邻谱线间角频率增量 <span class="math inline">\(\Omega=\dfrac{2\pi}{t_p}\)</span>。</p>
-<span id="more"></span>
 <h2 id="非周期离散时间信号的傅里叶变换">1.3 非周期离散时间信号的傅里叶变换</h2>
 <p>  非周期离散时间信号的傅里叶变换（离散时间傅里叶变换，Discrete-Time Fourier Transform, DTFT）的形式为：</p>
 <p><span class="math display">\[\begin{equation}
@@ -8711,6 +8711,7 @@ x\left(n\right)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{X\left(e^{j\omega}\right)e^{j\om
 <h2 id="explanation">Explanation</h2>
 <ol type="1">
 <li><p><strong><mark class="label ">A1</mark></strong> used before countable or singular nouns referring to people or things that have not already been mentioned（用于可数名词或单数名词前，表示未曾提到的）一（人、事、物）</p>
+<span id="more"></span>
 <ul>
 <li><em>a man/horse/unit</em> 一个人；一匹马；一个单位</li>
 <li><em>an aunt/egg/hour/X-ray</em> 一位姑母；一枚鸡蛋；一小时；一张 X 光片</li>
@@ -8725,9 +8726,6 @@ x\left(n\right)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{X\left(e^{j\omega}\right)e^{j\om
 <li><em>He's a teacher.</em> 他是教师。</li>
 <li><em>Is that a Monet</em> (= a painting by Monet)? 那是莫奈的画吗？</li>
 </ul></li>
-</ol>
-<span id="more"></span>
-<ol start="3" type="1">
 <li><p><strong><mark class="label ">A1</mark></strong> any; every 任何一；每一</p>
 <ul>
 <li><em>A lion is a dangerous animal.</em> 狮子是猛兽。</li>
