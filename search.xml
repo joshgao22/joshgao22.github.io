@@ -8534,6 +8534,7 @@ X\left(m\Omega\right)=\frac{1}{t_p}\int_{-\frac{t_p}{2}}^{\frac{t_p}{2}}{x_a\lef
 x_a\left(t\right)=\sum_{m=-\infty}^{\infty}{X\left(m\Omega\right)e^{jm\Omega t}}
 \end{equation}\]</span></p>
 <p>其中 <span class="math inline">\(t_p\)</span> 为信号的周期，频域相邻谱线间角频率增量 <span class="math inline">\(\Omega=\dfrac{2\pi}{t_p}\)</span>。</p>
+<span id="more"></span>
 <h2 id="非周期离散时间信号的傅里叶变换">1.3 非周期离散时间信号的傅里叶变换</h2>
 <p>  非周期离散时间信号的傅里叶变换（离散时间傅里叶变换，Discrete-Time Fourier Transform, DTFT）的形式为：</p>
 <p><span class="math display">\[\begin{equation}
@@ -8552,7 +8553,9 @@ x\left(n\right)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{X\left(e^{j\omega}\right)e^{j\om
 \widetilde{x}\left(n\right)=\frac{1}{N}\sum_{k=0}^{N-1}{\widetilde{X}\left(k\right)e^{j\frac{2\pi}{N}kn}}=\frac{1}{N}\sum_{k=0}^{N-1}{\widetilde{X}\left(k\right)W_N^{-kn}}
 \end{equation}\]</span></p>
 <p>其中 <span class="math inline">\(N\)</span> 为一个周期内的点数，时域相邻谱线间隔为 <span class="math inline">\(T\)</span> ，频域相邻谱线间隔为 <span class="math inline">\(\dfrac{1}{NT}\)</span>，以数字频率表征时为 <span class="math inline">\(\dfrac{2\pi}{N}\)</span>。</p>
-<mark class="label primary">**由以上，在一个域中对函数进行取样，两取样点间增量的倒数，必是另一个域中的周期。**</mark>
+<blockquote>
+<p><strong>由以上，在一个域中对函数进行取样，两取样点间增量的倒数，必是另一个域中的周期。</strong></p>
+</blockquote>
 <h1 id="离散傅里叶级数dfs的推导">2. 离散傅里叶级数（DFS）的推导</h1>
 <h2 id="正变换">2.1 正变换</h2>
 <p>  令 <span class="math inline">\(x\left(n\right)\)</span> 为 <span class="math inline">\(N\)</span> 点长的离散序列，则其 DTFT（上标“~”用来表征周期性）</p>
