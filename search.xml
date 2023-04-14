@@ -8684,6 +8684,8 @@ x\left(n\right)=\frac{1}{2\pi}\int_{-\pi}^{\pi}{X\left(e^{j\omega}\right)e^{j\om
         <tag>连续傅里叶级数</tag>
         <tag>离散时间傅里叶变换</tag>
         <tag>DTFT</tag>
+        <tag>圆周卷积</tag>
+        <tag>周期卷积</tag>
       </tags>
   </entry>
   <entry>
