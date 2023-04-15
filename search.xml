@@ -13422,7 +13422,7 @@ x\left(n\right)=\widetilde{x}\left(n\right)R_N\left(n\right)=\frac{1}{N}\sum_{k=
 </blockquote>
 <span id="more"></span>
 <h1 id="dft-的矩阵算法">2. DFT 的矩阵算法</h1>
-<p>  若令 <span class="math inline">\(X=\left[\begin{matrix}X\left(0\right)&amp;X\left(1\right)&amp;\cdots&amp;X\left(N-1\right)\\\end{matrix}\right]^\mathrm{T}，x=\left[\begin{matrix}x\left(0\right)&amp;x\left(1\right)&amp;\cdots&amp;x\left(N-1\right)\\\end{matrix}\right]^\mathrm{T}\)</span>，则
+<p>  若令 <span class="math inline">\(X=\left[\begin{matrix}X\left(0\right),X\left(1\right),\cdots,X\left(N-1\right)\\\end{matrix}\right]^\mathrm{T}\)</span>，<span class="math inline">\(x=\left[\begin{matrix}x\left(0\right),x\left(1\right),\cdots,x\left(N-1\right)\\\end{matrix}\right]^\mathrm{T}\)</span>，则
 DFT 和 IDFT 可分别表示为</p>
 <p><span class="math display">\[\begin{equation}
 X=D_Nx,\ \ x=D_N^{-1}X
