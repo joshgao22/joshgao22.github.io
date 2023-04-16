@@ -15173,14 +15173,16 @@ H\left(e^{j\omega}\right)=e^{-j\frac{\left(N-1\right)}{2}\omega}\left\{\frac{H_0
 </div>
 <p><a id="fig.6-1"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-010-SchoolLifeStateTransitionDiagramOfStudentA.png!sign" width="600" alt="6-1-某学生在校生活状态转移图">
-<figcaption aria-hidden="true">6-1-某学生在校生活状态转移图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-010-SchoolLifeStateTransitionDiagramOfStudentA.png!sign" width="600" alt="图 6-1 某学生在校生活状态转移图">
+<figcaption aria-hidden="true">图 6-1
+某学生在校生活状态转移图</figcaption>
 </figure>
 <p>如果你认为这张图描述的学生生活过于单调而怀疑状态机描述方法的能力，就再看另一位生活丰富多彩的同学的在校生活，他/她的在校生活方式可以用<a href="#fig.6-2">图 6-2</a> 表示。</p>
 <p><a id="fig.6-2"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-020-SchoolLifeStateTransitionDiagramOfStudentB.png!sign" width="600" alt="6-2-另一位学生在校生活状态转移图">
-<figcaption aria-hidden="true">6-2-另一位学生在校生活状态转移图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-020-SchoolLifeStateTransitionDiagramOfStudentB.png!sign" width="600" alt="图 6-2 另一位学生在校生活状态转移图">
+<figcaption aria-hidden="true">图 6-2
+另一位学生在校生活状态转移图</figcaption>
 </figure>
 <div class="note info"><p>同样如果将图中的“地点”认为是“状态”，将“功能”认为是状态的“输出”，将“条件”认为是状态转移的“输入条件”，<a href="#fig.6-2">图 6-2</a>
 也是一张标准的状态转移图，通过状态机的方式再次清晰地描述了另一个学生的在校生活方式。</p>
@@ -15382,8 +15384,8 @@ FSM 描述不利于时序约束、功能更改、调试等，而且不能很好�
 <figure class="highlight verilog"><table><tbody><tr><td class="code"><pre><span class="line">IDLE        状态的输出为：    {o1, o2, err} = <span class="number">3</span>'<span class="number">6000</span>；</span><br><span class="line">S1          状态的输出为：    {o1, o2, err} = <span class="number">3'b100</span>；</span><br><span class="line">S2          状态的输出为：    {o1, o2, err} = <span class="number">3'b010</span>；</span><br><span class="line">ERROR       状态的输出为：    {o1, o2, err} = <span class="number">3'b111</span>。</span><br></pre></td></tr></tbody></table></figure>
 <p><a id="fig.6-3"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-030-StateTransitionDiagramOfExample.png!sign" width="600" alt="6-3-例子的状态转移图">
-<figcaption aria-hidden="true">6-3-例子的状态转移图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-030-StateTransitionDiagramOfExample.png!sign" width="600" alt="图 6-3 例子的状态转移图">
+<figcaption aria-hidden="true">图 6-3 例子的状态转移图</figcaption>
 </figure>
 <h3 id="一段式状态机描述方法应该避免的写法">2.3.1.
 一段式状态机描述方法（应该避免的写法）</h3>
@@ -15394,8 +15396,8 @@ FSM 描述不利于时序约束、功能更改、调试等，而且不能很好�
 6-4</a> 描述的结构。</p>
 <p><a id="fig.6-4"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-040-OneStageFSM.png!sign" width="900" alt="6-4-一段式 FSM 描述结构">
-<figcaption aria-hidden="true">6-4-一段式 FSM 描述结构</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-040-OneStageFSM.png!sign" width="900" alt="图 6-4 一段式 FSM 描述结构">
+<figcaption aria-hidden="true">图 6-4 一段式 FSM 描述结构</figcaption>
 </figure>
 <p>一段式描述方法将状态转移判断的组合逻辑和状态寄存器转移的时序逻辑混写在同一个
 always 模块中，<strong>不符合将时序和组合逻辑分开描述的 Coding
@@ -15415,8 +15417,8 @@ FSM 的核心就是：<strong>一个 always
 模块采用同步时序描述状态转移；另一个模块采用组合逻辑判断状态转移条件，描述状态转移规律</strong>。两段式写法可以概括为<a href="图6-5">图 6-5</a> 所示的结构。</p>
 <p><a id="fig.6-5"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-050-TwoStageFSM.png!sign" width="900" alt="6-5-两段式FSM描述结构图">
-<figcaption aria-hidden="true">6-5-两段式FSM描述结构图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-050-TwoStageFSM.png!sign" width="900" alt="图 6-5 两段式FSM描述结构图">
+<figcaption aria-hidden="true">图 6-5 两段式FSM描述结构图</figcaption>
 </figure>
 <p>本例中，同步时序描述状态转移的 <code>always</code> 模块代码如下：</p>
 <figure class="highlight verilog"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk <span class="keyword">or</span> <span class="keyword">negedge</span> nrst)</span><br><span class="line">    <span class="keyword">if</span> (!nrst)</span><br><span class="line">        CS &lt;= IDLE;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        CS &lt;= NS;</span><br></pre></td></tr></tbody></table></figure>
@@ -15479,8 +15481,8 @@ FSM 的输出。</p>
 <p>三段式写法可以概括为<a href="#fig.6-6">图 6-6</a> 描述的结构。</p>
 <p><a id="fig.6-6"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-060-ThreeStageFSM.png!sign" width="1000" alt="6-6-三段式FSM描述结构图">
-<figcaption aria-hidden="true">6-6-三段式FSM描述结构图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-060-ThreeStageFSM.png!sign" width="1000" alt="图 6-6 三段式FSM描述结构图">
+<figcaption aria-hidden="true">图 6-6 三段式FSM描述结构图</figcaption>
 </figure>
 <p>对比上节两段式 FSM 的描述，可以清晰发现三段式与两段式 FSM
 描述的最大区别在于<strong>两段式采用了组合逻辑输出</strong>，而<strong>三段式巧妙地根据下一状态的判断，用同步时序逻辑寄存
@@ -15553,8 +15555,9 @@ FSM，三段式建模的寄存器输出的优势还不是十分明显，但是�
 FSM，三段式建模的优势就会十分显著。</p>
 <p><a id="fig.6-7"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-070-ComparisonOfOneAndThreeStageFSM.png!sign" width="1000" alt="6-7-三段式建模结构与一段式建模结构的关系图">
-<figcaption aria-hidden="true">6-7-三段式建模结构与一段式建模结构的关系图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-6/2023-04-16-josh-verilog-part-6-070-ComparisonOfOneAndThreeStageFSM.png!sign" width="1000" alt="图 6-7 三段式建模结构与一段式建模结构的关系图">
+<figcaption aria-hidden="true">图 6-7
+三段式建模结构与一段式建模结构的关系图</figcaption>
 </figure>
 <h4 id="两段式建模和三段式建模的关系">2.3.4.4.
 两段式建模和三段式建模的关系</h4>
@@ -15763,16 +15766,16 @@ Specification 或 SPEC）到 RTL 代码；从 RTL
 系如<a href="#fig.7-1">图 7-1</a> 所示。</p>
 <p><a id="fig.7-1"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-010-DesignVersusVerification.png!sign" width="300" alt="7-1-设计和验证的关系">
-<figcaption aria-hidden="true">7-1-设计和验证的关系</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-010-DesignVersusVerification.png!sign" width="300" alt="图 7-1 设计和验证的关系">
+<figcaption aria-hidden="true">图 7-1 设计和验证的关系</figcaption>
 </figure>
 <span id="more"></span>
 <p>设计与验证过程如<a href="#fig.7-2">图 7-2</a>
 所示。图中说明了一个设计从设计规格到门级网表的转换和验证过程。</p>
 <p><a id="fig.7-2"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-020-ProcessOfDesignAndVerification.png!sign" width="550" alt="7-2-设计和验证的过程">
-<figcaption aria-hidden="true">7-2-设计和验证的过程</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-020-ProcessOfDesignAndVerification.png!sign" width="550" alt="图 7-2 设计和验证的过程">
+<figcaption aria-hidden="true">图 7-2 设计和验证的过程</figcaption>
 </figure>
 <p>其中，从设计规格到 RTL 的代码是由设计工程师手动完成的，而从 RTL
 代码到门级网表则<strong>由逻辑综合工具自动完成</strong>。</p>
@@ -15799,8 +15802,8 @@ DUV）或者称为待测设计（Design Under Test, DUT），同时检查 DUV
 的输出是否与预期的一致，达到验证设计功能的目的。testbench 的概念如<a href="#fig.7-3">图 7-3</a> 所示。</p>
 <p><a id="fig.7-3"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-030-TheIdeaOfTestbench.png!sign" width="500" alt="7-3-testbench的概念">
-<figcaption aria-hidden="true">7-3-testbench的概念</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-030-TheIdeaOfTestbench.png!sign" width="500" alt="图 7-3 testbench的概念">
+<figcaption aria-hidden="true">图 7-3 testbench的概念</figcaption>
 </figure>
 <p>testbench 概念提供了一个很好的验证芯片的平台。</p>
 <p>仿真因 EDA
@@ -15812,8 +15815,9 @@ testbench 自身的覆盖率与正确性</strong>。</p>
 <p>基于 testbench 的仿真流程如<a href="#fig.7-4">图 7-4</a> 所示。</p>
 <p><a id="fig.7-4"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-040-SimulationFlowBasedOnTestbench.png!sign" width="800" alt="7-4-基于testbench的仿真流程">
-<figcaption aria-hidden="true">7-4-基于testbench的仿真流程</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-040-SimulationFlowBasedOnTestbench.png!sign" width="800" alt="图 7-4 基于testbench的仿真流程">
+<figcaption aria-hidden="true">图 7-4
+基于testbench的仿真流程</figcaption>
 </figure>
 <p>从图中可以清晰地看出 testbench 的主要功能：</p>
 <ul>
@@ -15841,8 +15845,9 @@ cases），因为这些边界情况最容易出问题。</p>
 DUV 的响应，确认仿真结果。</p>
 <p><a id="fig.7-5"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-050-MPITestbench.png!sign" width="700" alt="7-5-用户验证MPI接口功能的仿真平台">
-<figcaption aria-hidden="true">7-5-用户验证MPI接口功能的仿真平台</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-050-MPITestbench.png!sign" width="700" alt="图 7-5 用户验证MPI接口功能的仿真平台">
+<figcaption aria-hidden="true">图 7-5
+用户验证MPI接口功能的仿真平台</figcaption>
 </figure>
 <p>关于这个设计的验证，在后续笔记将重点介绍。</p>
 <h2 id="编写仿真激励">2.1. 编写仿真激励<a id="2.1"></a></h2>
@@ -15856,8 +15861,8 @@ DUV 的响应，确认仿真结果。</p>
 test­bench 中的信号互连也遵循同样的规则。请参考模块实例端口连接规则，如<a href="#fig.7-6">图 7-6</a> 所示。</p>
 <p><a id="fig.7-6"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-060-ModuleInstancePortConnection.png!sign" width="800" alt="7-6-模块实例端口连接规则">
-<figcaption aria-hidden="true">7-6-模块实例端口连接规则</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-060-ModuleInstancePortConnection.png!sign" width="800" alt="图 7-6 模块实例端口连接规则">
+<figcaption aria-hidden="true">图 7-6 模块实例端口连接规则</figcaption>
 </figure>
 <p>这里，需要提醒初学者注意的是，<strong>对于双向信号，驱动它的也一定是一个三态的线网</strong>。不能是寄存器类型，否则就会发生冲突。</p>
 <h3 id="使用-initial-语句和-always-语句">2.1.2. 使用
@@ -15886,8 +15891,8 @@ test­bench 中的信号互连也遵循同样的规则。请参考模块实例�
 <p>以上的写法产生的波形如<a href="#fig.7-7">图 7-7</a> 所示。</p>
 <p><a id="fig.7-7"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-070-GeneratedClockStimulus.png!sign" width="450" alt="7-7-产生的时钟测试激励">
-<figcaption aria-hidden="true">7-7-产生的时钟测试激励</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-070-GeneratedClockStimulus.png!sign" width="450" alt="图 7-7 产生的时钟测试激励">
+<figcaption aria-hidden="true">图 7-7 产生的时钟测试激励</figcaption>
 </figure>
 <h4 id="非-50-占空比时钟信号">2.1.3.2. 非 <code>50%</code>
 占空比时钟信号</h4>
@@ -15899,8 +15904,8 @@ test­bench 中的信号互连也遵循同样的规则。请参考模块实例�
 7-8</a> 所示。</p>
 <p><a id="fig.7-8"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-080-ClockWithOtherDutyCycle.png!sign" width="350" alt="7-8-占空比不是50%的时钟">
-<figcaption aria-hidden="true">7-8-占空比不是50%的时钟</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-080-ClockWithOtherDutyCycle.png!sign" width="350" alt="图 7-8 占空比不是50%的时钟">
+<figcaption aria-hidden="true">图 7-8 占空比不是50%的时钟</figcaption>
 </figure>
 <p>由于 <code>Clock</code> 在 <code>0</code> 时刻没有被初始化，而且
 <code>Clock</code> 是寄存器类型变量， 因此在该信号的前
@@ -15921,8 +15926,8 @@ test­bench 中的信号互连也遵循同样的规则。请参考模块实例�
 <p>实现波形请参考<a href="#fig.7-9">图 7-9</a>。</p>
 <p><a id="fig.7-9"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-090-AbsoluteAndDerivedClock.png!sign" width="400" alt="7-9-绝对时钟和派生时钟">
-<figcaption aria-hidden="true">7-9-绝对时钟和派生时钟</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-090-AbsoluteAndDerivedClock.png!sign" width="400" alt="图 7-9 绝对时钟和派生时钟">
+<figcaption aria-hidden="true">图 7-9 绝对时钟和派生时钟</figcaption>
 </figure>
 <p>值得注意的是，图中的 <code>Absolute_Clock</code> 为
 <code>register</code>（寄存器）型变量，初始值为 <code>x</code>；而
@@ -15943,8 +15948,8 @@ test­bench 中的信号互连也遵循同样的规则。请参考模块实例�
 这样，<strong>复位的产生和撤销都避开了时钟的有效上升沿</strong>。因此，这种复位可以认为是同步复位，如<a href="#fig.7-10">图 7-10</a> 所示。</p>
 <p><a id="fig.7-10"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-100-SynchronousReset.png!sign" width="500" alt="7-10-同步复位">
-<figcaption aria-hidden="true">7-10-同步复位</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-100-SynchronousReset.png!sign" width="500" alt="图 7-10 同步复位">
+<figcaption aria-hidden="true">图 7-10 同步复位</figcaption>
 </figure>
 <p>另一种同步复位信号产生的方法如下：</p>
 <figure class="highlight verilog"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 同步复位信号</span></span><br><span class="line"><span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">    Rst_n = <span class="number">1</span>;</span><br><span class="line">    @ (<span class="keyword">negedge</span> Clock) ;             <span class="comment">// 等待时钟下降沿</span></span><br><span class="line">    Rst_n = <span class="number">0</span>;                      <span class="comment">// 复位开始</span></span><br><span class="line">    <span class="keyword">repeat</span> (<span class="number">3</span>) @(<span class="keyword">negedge</span> Clock);    <span class="comment">// 经过 3 个时钟下降沿</span></span><br><span class="line">    Rst_n = <span class="number">1</span>;                      <span class="comment">// 复位撤销</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
@@ -15955,14 +15960,14 @@ test­bench 中的信号互连也遵循同样的规则。请参考模块实例�
 所示。</p>
 <p><a id="fig.7-11"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-110-AnotherSynchronousReset.png!sign" width="500" alt="7-11-另一种同步复位">
-<figcaption aria-hidden="true">7-11-另一种同步复位</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-110-AnotherSynchronousReset.png!sign" width="500" alt="图 7-11 另一种同步复位">
+<figcaption aria-hidden="true">图 7-11 另一种同步复位</figcaption>
 </figure>
 <h3 id="产生值序列">2.1.4. 产生值序列</h3>
 <p><a id="fig.7-12"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-120-SignalWaveDiagram.png!sign" width="500" alt="7-12-一个波形图">
-<figcaption aria-hidden="true">7-12-一个波形图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-120-SignalWaveDiagram.png!sign" width="500" alt="图 7-12 一个波形图">
+<figcaption aria-hidden="true">图 7-12 一个波形图</figcaption>
 </figure>
 <p>下面用 Verilog 来描述如<a href="#fig.7-12">图 7-12</a>
 中的一个波形。</p>
@@ -16071,8 +16076,8 @@ testbench 中实例化 DUV 或其他模块。</p>
 为实例，介绍端口的连接关系。</p>
 <p><a id="fig.7-13"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-130-BuildTestbench.png!sign" width="700" alt="7-13-搭建仿真环境">
-<figcaption aria-hidden="true">7-13-搭建仿真环境</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-130-BuildTestbench.png!sign" width="700" alt="图 7-13 搭建仿真环境">
+<figcaption aria-hidden="true">图 7-13 搭建仿真环境</figcaption>
 </figure>
 <p>图中的仿真平台是<strong>单顶层</strong>的
 testbench，在后面还将介绍多顶层的 testbench 。</p>
@@ -16118,8 +16123,8 @@ DUT
 </ul>
 <p><a id="fig.7-14"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-140-DynamicSelfTest.png!sign" width="800" alt="7-14-动态自检测仿真方法">
-<figcaption aria-hidden="true">7-14-动态自检测仿真方法</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-140-DynamicSelfTest.png!sign" width="800" alt="图 7-14 动态自检测仿真方法">
+<figcaption aria-hidden="true">图 7-14 动态自检测仿真方法</figcaption>
 </figure>
 <p>由于自动比较法通常用在非常庞大的设计验证中，在系列笔记中不重点介绍这种方式。</p>
 <h3 id="使用-vcd-文件">2.3.4. 使用 VCD 文件</h3>
@@ -16130,8 +16135,9 @@ DUT
 是 VCD 文件调试和分析仿真过程。</p>
 <p><a id="fig.7-15"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-150-SimulationWithVCD.png!sign" width="400" alt="7-15-VCD文件调试和分析仿真过程">
-<figcaption aria-hidden="true">7-15-VCD文件调试和分析仿真过程</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-150-SimulationWithVCD.png!sign" width="400" alt="图 7-15 VCD文件调试和分析仿真过程">
+<figcaption aria-hidden="true">图 7-15
+VCD文件调试和分析仿真过程</figcaption>
 </figure>
 <p>在系列笔记中，不对 VCD 文件进行过多的介绍。</p>
 <h2 id="写-testbench-要注意什么">2.4. 写 testbench 要注意什么</h2>
@@ -16151,8 +16157,9 @@ testbench 的好处之前，首先引入 HDL 语言的层次概念， HDL
 语言的适用层次如<a href="#fig.7-16">图 7-16</a> 所示。</p>
 <p><a id="fig.7-16"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-160-HDLDesignEntry.png!sign" width="600" alt="7-16-HDL语言的使用层次示意图">
-<figcaption aria-hidden="true">7-16-HDL语言的使用层次示意图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-160-HDLDesignEntry.png!sign" width="600" alt="图 7-16 HDL语言的使用层次示意图">
+<figcaption aria-hidden="true">图 7-16
+HDL语言的使用层次示意图</figcaption>
 </figure>
 <p>上图说明了不同的 HDL 语言种类对应的 HDL
 描述层次的关系，图中实线框表示适用程度较高，虚线框表示适用程度较低。常用的
@@ -16206,21 +16213,22 @@ testbench, 如何验证设计。</p>
 的接口模型。FPGA 被当成处理器的一个简单的异步外设处理。</p>
 <p><a id="fig.7-17"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-170-PortConnectionDemo.png!sign" width="400" alt="7-17-PowerPc和FPGA接口示意图">
-<figcaption aria-hidden="true">7-17-PowerPc和FPGA接口示意图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-170-PortConnectionDemo.png!sign" width="400" alt="图 7-17 PowerPc和FPGA接口示意图">
+<figcaption aria-hidden="true">图 7-17
+PowerPc和FPGA接口示意图</figcaption>
 </figure>
 <p>所有的总线操作都由 PowerPC
 发起。共分为两种总线操作方式：读操作和写操作。</p>
 <p>读操作的时序如<a href="#fig.7-18">图 7-18</a> 所示。写操作的时序如<a href="#fig.7-19">图 7-19</a> 所示。</p>
 <p><a id="fig.7-18"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-180-ReadTiming.png!sign" width="600" alt="7-18-读操作时序">
-<figcaption aria-hidden="true">7-18-读操作时序</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-180-ReadTiming.png!sign" width="600" alt="图 7-18 读操作时序">
+<figcaption aria-hidden="true">图 7-18 读操作时序</figcaption>
 </figure>
 <p><a id="fig.7-19"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-190-WriteTiming.png!sign" width="600" alt="7-19-写操作时序">
-<figcaption aria-hidden="true">7-19-写操作时序</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-190-WriteTiming.png!sign" width="600" alt="图 7-19 写操作时序">
+<figcaption aria-hidden="true">图 7-19 写操作时序</figcaption>
 </figure>
 <p>要注意的是，PowerPC
 的读/写时序与许多配置参数有关，而且处理器使用不同的主频，时序也不太一样。这里为了简单明了，采用了特定的设置和主频。在实际系统中，如果采用不同的设置，需要参考
@@ -16242,8 +16250,8 @@ FPGA，它的接口定义如下。详细的设计代码请参考本文<a href="h
 模块的功能，首先需要为其产生激励，将数据写入到指定的地址。然后将该地址的数据读出后，与写入的数据比较，如果一致，说明设计正确，如果不一致，说明设计有缺陷。</p>
 <p><a id="fig.7-20"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-200-TestbenchStructure.png!sign" width="600" alt="7-20-testbench结构">
-<figcaption aria-hidden="true">7-20-testbench结构</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-200-TestbenchStructure.png!sign" width="600" alt="图 7-20 testbench结构">
+<figcaption aria-hidden="true">图 7-20 testbench结构</figcaption>
 </figure>
 <p>根据<a href="#fig.7-20">图 7-20</a> 中的 testbench 结构，设计
 testbench 顶层如下：</p>
@@ -16277,8 +16285,8 @@ ModelSim 中的命令，而 <code>sim. do</code> 文件是事先编写好的 Mod
 窗口如<a href="#fig.7-21">图 7-21</a> 所示。</p>
 <p><a id="fig.7-21"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-210-ModesimWindow.png!sign" width="900" alt="7-21-ModelSim窗口">
-<figcaption aria-hidden="true">7-21-ModelSim窗口</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-210-ModesimWindow.png!sign" width="900" alt="图 7-21 ModelSim窗口">
+<figcaption aria-hidden="true">图 7-21 ModelSim窗口</figcaption>
 </figure>
 <h3 id="查看仿真结果">3.2.3. 查看仿真结果</h3>
 <p>由于在这个 testbench
@@ -16288,8 +16296,8 @@ Mode!Sim 窗口中手动查看仿真结果。仿真器将 testbench 中的
 所示。</p>
 <p><a id="fig.7-22"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-220-ModesimSimulationResult.png!sign" width="900" alt="7-22-ModelSim仿真结果">
-<figcaption aria-hidden="true">7-22-ModelSim仿真结果</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-220-ModesimSimulationResult.png!sign" width="900" alt="图 7-22 ModelSim仿真结果">
+<figcaption aria-hidden="true">图 7-22 ModelSim仿真结果</figcaption>
 </figure>
 <p>为了检查读/写数据是否一致，只需要查看以上的显示内容即可。另外，还可以通过查看具体的波形来调试。</p>
 <h2 id="另一种-testbench">3.3. 另一种 testbench<a id="3.3"></a></h2>
@@ -16340,8 +16348,8 @@ testbench 出现的原因。</p>
 testbench 如 <a href="#fig.7-23">图 7-23</a> 所示。</p>
 <p><a id="fig.7-23"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-230-StructuralTestbench.png!sign" width="600" alt="7-23-结构化testbench示意">
-<figcaption aria-hidden="true">7-23-结构化testbench示意</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-230-StructuralTestbench.png!sign" width="600" alt="图 7-23 结构化testbench示意">
+<figcaption aria-hidden="true">图 7-23 结构化testbench示意</figcaption>
 </figure>
 <p>结构化test bench 的好处是：</p>
 <ul>
@@ -16367,8 +16375,8 @@ testbench 如 <a href="#fig.7-23">图 7-23</a> 所示。</p>
 <p>这里，需要在 testbench 中模拟 PowerPC 接口的时序和功能。</p>
 <p><a id="fig.7-24"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-240-BFMDiagram.png!sign" width="800" alt="7-24-BFM示意图">
-<figcaption aria-hidden="true">7-24-BFM示意图</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-240-BFMDiagram.png!sign" width="800" alt="图 7-24 BFM示意图">
+<figcaption aria-hidden="true">图 7-24 BFM示意图</figcaption>
 </figure>
 <p>在<a href="#fig.7-24">图 7-24</a> 中，<code>uP_BFM</code> 是作为一个
 Verilog HDL 中的 <code>module</code> 出现的。其中，在 BFM 面对 DUV
@@ -16390,8 +16398,8 @@ Verilog
 的任务，来对 DUV 施加各种激励。</p>
 <p><a id="fig.7-25"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-250-Harness.png!sign" width="600" alt="7-25-harness测试套具">
-<figcaption aria-hidden="true">7-25-harness测试套具</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-250-Harness.png!sign" width="600" alt="图 7-25 harness测试套具">
+<figcaption aria-hidden="true">图 7-25 harness测试套具</figcaption>
 </figure>
 <h2 id="测试用例">4.4. 测试用例</h2>
 <p>在上一小节中，介绍了测试套具，即
@@ -16399,8 +16407,8 @@ harness。当把被测模块固定好以后，就需要各种各样的测试用�
 <p>测试激励被称为 testcase，如<a href="#fig.7-26">图 7-26</a> 所示。</p>
 <p><a id="fig.7-26"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-260-Testcase.png!sign" width="700" alt="7-26-testcase测试用例">
-<figcaption aria-hidden="true">7-26-testcase测试用例</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-260-Testcase.png!sign" width="700" alt="图 7-26 testcase测试用例">
+<figcaption aria-hidden="true">图 7-26 testcase测试用例</figcaption>
 </figure>
 <p>testcase 中的各种用例可以通过图中的虚线箭头来调用 harness
 中的任务。关于测试用例和 harness
@@ -16413,8 +16421,9 @@ harness。当把被测模块固定好以后，就需要各种各样的测试用�
 的实例，以及各种测试用例都在顶层中。单顶层的testbench 结构如<a href="#fig.7-27">图 7-27</a> 所示。</p>
 <p><a id="fig.7-27"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-270-SingleTopTestbench.png!sign" width="650" alt="7-27-单顶层的testbench结构">
-<figcaption aria-hidden="true">7-27-单顶层的testbench结构</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-270-SingleTopTestbench.png!sign" width="650" alt="图 7-27 单顶层的testbench结构">
+<figcaption aria-hidden="true">图 7-27
+单顶层的testbench结构</figcaption>
 </figure>
 <p>假设 harness 在 testbench 顶层中的实例名叫
 <code>inst_harness</code>，harness 实例化进来的模块 <code>uP_BFM</code>
@@ -16430,8 +16439,9 @@ testcase 里调用该任务就可写为：</p>
 testbench 结构如<a href="#fig.7-28">图 7-28</a> 所示。</p>
 <p><a id="fig.7-28"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-280-MultiTopTestbench.png!sign" width="750" alt="7-28-多顶层的testbench结构">
-<figcaption aria-hidden="true">7-28-多顶层的testbench结构</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-280-MultiTopTestbench.png!sign" width="750" alt="图 7-28 多顶层的testbench结构">
+<figcaption aria-hidden="true">图 7-28
+多顶层的testbench结构</figcaption>
 </figure>
 <p>harness 顶层由 DUV
 和一些接口模型（BFM）构成一个狭义上的测试平台，其他测试用例模块可以调用
@@ -16468,8 +16478,8 @@ testbench：用例测试用例，就可以搭建测试平台（testbench）。</
 <p>单顶层 testbench 结构如<a href="#fig.7-29">图 7-29</a> 所示。</p>
 <p><a id="fig.7-29"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-290-SingleTopTestbenchDemo.png!sign" width="600" alt="7-29-单顶层testbench结构">
-<figcaption aria-hidden="true">7-29-单顶层testbench结构</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-290-SingleTopTestbenchDemo.png!sign" width="600" alt="图 7-29 单顶层testbench结构">
+<figcaption aria-hidden="true">图 7-29 单顶层testbench结构</figcaption>
 </figure>
 <p>在单顶层 testbench 中，实例化 harness，同时写了两个测试用例来调用
 <code>uP_BFM</code> 实例中的读/写任务。</p>
@@ -16498,8 +16508,8 @@ testbench：用例测试用例，就可以搭建测试平台（testbench）。</
 testcase 文件都可以调用 harness 中的读/写任务。</p>
 <p><a id="fig.7-30"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-300-MultiTopTestbenchDemo.png!sign" width="600" alt="7-30-多顶层testbench结构">
-<figcaption aria-hidden="true">7-30-多顶层testbench结构</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-300-MultiTopTestbenchDemo.png!sign" width="600" alt="图 7-30 多顶层testbench结构">
+<figcaption aria-hidden="true">图 7-30 多顶层testbench结构</figcaption>
 </figure>
 <p>在 testcase 代码中，如果需要调用 harness 下 <code>uP_BFM</code>
 实例中的读/写任务，则需要在 testcase 中写类似如下代码：</p>
