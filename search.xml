@@ -16276,7 +16276,10 @@ ModelSim 中的命令，而 <code>sim. do</code> 文件是事先编写好的 Mod
 自动运行脚本。其中包含了编译库文件、编译设计文件、载入仿真、开始运行仿真等命令，使得整个仿真过程自动完成。ModelSim
 窗口如<a href="#fig.7-21">图 7-21</a> 所示。</p>
 <p><a id="fig.7-21"></a></p>
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-210-ModesimWindow.png!sign" alt="7-21-ModelSim窗口">{width-900px}</p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-210-ModesimWindow.png!sign" width="900" alt="7-21-ModelSim窗口">
+<figcaption aria-hidden="true">7-21-ModelSim窗口</figcaption>
+</figure>
 <h3 id="查看仿真结果">3.2.3. 查看仿真结果</h3>
 <p>由于在这个 testbench
 中，采用随机数作为写入数据，将写入和读出的数据都打印到标准的输出设备。因此，读者可以在
@@ -16396,7 +16399,7 @@ harness。当把被测模块固定好以后，就需要各种各样的测试用�
 <p>测试激励被称为 testcase，如<a href="#fig.7-26">图 7-26</a> 所示。</p>
 <p><a id="fig.7-26"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-260-Testcase.png" width="700" alt="7-26-testcase测试用例">
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-16-josh-verilog-part-7/2023-04-16-josh-verilog-part-7-260-Testcase.png!sign" width="700" alt="7-26-testcase测试用例">
 <figcaption aria-hidden="true">7-26-testcase测试用例</figcaption>
 </figure>
 <p>testcase 中的各种用例可以通过图中的虚线箭头来调用 harness
