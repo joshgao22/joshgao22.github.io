@@ -3782,7 +3782,7 @@ skew 导致该到达I撤销时间不能满足，STA
 <figcaption aria-hidden="true">图 4-7 异步复位同步化</figcaption>
 </figure>
 <h2 id="用-case-和-if-...-else-建模">3.10. 用 <code>case</code> 和
-<code>if ... else</code> 建模</h2>
+<code>if ... else</code> 建模<a id="toc.3.10"></a></h2>
 <p>一般来说， <code>case</code> 语句是“平行”（Balance,
 Parallel）的结构，即每个 <code>case</code>
 分支的条件判断和执行都是并行的，没有“优先级（Prior）” 。而
@@ -4779,50 +4779,60 @@ EDA 工具匹配等。如果设计目标是在 FPGA 或 CPLD
 <p>面积和速度的平衡与互换原则提出了 RTL
 设计的两个基本目标，并探讨了这两个目标对立统一的矛盾关系。</p></li>
 <li><p><strong>硬件原则</strong></p>
-<p>硬件原则重点在于提醒读者转化软件设计的思路，理解 HDL
+<p>硬件原则重点在于转化软件设计的思路，理解 HDL
 语言设计的本质。</p></li>
 <li><p><strong>系统原则</strong></p>
-<p>系统原则希望读者能够通过全局、整体上把握设计，从而提高设计质址，优化设计效果。</p></li>
+<p>系统原则希望能够通过全局、整体上把握设计，从而提高设计质址，优化设计效果。</p></li>
 <li><p><strong>同步设计原则</strong></p>
 <p>同步设计原则是设计时序稳定的基本要求，也是高速 RTL
 设计的通用法则。</p></li>
 </ol>
 <span id="more"></span>
-<h2 id="面积和速度的平衡与互换原则">1.1 面积和速度的平衡与互换原则</h2>
+<h2 id="面积和速度的平衡与互换原则">1.1. 面积和速度的平衡与互换原则</h2>
 <p>这里“面积”是指一个设计所消耗的目标器件（如 FPGA/CPLD/ASIC
 等）的硬件资源数量：</p>
 <ul>
-<li>对于 FPGA，可以用所消耗的触发器（FF）和查找表（LUT）来衡扯；</li>
+<li>对于 FPGA，可以用所消耗的触发器（FF）和查找表（LUT）来衡量；</li>
 <li>对于 CPLD，常用宏单元（MC）衡量；</li>
 <li>对于 ASIC 可以用设计的系统门衡量。</li>
 </ul>
 <p>“速度”指设计在芯片上稳定运行时所能够达到的最高频率，这个频率由设计的时序状况决定，与设计满足的时钟周期、PAD
 to PAD Time、Clock Setup Time、Clock Hold Time 和 Clock-to-Output Delay
 等众多时序特征量密切相关。</p>
-<div class="note "><p>面积（Area）和速度（Speed）这两个指标贯穿着 RTL
+<div class="note info"><p>面积（Area）和速度（Speed）这两个指标贯穿着 RTL
 设计的始终，是设计质量评价的终极标准。</p>
 </div>
 <p>这里就讨论一下设计中关于面积和速度的基本原则：<mark class="label primary">面积和速度的平衡与互换</mark>。</p>
-<p>面积和速度是一对对立统一的矛盾体。要求一个设计同时具备设计面积最小，运行频率最高，这是不现实的。科学的设计目标应该是在满足设计时序要求（包含对设计最高频率的要求）的前提下，占用最小的芯片面积，或者在所规定的面积下，使设计的时序余量更大、频率更高。这两种目标充分体现了面积和速度的平衡思想。关于面积和速度的要求，不应该简单地理解为工程师水平的提高和设计完美性的追求，而应该认识到它们是和产品的质量、成本直接相关的。<strong>如果设计的时序余量比较大，运行的频率比较高，则意味着设计的健壮性更强，整个系统的质量更有保证；另一方面，设计所消耗的面积更小，则意味着在单位芯片上实现的功能模块更多，需要的芯片数量更少，整个系统的成本也随之大幅度削减。</strong></p>
+<p>面积和速度是一对对立统一的矛盾体。要求一个设计同时具备设计面积最小，运行频率最高，这是不现实的。科学的设计目标应该是：</p>
+<ul>
+<li>在满足设计时序要求（包含对设计最高频率的要求）的前提下，占用最小的芯片面积；</li>
+<li>或者在所规定的面积下，使设计的时序余量更大、频率更高。</li>
+</ul>
+<p>这两种目标充分体现了面积和速度的平衡思想。关于面积和速度的要求，不应该简单地理解为工程师水平的提高和设计完美性的追求，而应该认识到它们是和产品的质量、成本直接相关的。</p>
+<ul>
+<li><strong>如果设计的时序余量比较大，运行的频率比较高，则意味着设计的健壮性更强，整个系统的质量更有保证；</strong></li>
+<li><strong>另一方面，设计所消耗的面积更小，则意味着在单位芯片上实现的功能模块更多，需要的芯片数量更少，整个系统的成本也随之大幅度削减。</strong></li>
+</ul>
 <p>作为矛盾的两个组成部分，面积和速度的地位是不一样的。相比之下，满足时序、工作频率的要求更重要一些，当两者冲突时，采用<strong>速度优先</strong>的准则。</p>
 <p>面积和速度的互换是 RTL
 设计的一个重要思想。从理论上讲，一个设计如果时序余量较大，所能跑的频率远远高于设计要求，那么就能通过功能模块复用减少整个设计消耗的芯片面积，这就是<strong>用速度的优势换面积的节约</strong>；反之，如果一个设计的时序要求很高，普通方法达不到设计频率，那么一般可以通过将数据流串/并转换，并行复制多个操作模块，对整个设计采取“乒乓操作”和“串/并转换”的思想进行处理，在芯片输出模块处再对数据进行“并/串转换”。从宏观上看，整个芯片满足了处理速度的要求，这相当于<strong>用面积复制换取速度的提高</strong>。面积和速度互换的具体操技巧很多，比如模块复用、“乒乓操作”、“串/并转换”等，需要在工作中不断积累。下面举例说明如何使用“速度换面积”和“面积换速度”。</p>
-<h3 id="用速度的优势换面积的节约举例">1.1.1
+<h3 id="用速度的优势换面积的节约举例">1.1.1.
 “用速度的优势换面积的节约”举例</h3>
 <p>WCDMA（宽带码分多址）系统中使用到了快速哈达码（Fast Hadamard
 Transform, FHT）运算， FHT 由 4 步相同的算法完成，如<a href="#fig.5-1">图 5-1</a> 所示。</p>
-<a name="fig.5-1"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-010-FastHadamardTransform.png!sign" alt="FHT 原理图"></p>
-</div>
+<p><a id="fig.5-1"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-010-FastHadamardTransform.png!sign" width="1000" alt="图 5-1 FHT 原理图">
+<figcaption aria-hidden="true">图 5-1 FHT 原理图</figcaption>
+</figure>
 <p>FHT 单步算法如下：</p>
 <p><span class="math display">\[
-\begin{aligned}
+\begin{align}
 &amp;\mathrm{Out}[2i]=\mathrm{In}[2i] +
 \mathrm{In}[2i+8],&amp;i=0\sim7\\
 &amp;\mathrm{Out}[2i+1]=\mathrm{In}[2i+1] -
 \mathrm{In}[2i+1+8],&amp;i=0\sim7
-\end{aligned}
+\end{align}
 \]</span></p>
 <p>考虑流水线式数据处理的要求，最自然的设计方法就是设计不同端口宽度的 4
 个单步 FHT，并用将这 4
@@ -4838,33 +4848,38 @@ FHT 运算复用 4
 次</strong>，就能大幅度节约所消耗的资源。这种复用单步算法的FHT
 实现框图如<a href="#fig.5-2">图 5-2</a> 所示，由输入选择寄存、单步FHT
 模块、输出选择寄存和计数器构成。</p>
-<a name="fig.5-2"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-020-FHTOperationReuseStructureDiagram.png!sign" width="500px" alt="FHT 运算复用结构图"></p>
-</div>
+<p><a id="fig.5-2"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-020-FHTOperationReuseStructureDiagram.png!sign" width="600" alt="图 5-2 FHT 运算复用结构图">
+<figcaption aria-hidden="true">图 5-2 FHT 运算复用结构图</figcaption>
+</figure>
 <p>代码如下：</p>
 <figure class="highlight verilog"><figcaption><span>wch_fht.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/******************************</span></span><br><span class="line"><span class="comment">优化后的 FHT 运算</span></span><br><span class="line"><span class="comment">******************************/</span></span><br><span class="line"><span class="keyword">module</span> wch_fht(</span><br><span class="line">    Clk,Reset,</span><br><span class="line">    PreFhtStar,</span><br><span class="line">    In0,In1,In2,In3,In4,In5,In6,In7,</span><br><span class="line">    In8,In9,In10,In11,In12,In13,In14,In15,</span><br><span class="line">    Out0,Out1,Out2,Out3,Out4,Out5,Out6,Out7,Out8,</span><br><span class="line">    Out9,Out10,Out11,Out12,Out13,Out14,Out15</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="keyword">input</span>           Clk;        <span class="comment">// 设计的主时钟</span></span><br><span class="line"><span class="keyword">input</span>           Reset;      <span class="comment">// 异步复位信号</span></span><br><span class="line"><span class="keyword">input</span>           PreFhtStar; <span class="comment">// FHT 运算指示信号, 和上级模块运算关联</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// FHT 的 16 个输入</span></span><br><span class="line"><span class="keyword">input</span>   [<span class="number">11</span>:<span class="number">0</span>]  In0,In1,In2,In3,In4,In5,In6,In7;</span><br><span class="line"><span class="keyword">input</span>   [<span class="number">11</span>:<span class="number">0</span>]  In8,In9,In10,In11,In12,In13,In14,In15;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FHT 的 16 个输出</span></span><br><span class="line"><span class="keyword">output</span>  [<span class="number">15</span>:<span class="number">0</span>]  Out0,Out1,Out2,Out3,Out4,Out5,Out6,Out7;</span><br><span class="line"><span class="keyword">output</span>  [<span class="number">15</span>:<span class="number">0</span>]  Out8,Out9,Out10,Out11,Out12,Out13,Out14,Out15;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FHT 输出寄存信号</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">15</span>:<span class="number">0</span>] Out0,Out1,Out2,Out3,Out4,Out5,Out6,Out7;</span><br><span class="line"><span class="keyword">reg</span> [<span class="number">15</span>:<span class="number">0</span>] Out8,Out9,Out10,Out11,Out12,Out13,Out14,Out15;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FHT 的中间结果</span></span><br><span class="line"><span class="keyword">wire</span> [<span class="number">15</span>:<span class="number">0</span>] Temp0,Temp1,Temp2,Temp3,Temp4,Temp5,Temp6,Temp7;</span><br><span class="line"><span class="keyword">wire</span> [<span class="number">15</span>:<span class="number">0</span>] Temp8,Temp9,Temp10,Temp11,Temp12,Temp13,Temp14,Temp15;</span><br><span class="line"></span><br><span class="line"><span class="comment">// FHT 运算控制计数器，和前一级流水线模块配合</span></span><br><span class="line"><span class="keyword">reg</span> [<span class="number">2</span>:<span class="number">0</span>] Cnt3;             <span class="comment">//count from 0 to 4,when Reset Cnt3=7;</span></span><br><span class="line"><span class="keyword">reg</span> FhtEn;                  <span class="comment">//Enable fht culculate</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> Clk <span class="keyword">or</span> <span class="keyword">negedge</span> Reset) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (!Reset)</span><br><span class="line">        Cnt3&lt;= #<span class="number">1</span> <span class="number">3'b111</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> (PreFhtStar)</span><br><span class="line">            Cnt3&lt;= #<span class="number">1</span> <span class="number">3'b100</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            Cnt3&lt;= #<span class="number">1</span> Cnt3-<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> Clk <span class="keyword">or</span> <span class="keyword">negedge</span> Reset)</span><br><span class="line"><span class="keyword">if</span> (!Reset)</span><br><span class="line">   FhtEn&lt;= #<span class="number">1</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (PreFhtStar)</span><br><span class="line">        FhtEn&lt;= #<span class="number">1</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>  (Cnt3==<span class="number">1</span>)</span><br><span class="line">        FhtEn&lt;= #<span class="number">1</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 补码运算, 复制符号位</span></span><br><span class="line"><span class="keyword">assign</span> Temp0  = (Cnt3 == <span class="number">4</span>) ? {In0[<span class="number">11</span>],In0[<span class="number">11</span>],In0[<span class="number">11</span>],In0[<span class="number">11</span>],In0}     :Out0;</span><br><span class="line"><span class="keyword">assign</span> Temp1  = (Cnt3 == <span class="number">4</span>) ? {In1[<span class="number">11</span>],In1[<span class="number">11</span>],In1[<span class="number">11</span>],In1[<span class="number">11</span>],In1}     :Out1;</span><br><span class="line"><span class="keyword">assign</span> Temp2  = (Cnt3 == <span class="number">4</span>) ? {In2[<span class="number">11</span>],In2[<span class="number">11</span>],In2[<span class="number">11</span>],In2[<span class="number">11</span>],In2}     :Out2;</span><br><span class="line"><span class="keyword">assign</span> Temp3  = (Cnt3 == <span class="number">4</span>) ? {In3[<span class="number">11</span>],In3[<span class="number">11</span>],In3[<span class="number">11</span>],In3[<span class="number">11</span>],In3}     :Out3;</span><br><span class="line"><span class="keyword">assign</span> Temp4  = (Cnt3 == <span class="number">4</span>) ? {In4[<span class="number">11</span>],In4[<span class="number">11</span>],In4[<span class="number">11</span>],In4[<span class="number">11</span>],In4}     :Out4;</span><br><span class="line"><span class="keyword">assign</span> Temp5  = (Cnt3 == <span class="number">4</span>) ? {In5[<span class="number">11</span>],In5[<span class="number">11</span>],In5[<span class="number">11</span>],In5[<span class="number">11</span>],In5}     :Out5;</span><br><span class="line"><span class="keyword">assign</span> Temp6  = (Cnt3 == <span class="number">4</span>) ? {In6[<span class="number">11</span>],In6[<span class="number">11</span>],In6[<span class="number">11</span>],In6[<span class="number">11</span>],In6}     :Out6;</span><br><span class="line"><span class="keyword">assign</span> Temp7  = (Cnt3 == <span class="number">4</span>) ? {In7[<span class="number">11</span>],In7[<span class="number">11</span>],In7[<span class="number">11</span>],In7[<span class="number">11</span>],In7}     :Out7;</span><br><span class="line"><span class="keyword">assign</span> Temp8  = (Cnt3 == <span class="number">4</span>) ? {In8[<span class="number">11</span>],In8[<span class="number">11</span>],In8[<span class="number">11</span>],In8[<span class="number">11</span>],In8}     :Out8;</span><br><span class="line"><span class="keyword">assign</span> Temp9  = (Cnt3 == <span class="number">4</span>) ? {In9[<span class="number">11</span>],In9[<span class="number">11</span>],In9[<span class="number">11</span>],In9[<span class="number">11</span>],In9}     :Out9;</span><br><span class="line"><span class="keyword">assign</span> Temp10 = (Cnt3 == <span class="number">4</span>) ? {In10[<span class="number">11</span>],In10[<span class="number">11</span>],In10[<span class="number">11</span>],In10[<span class="number">11</span>],In10}:Out10;</span><br><span class="line"><span class="keyword">assign</span> Temp11 = (Cnt3 == <span class="number">4</span>) ? {In11[<span class="number">11</span>],In11[<span class="number">11</span>],In11[<span class="number">11</span>],In11[<span class="number">11</span>],In11}:Out11;</span><br><span class="line"><span class="keyword">assign</span> Temp12 = (Cnt3 == <span class="number">4</span>) ? {In12[<span class="number">11</span>],In12[<span class="number">11</span>],In12[<span class="number">11</span>],In12[<span class="number">11</span>],In12}:Out12;</span><br><span class="line"><span class="keyword">assign</span> Temp13 = (Cnt3 == <span class="number">4</span>) ? {In13[<span class="number">11</span>],In13[<span class="number">11</span>],In13[<span class="number">11</span>],In13[<span class="number">11</span>],In13}:Out13;</span><br><span class="line"><span class="keyword">assign</span> Temp14 = (Cnt3 == <span class="number">4</span>) ? {In14[<span class="number">11</span>],In14[<span class="number">11</span>],In14[<span class="number">11</span>],In14[<span class="number">11</span>],In14}:Out14;</span><br><span class="line"><span class="keyword">assign</span> Temp15 = (Cnt3 == <span class="number">4</span>) ? {In15[<span class="number">11</span>],In15[<span class="number">11</span>],In15[<span class="number">11</span>],In15[<span class="number">11</span>],In15}:Out15;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> Clk <span class="keyword">or</span> <span class="keyword">negedge</span> Reset) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (!Reset) <span class="keyword">begin</span></span><br><span class="line">        Out0&lt;=<span class="number">0</span>;Out1&lt;=<span class="number">0</span>;Out2&lt;=<span class="number">0</span>;Out3&lt;=<span class="number">0</span>;Out4&lt;=<span class="number">0</span>;Out5&lt;=<span class="number">0</span>;Out6&lt;=<span class="number">0</span>;Out7&lt;=<span class="number">0</span>;</span><br><span class="line">        Out8&lt;=<span class="number">0</span>;Out9&lt;=<span class="number">0</span>;Out10&lt;=<span class="number">0</span>;Out11&lt;=<span class="number">0</span>;Out12&lt;=<span class="number">0</span>;Out13&lt;=<span class="number">0</span>;Out14&lt;=<span class="number">0</span>;Out15&lt;=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="keyword">if</span> ((Cnt3&lt;=<span class="number">4</span>) &amp;&amp; Cnt3&gt;=<span class="number">0</span> &amp;&amp; FhtEn) <span class="keyword">begin</span></span><br><span class="line">            Out0[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp0[<span class="number">15</span>:<span class="number">0</span>] + Temp8[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out1[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp0[<span class="number">15</span>:<span class="number">0</span>] - Temp8[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out2[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp1[<span class="number">15</span>:<span class="number">0</span>] + Temp9[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out3[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp1[<span class="number">15</span>:<span class="number">0</span>] - Temp9[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out4[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp2[<span class="number">15</span>:<span class="number">0</span>] + Temp10[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out5[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp2[<span class="number">15</span>:<span class="number">0</span>] - Temp10[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out6[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp3[<span class="number">15</span>:<span class="number">0</span>] + Temp11[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out7[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp3[<span class="number">15</span>:<span class="number">0</span>] - Temp11[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out8[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp4[<span class="number">15</span>:<span class="number">0</span>] + Temp12[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out9[<span class="number">15</span>:<span class="number">0</span>]  &lt;= #<span class="number">1</span> Temp4[<span class="number">15</span>:<span class="number">0</span>] - Temp12[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out10[<span class="number">15</span>:<span class="number">0</span>] &lt;= #<span class="number">1</span> Temp5[<span class="number">15</span>:<span class="number">0</span>] + Temp13[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out11[<span class="number">15</span>:<span class="number">0</span>] &lt;= #<span class="number">1</span> Temp5[<span class="number">15</span>:<span class="number">0</span>] - Temp13[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out12[<span class="number">15</span>:<span class="number">0</span>] &lt;= #<span class="number">1</span> Temp6[<span class="number">15</span>:<span class="number">0</span>] + Temp14[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out13[<span class="number">15</span>:<span class="number">0</span>] &lt;= #<span class="number">1</span> Temp6[<span class="number">15</span>:<span class="number">0</span>] - Temp14[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out14[<span class="number">15</span>:<span class="number">0</span>] &lt;= #<span class="number">1</span> Temp7[<span class="number">15</span>:<span class="number">0</span>] + Temp15[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">            Out15[<span class="number">15</span>:<span class="number">0</span>] &lt;= #<span class="number">1</span> Temp7[<span class="number">15</span>:<span class="number">0</span>] - Temp15[<span class="number">15</span>:<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
 <p>为了便于对比两种实现方式的资源消耗，在 Synplify Pro
-中对两种实现方法分别做了综合。两次综合选用的参数都完全一致，所以仅考察设计所消耗的寄存器和逻辑资源，选
-中Disable I/O In sertion 选项，不插入 I/O，取消 Synplify Pro 中诸如 FSM
+中对两种实现方法分别做了综合。两次综合选用的参数都完全一致，所以仅考察设计所消耗的寄存器和逻辑资源，选中
+Disable I/O Insertion 选项，不插入 I/O，取消 Synplify Pro 中诸如 FSM
 Compiler、FSM Explorer、Resource
 Sharing、Retiming、Pipelining等综合优化选项。两次综合的结果如<a href="#fig.5-3">图 5-3</a> 和<a href="#fig.5-4">图 5-4</a> 所示。</p>
-<a name="fig.5-3"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-030-FHTPARTResource.bmp!sign" alt="未采用复用方案的“fhtpart”模块综合所消耗的资源"></p>
-</div>
-<a name="fig.5-4"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-040-WCHFHTResource.bmp!sign" alt="采用复用方案的“wch_fht”模块综合所消耗的资源"></p>
-</div>
+<p><a id="fig.5-3"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-030-FHTPARTResource.bmp!sign" alt="图 5-3 未采用复用方案的 fhtpart 模块综合所消耗的资源">
+<figcaption aria-hidden="true">图 5-3 未采用复用方案的
+<code>fhtpart</code> 模块综合所消耗的资源</figcaption>
+</figure>
+<p><a id="fig.5-4"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-040-WCHFHTResource.bmp!sign" alt="图 5-4 采用复用方案的 wch_fht 模块综合所消耗的资源">
+<figcaption aria-hidden="true">图 5-4 采用复用方案的
+<code>wch_fht</code> 模块综合所消耗的资源</figcaption>
+</figure>
 <p>通过对比可以清晰地观察到，采用复用实现方案所占面积约为原方案的
 1/4，而得到这个好处的代价是，完成整个 FHT 运算的周期为原来的 4
 倍。这个例子通过运算周期的加长，换取了消耗芯片面积的减少，是前面所述的用频率换面积的一种体现。本例所述“频率换面积”的前提是，FHT
-模块频率较高，运算周期的余量较大，采用4
-步复用后．仍然能够满足系统流水线设计的要求。其实，如果流水线时序允许，FHT
+模块频率较高，运算周期的余量较大，采用 4
+步复用后，仍然能够满足系统流水线设计的要求。其实，如果流水线时序允许，FHT
 运算甚至可以采用 1 bit
 串行方案实现，该方案所消耗的芯片面积资源更少！</p>
-<h3 id="用面积复制换取速度的提高举例">1.1.2
+<h3 id="用面积复制换取速度的提高举例">1.1.2.
 “用面积复制换取速度的提高”举例</h3>
 <p>举一个通过复制模块，并行处理达到高处理带宽的例子（可实际应用于无线系统、有线接入、路由器、视频系统等）。假设输入数据流的速率是
 800 Mbit/s，而 FPGA 上设计的数据处理模块的处理速度最大为 200
@@ -4874,21 +4889,22 @@ Mbit/s，由于处理模块的数据吞吐量满足不了要求，直接在 FPGA
 个处理模块，<strong>首先将输入数据进行串/并转换</strong>，然后利用这 4
 个模块并行处理分配的数据，<strong>最后将处理结果并/串变换</strong>，完成数据速率的要求。在整个处理模块的两端看，数据速率仍然是
 800 Mbit/s，而在 FPGA 的内部看，每个子模块处理的数据速率仅为 200
-Mbit/s，其实整个数据的吞吐扯的保障是依赖于 4
+Mbit/s，其实整个数据的吞吐量的保障是依赖于 4
 个子模块并行处理完成的，也就是说利用了占用更多的芯片面积，实现了高速处理，通过使用“面积的复制换取处理速度的提高”的思想实现了设计。设计的示意框图如<a href="#fig.5-5">图 5-5</a> 所示。</p>
-<a name="fig.5-5"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-050-MoreAreaforSpeed.png!sign" width="700px" alt="“面积换速度”示意图"></p>
-</div>
+<p><a id="fig.5-5"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-050-MoreAreaforSpeed.png!sign" width="700" alt="图 5-3 “面积换速度”示意图">
+<figcaption aria-hidden="true">图 5-3 “面积换速度”示意图</figcaption>
+</figure>
 <p>“面积复制换取速度提高”或者说“面积复制换取数据吞吐量的提高”是目前 FPGA
 设计的常用技巧之一。现代高速FPGA 基本都有 DDR/DDR2/DDR3 的 I/O
 硬件电路，通过这种 I/O 硬件电路，可以实现输入数据流的 1:2 和 1:4
 的串/并变换和并/串变换，很多中高端 FPGA 在 I/O BANK
-附近还专门设计了硬件的 DLL 或PLL，配合 DDR/DDR2/DDR3 的 I/O
+附近还专门设计了硬件的 DLL 或 PLL，配合 DDR/DDR2/DDR3 的 I/O
 硬件电路完成对应的采样时钟的降速和倍速。调用这些 I/O
 的硬件模块，可以方便、可靠地实现数据流的并行化（输入端）和串行化（输出端），从而更利于实现“面积复制换取速度提高”，或“面积复制换取数据吞吐量的提高”的设计思想。</p>
-<p>上面仅仅是对“面积换速度“思想的一个简单的举例，其实具体操作过程中还涉及很多的方法和技巧，例如，对高速数据流进行串/并转换，采用“乒乓操作”方法提高数据处理速率等。希望读者通过平时的应用进一步积累经验。</p>
-<h2 id="硬件原则">1.2 硬件原则</h2>
+<p>上面仅仅是对“面积换速度“思想的一个简单的举例，其实具体操作过程中还涉及很多的方法和技巧，例如，对高速数据流进行串/并转换，采用“乒乓操作”方法提高数据处理速率等。希望大家通过平时的应用进一步积累经验。</p>
+<h2 id="硬件原则">1.2. 硬件原则</h2>
 <p>硬件原则主要针对 HDL 代码编写而言。首先应该明确 FPGA/CPLD、ASIC
 的逻辑设计所采用的硬件描述语言（HDL） 同软件语言（如 C、C++
 等）是有本质区别的！以 Verilog 语言为例，虽然 Verilog 很多语法规则和 C
@@ -4909,20 +4925,20 @@ HDL 语句表达出来即可。</p>
 <ul>
 <li><p><strong>互连（connectivity）</strong>:
 互连是硬件电路的一个基本要素，在 C
-语言中，并没有直接可以用来表示模块间互连的变扯；而 HDL
+语言中，并没有直接可以用来表示模块间互连的变量；而 HDL
 的网线型变最则专为模块互连而设计，描述电路连接清晰明确。如 Verilog 的
 <code>wire</code>
 型变量配合一些驱动结构就能有效地描述各个模块直接的端口与网线连接关系。</p></li>
 <li><p><strong>并发（concurrency）</strong> : C
 语言天生是<strong>串行</strong>的，不能描述硬件之间并发的特性， C
-语言编译后．其机器指令在 CPU 的高速缓冲队列中基本是顺序执行；而 Verilog
+语言编译后，其机器指令在 CPU 的高速缓冲队列中基本是顺序执行；而 Verilog
 可以有效地描述并行的硬件系统，硬件系统比软件系统速度快、实时性高的一个重要原因就是硬件系统中<strong>各个单元的运算是独立的，信号流是并行的</strong>。所以在使用
 HDL
 建模时，应该充分理解硬件系统的并行处理特点，合理安排数据流的时序，提高整个设计的效率。</p></li>
 <li><p><strong>时间（time）</strong>：C
 程序运行的时候，没有一个严格的时间概念，程序运行的时间长短，取决于处理器本身的性能；而
 HDL
-语言定义了绝对和相对的时间度量，在仿真时可以通过时间度扯与周期关系描述信号直接的时间关系。</p></li>
+语言定义了绝对和相对的时间度量，在仿真时可以通过时间度量与周期关系描述信号直接的时间关系。</p></li>
 </ul>
 <p>Verilog 作为一种 HDL
 语言，对系统行为的建模方式是分层次的。比较重要的层次有系统级（System）、算法级（Algorithm）、寄存器传输级（RTL）、逻辑级（Logic）、门级（Gate）和电路开关级（Switch）等。系统级和算法级与
@@ -4933,14 +4949,14 @@ C 语言与系统级和算法级 Verilog 描述更相近一些，而与 RTL 级�
 <p>下举例说明 RTL 级 Verilog 描述语法和 C 语言描述语法的区别。</p>
 <p>在C 语言的描述中，为了使代码执行效率高，表述简洁，经常用到下面的
 <code>for</code> 循环语句：</p>
-<figure class="highlight c"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = O; i &lt; l6; i++)</span><br><span class="line">    DoSomething();</span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight c"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (i = O; i &lt; <span class="number">16</span>; i++)</span><br><span class="line">    DoSomething();</span><br></pre></td></tr></tbody></table></figure>
 <p>但是在实际工作中，除了描述仿真测试激励（testbench）时使用
 <code>for</code> 循环语句外，RTL 级编码中<strong>必须要慎用
 <code>for</code> 循环</strong>。其原因是 <strong><code>for</code>
 循环会被综合器展开为所有变量情况的执行语句，每个变量独立占用寄存器资源，有些情况下不能有效地复用硬件逻辑资源，造成资源浪费</strong>。在
 RTL 硬件描述中，遇到类似算法，常用的方式是先搞清楚设计的时序要求，做一个
-<code>reg</code> 型计数器，在每个时钟沿累加，并在每个时钟沿判断
-计数器情况，做相应的处理，能复用的处理模块尽量复用，即使所有操作不易复用，也可以采用
+<code>reg</code>
+型计数器，在每个时钟沿累加，并在每个时钟沿判断计数器情况，做相应的处理，能复用的处理模块尽量复用，即使所有操作不易复用，也可以采用
 <code>case</code> 语句展开描述。代码如下：</p>
 <figure class="highlight verilog"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">reg</span> [<span class="number">3</span>:<span class="number">0</span>] counter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk)</span><br><span class="line">    <span class="keyword">if</span> (syn_rst)</span><br><span class="line">        counter &lt;= <span class="number">4'b0</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        counter &lt;= counter + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">case</span> (counter)</span><br><span class="line">        <span class="number">4'b0000</span>:</span><br><span class="line">        <span class="number">4'b0001</span>:</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">    <span class="keyword">endcase</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></tbody></table></figure>
 <p>另外，在 C 描述中有 <code>if ... else</code> 和 <code>switch</code>
@@ -4954,10 +4970,11 @@ RTL 硬件描述中，遇到类似算法，常用的方式是先搞清楚设计�
 语句，<code>if</code> 语句的语法相似，<code>case</code>
 语句的语法如下：</p>
 <figure class="highlight verilog"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">case</span> (<span class="keyword">var</span>)</span><br><span class="line">    var_value1: ...;</span><br><span class="line">    var_value2: ...;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">default</span>: ...;</span><br></pre></td></tr></tbody></table></figure>
-<p>通过 <a href="https://josh-gao.top/posts/ecb88422.html#3-10-%E7%94%A8-case-%E5%92%8C-if-else-%E5%BB%BA%E6%A8%A1">《Part
-4 —— RTL 概念与常用 RTL 建模》的 3.10 小节</a>的学习，我们会发现
-<code>case</code> 语句和 <code>if ... else if ... else if ...</code>
-语句以及 <code>if ... if ... if ...</code>
+<p>通过 <a href="https://josh-gao.top/posts/ecb88422.html#toc.3.10">Part
+4——RTL 概念与常用 RTL 建模的 3.10 用 <code>case</code> 和
+<code>if ... else</code> 建模</a>的学习，我们会发现 <code>case</code>
+语句和 <code>if ... else if ... else if ...</code> 语句以及
+<code>if ... if ... if ...</code>
 语句建模时可以建立无优先级和带有优先级的判断结构，使用 HDL
 语言建模时，关键在于其综合实现结果的硬件结构。</p>
 <p>这里进一步引申讨论一下 Verilog 的 <code>for</code> 循环。前面讲过
@@ -4969,8 +4986,9 @@ Verilog
 循环在行为级描述测试激励时的应用：前面介绍过，推荐使用 Behavior
 级方式描述测试激励，在描述测试激励时，推荐使用 <code>for</code>
 循环。好处主要有两个，一是描述简单，代码清晰；二是仿真器会对
-<code>for</code> 循环开放一片内存，提供代码执行效率，加快仿真进程。</li>
+<code>for</code> 循环开放一片内存，提高代码执行效率，加快仿真进程。</li>
 </ul>
+<!-- [comment]:<> (如7. 2. 1 小节就论述了如何使用for 语句实现遍历测试。) -->
 <ul>
 <li><code>for</code> 循环在 RTL 级描述硬件电路时的应用：在 RTL
 级描述硬件时，一定要慎用 <code>for</code>
@@ -4980,7 +4998,8 @@ Verilog
 循环会被综合器展开这一基本原则，则可以逆向思维，对某些硬件上无法复用的展开结构抽象为
 <code>for</code> 循环描述，大大提高代码的可读性。</li>
 </ul>
-<h2 id="系统原则">1.3 系统原则</h2>
+<!-- [comment]:<> (例如8. 6. 2" 案例分析“小节就分别列举了使用展开结构和使用for 循环语句对某＂冒泡排序“寻找最小值电路的建模方法，请读者仔细琢磨。) -->
+<h2 id="系统原则">1.3. 系统原则</h2>
 <p>系统原则包含两个层次的含义：一是实现的目标器件本身可以看作一个系统，需要充分有效地发挥该系统的每个单元的功效。如果设计的实现目标为
 FPGA，因为当代 FPGA
 内嵌了很多固有的硬件资源（如：可编程输入/输出单元、基本可编程逻辑单元、嵌入式块
@@ -4994,20 +5013,23 @@ ASIC 里面实现，什么样的算法和功能适合放在 DSP、CPU
 <p><a href="#fig.5-6">图 5-6</a> 描述了FPGA
 设计的系统规划流程。我们可以发现<strong>对设计从整体上进行模块复用应该在系统功能定义后就充分考虑</strong>，并指导模块的具体划分。模块划分非常重要，除了关系到是否最大程度上发挥项目成员的协同设计能力，而且直接决定着设计的综合、实现效果和相关的操作时间，模块划分的具体方法请参考
 4.2 小节中关于模块划分技巧的论述。</p>
-<a name="fig.5-6"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-060-SystemPlanningProc.png!sign" width="700px" alt="系统规划的简化流程"></p>
-</div>
+<p><a id="fig.5-6"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-060-SystemPlanningProc.png!sign" width="700" alt="图 5-6 系统规划的简化流程">
+<figcaption aria-hidden="true">图 5-6 系统规划的简化流程</figcaption>
+</figure>
 <p>对系统原则做一点引申，简单谈谈模块化设计方法。模块化设计是系统原则的一个很好的体现，它不仅是一种设计工具，它更是一种设计思路、设计方法，它是由顶向下、模块划分、分工协作设计思路的集中体现，是当代大型复杂系统的推荐设计方法。目前很多的
 EDA
 厂商都提高了模块化设计工具，通过这类工具划分每个模块的设计区域，然后单独设计和优化每个模块，最后将每个模块融合到顶层设计中，从而实现了团队协作、并行设计的模块化设计方法。合理使用模块化设计方法，能在最大程度上继承以往设计成果，并行分工协作，有效利用开发资源，缩短开发周期。</p>
-<p>下举例说明如何在系统层次复用模块</p>
+<p>下举例说明如何在系统层次复用模块。</p>
 <p>利用“可编程匹配滤波器“实现 WCDMA
 基站的方案，其核心是在合理规划系统的基础上，合理划分模块并安排操作时序，提高单元模块的复用率令从而大大降低硬件消耗，其设计思想是系统原则的集中体现。可编程匹配滤波器原理框图如<a href="#fig.5-7">图 5-7</a> 所示。</p>
-<a name="fig.5-7"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-070-ProgrammableMatchFilter.png!sign" width="500px" alt="系统规划的简化流程"></p>
-</div>
+<p><a id="fig.5-7"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-070-ProgrammableMatchFilter.png!sign" width="600" alt="图 5-7 可编程匹配滤波器原理框图">
+<figcaption aria-hidden="true">图 5-7
+可编程匹配滤波器原理框图</figcaption>
+</figure>
 <p>其设计思想是：利用信道固有特点（如信道 pilot
 导频、信道结构等），应用现代可编程数字信号处理的技术（如 DSP、FPGA
 等），采取反馈与控制匹配滤波方式，实现对某信道的已扩信息的自动解扩解扰。该可编程
@@ -5015,28 +5037,27 @@ MF 的主要组成部分为本地码发生器、可编程信号 MF（S
 MF）、帧匹配滤波器（FRAME
 MF）和控制器。本地码发生器可生成各种所需的扩频、加扰序列，可接收控制器的指示脉冲，产生规定的本地解扩、解扰序列，作为
 S MF 的参考序列；S MF
-是完成匹配滤波的主体，可接收控制器的指示脉冲，将自己的匹配状态切换到下一匹配状态；F
-MF
+是完成匹配滤波的主体，可接收控制器的指示脉冲，将自己的匹配状态切换到下一匹配状态；FMF
 完成对导频信号等特殊信号（信息位待选集有限）的检测，生成指示相关峰，通知控制器将
-S MF
+SMF
 切换到下一匹配状态；控制器统一协调各部分工作。这种可编程滤波器可以在如越区切换、同步方面、CPCH
 收发信机等多方面应用，如果适当安排时序流程，可以在较大程度上节约硬件资源。</p>
 <h1 id="同步设计原则和多时钟处理">2. 同步设计原则和多时钟处理</h1>
-<h2 id="同步设计原则">2.1 同步设计原则<a name="toc.2.1"></a></h2>
+<h2 id="同步设计原则">2.1. 同步设计原则<a id="toc.2.1"></a></h2>
 <p>同步设计是 PLD 和 ASIC 设计的最重要原则。本小节首先阐释为什么在 PLD
 设计中要采用同步时序设计，然后重点论述同步时序设计的要点。</p>
-<h3 id="异步时序设计与同步时序设计">2.1.1
+<h3 id="异步时序设计与同步时序设计">2.1.1.
 异步时序设计与同步时序设计</h3>
 <p>简单比较一下异步电路和同步电路的异同。</p>
 <table>
 <colgroup>
-<col style="width: 57%">
-<col style="width: 42%">
+<col style="width: 23%">
+<col style="width: 76%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">电路类型</th>
-<th style="text-align: left;"></th>
+<th style="text-align: left;">特点</th>
 </tr>
 </thead>
 <tbody>
@@ -5069,8 +5090,9 @@ Counters）或者异步脉冲生成器等典型的异步逻辑设计方式以节
 工具都是基于时序驱动（Timing
 Driven）优化策略的。异步时序电路增加了时序分析的难度，需要确定最佳时序路径所需的计算量超出想象，所需时序约束相当繁琐，而且<strong>对于异步电路很多综合、实现工具的编译会带来歧义</strong>。而对于同步时序设计则恰恰相反，其<strong>时序路径清晰，相关时序约束简单明了，综合、实现优化容易，布局布线计算量小</strong>。所以目前可编程逻辑的
 EDA 工具都推荐使用同步时序设计。</p>
-<p>综上所述，<strong>现代数字芯片设计推荐采用同步时序设计方式！</strong></p>
-<h3 id="同步时序设计">2.1.2 同步时序设计</h3>
+<div class="note info"><p>综上所述，<strong>现代数字芯片设计推荐采用同步时序设计方式！</strong></p>
+</div>
+<h3 id="同步时序设计">2.1.2. 同步时序设计</h3>
 <p>同步时序设计的基本原则是<strong>使用时钟沿触发所有的操作</strong>。如果所有寄存器的时序要求（Setup、Hold
 时间等指标）都能够满足，则同步时序设计与异步时序设计相比，在不同的
 PVT（工艺、电压、温度）条件下能获得更佳的系统稳定性与可靠性。</p>
@@ -5083,20 +5105,21 @@ PVT（工艺、电压、温度）条件下能获得更佳的系统稳定性与�
 </ul>
 <p>同步时序设计有以下几个注意事项：</p>
 <ul>
-<li><p>异步时钟域的数据转换。详见 <a href="#0203">2.3
+<li><p>异步时钟域的数据转换。详见 <a href="#toc.2.3">2.3
 小节“异步时钟域数据同步”</a>。</p></li>
-<li><p>组合逻辑电路的设计方法。详见<a href="#05">第 5
+<li><p>组合逻辑电路的设计方法。详见<a href="#toc.5">第 5
 节“组合逻辑的注意事项”</a>。</p></li>
-<li><p>同步时序电路的时钟设计。 详见<a href="#06">第 6
+<li><p>同步时序电路的时钟设计。 详见<a href="#toc.6">第 6
 节“时钟设计的注意事项”</a>。</p></li>
-<li><p>同步时序电路的延迟。同步时序设计中电路延迟最常用的设计方法是用分频或倍频的时钟或者同步计数器完成所需延迟。换句话说，同步时序电路的延时被当作一个电路逻辑来设计。对于<strong>比较大的和特殊定时要求的延时，一般用高速时钟产生一个计数器，根据计数器的计数，控制延时</strong>；对于<strong>比较小的延时，可以用
+<li><p>同步时序电路的延迟。</p>
+<p>同步时序设计中电路延迟最常用的设计方法是用分频或倍频的时钟或者同步计数器完成所需延迟。换句话说，同步时序电路的延时被当作一个电路逻辑来设计。对于<strong>比较大的和特殊定时要求的延时，一般用高速时钟产生一个计数器，根据计数器的计数，控制延时</strong>；对于<strong>比较小的延时，可以用
 D
 触发器打一下</strong>，这种做法<strong>不仅使信号延时了一个时钟周期，而且完成了信号与时钟的初次同步</strong>，在输入信号采样或增加时序约束余量时使用。另外许多初学者用行为级（Behavioral
 Level）方法描述延时，如 <code>#5 a&lt;= 4'b0101;</code>
 这种行为级描述方法常用于仿真测试激励，但是<strong>在电路综合时会被忽略、并不能起到延时作用</strong>。</p></li>
 </ul>
-<h2 id="亚稳态">2.2 亚稳态<a id="toc.2.2"></a></h2>
-<p>在后续笔记中会介绍异步时钟域转换的问题，在谈这个话题之前，先分析一下什么是亚稳态，以及如何避免。</p>
+<h2 id="亚稳态">2.2. 亚稳态<a id="toc.2.2"></a></h2>
+<p>在后续文章中会介绍异步时钟域转换的问题，在谈这个话题之前，先分析一下什么是亚稳态，以及如何避免。</p>
 <p>异步时钟域的转换的核心就是要保证下级时钟对上级数据采样的 Setup 时间和
 Hold 时间。如果触发器的Setup 时间或者 Hold
 时间不满足，就可能产生亚稳态，<strong>此时触发器输出端 Q
@@ -5105,14 +5128,10 @@ Hold 时间。如果触发器的Setup 时间或者 Hold
 D 的数值</strong>，这段时间称为决断时间（Resolution time）。经过
 Resolution time 之后 Q 端将稳定到 0 或1, 但是究竟是 0
 还是1，这是随机的，与输入没有必然的关系，其产生示意图如<a href="#fig.5-8">图 5-8</a> 所示。</p>
-<a name="fig.5-8"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-080-MetastableGenerate.png!sign" width="700px" alt="亚稳态产生示意图"></p>
-</div>
+<p><a id="fig.5-8"></a> <img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-080-MetastableGenerate.png!sign" width="800" alt="图 5-8 亚稳态产生示意图"></p>
 <p><strong>亚稳态的危害主要体现在破坏系统的稳定性</strong>。由于输出在稳定下来之前可能是毛刺、振荡、固定的某一电压值，因此亚稳态将<strong>导致逻辑误判</strong>，严重情况下输出
 0~1
-之间的中间电压值还会<strong>使下一级产生亚稳态，即导致亚稳态的传播</strong>。逻辑误判导致功能性错误，而亚稳态的传播则扩大了故障面。另外，在亚稳态状态下，任何诸如环境噪声、电源于扰等细微扰动都将导致更恶劣的状态不稳定。这时这个系统的传输延迟增大，状态输出错误，在某些情况下甚至会使寄存器在两个有效判定门限（V<sub>oL</sub>
-、V<sub>oH</sub>）之间长时间的振荡。</p>
+之间的中间电压值还会<strong>使下一级产生亚稳态，即导致亚稳态的传播</strong>。逻辑误判导致功能性错误，而亚稳态的传播则扩大了故障面。另外，在亚稳态状态下，任何诸如环境噪声、电源于扰等细微扰动都将导致更恶劣的状态不稳定。这时这个系统的传输延迟增大，状态输出错误，在某些情况下甚至会使寄存器在两个有效判定门限（<span class="math inline">\(\mathrm{V_{oL}}\)</span> 、<span class="math inline">\(\mathrm{V_{oH}}\)</span>）之间长时间的振荡。</p>
 <p><strong>只要系统中有异步元件，亚稳态就无法避免</strong>，因此设计的电路<strong>首先要减少亚稳态导致的错误</strong>，<strong>其次要使系统对产生的错误不敏感</strong>。前者要靠同步设计来实现，而后者则根据不同的设计应用不同的处理办法。</p>
 <p><strong>使用两级以上寄存器采样可以有效地减少亚稳态继续传播的概率</strong>。在<a href="#fig.5-9">图 5-9</a>
 中，左边为异步输入端，经过两级触发器采样，在右边的输出与
@@ -5122,34 +5141,40 @@ clk 周期后，第二个触发器 D
 端的电平仍未稳定的概率非常小，因此第二个触发器 Q
 端基本不会产生亚稳态。理论上如果再添加一级寄存器，使同步采样达到 3
 级，则末级输出为亚稳态的概率几乎为 0。</p>
-<a name="fig.5-9"></a>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-090-TwoStageRegisterSampling.png!sign" width="700px" alt="两级寄存器采样降低亚稳态概率"></p>
-</div>
+<p><a id="fig.5-9"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-090-TwoStageRegisterSampling.png!sign" width="800" alt="图 5-9 两级寄存器采样降低亚稳态概率">
+<figcaption aria-hidden="true">图 5-9
+两级寄存器采样降低亚稳态概率</figcaption>
+</figure>
 <p>使用<a href="#fig.5-9">图 5-9</a>
 两级寄存器采样仅能降低亚稳态的概率，但是并不能保证第二级输出的稳态电平就是正确电平。前面说过经过
 Resolution time
 之后寄存器输出的电平是一个不确定的稳态值，也就是说<strong>这种处理方法并不能排除采样错误的产生</strong>，这时就<strong>要求所设计的系统对采样错误有一定的容忍度</strong>。有些应用本身就对采样错误不敏感，如一帧图像编码，一段话音编码等。而有些系统对错误采样比较敏感。这类由于亚稳态造成的采样是一些突发的错误，所以可以采用一些纠错编码手段完成错误的纠正。</p>
-<h2 id="异步时钟域数据同步">2.3
-异步时钟域数据同步<a name="0203"></a></h2>
-<p>异步时钟域数据同步是芯片设计的一个常见问题，既是一个重点也是一个难点问题。很多设计工作时的不稳定都是源于异步时钟域数据同步不稳定。</p>
-<h3 id="两类异步时钟域同步的表现形式">2.3.1
+<h2 id="异步时钟域数据同步">2.3.
+异步时钟域数据同步<a id="toc.2.3"></a></h2>
+<p>异步时钟域数据同步是芯片设计的一个常见问题，<strong>既是一个重点也是一个难点问题</strong>。很多设计工作时的不稳定都是源于异步时钟域数据同步不稳定。</p>
+<h3 id="两类异步时钟域同步的表现形式">2.3.1.
 两类异步时钟域同步的表现形式</h3>
 <p>异步时钟域数据同步，也被称为数据接口同步，顾名思义，是指<strong>如何在两个时钟不同步的数据域之间可靠地进行数据交换</strong>。数据的时钟域不同步主要有两种情况：</p>
 <ul>
 <li>两个域的时钟频率相同，但是相位差不固定，或者相差固定但是不可测，简称为同频异相问题；</li>
 <li>两个时钟域频率根本不同，简称为异频问题。</li>
 </ul>
-<h3 id="两种不推荐的异步时钟域操作方法">2.3.2
+<h3 id="两种不推荐的异步时钟域操作方法">2.3.2.
 两种不推荐的异步时钟域操作方法</h3>
 <p>首先讨论两种在设计中不推荐的异步时钟域转换方法：一种是通过增加 Buffer
 或者其他门延时调整采样；另一种是盲目使用时钟正负沿调整数据采样。</p>
 <ol type="1">
 <li><p>通过 Buffer 等组合逻辑延迟线调整采样时间</p>
 <p>在早期逻辑电路图设计阶段，有一些设计者养成了手工加入 Buffer
-或者非门调整数据延迟的习惯，从而保证本级模块的时钟对上级模块数据的建立、保持时间的要求。这些做法目前主要应用的场合有两种：一是使用分立逻辑元件（如
-74 系列）搭建数字逻辑电路；另一种是在 ASIC
-设计领域。<strong>目前使用分立逻辑元件搭建数字逻辑电路的场合一般为系统复杂度相对较低，系统灵活性要求不高的场合。</strong>在上述场合使用分立逻辑器件设计数字逻辑电路，由于可以使用的调整延时的手段相对有限，而且采用插入
+或者非门调整数据延迟的习惯，从而保证本级模块的时钟对上级模块数据的建立、保持时间的要求。这些做法目前主要应用的场合有两种：</p>
+<ul>
+<li><p>一是使用分立逻辑元件（如 74 系列）搭建数字逻辑电路；</p></li>
+<li><p>另一种是在 ASIC
+设计领域。<strong>目前使用分立逻辑元件搭建数字逻辑电路的场合一般为系统复杂度相对较低，系统灵活性要求不高的场合</strong>。</p></li>
+</ul>
+<p>在上述场合使用分立逻辑器件设计数字逻辑电路，由于可以使用的调整延时的手段相对有限，而且采用插入
 Buffer 、数字延迟逻辑甚至两个非门等手段调整采样的 Setup 和 Hold
 时间是可以接受的。而 ASIC
 设计领域采用这种方法是以严格的仿真和约束条件作为强力支持的。</p>
@@ -5168,30 +5193,31 @@ Setup、Hold 时间等），往往造成在该沿操作不稳定的结果。</p>
 <p>总结这两点，如果设计者并不十分清楚同时使用上下沿的方法，不如直接使用同相倍频时钟更加简单、明确、可靠。但是如果设计者十分清楚同一周期使用双沿的注意事项，附加了相应的约束，这种做法并非不可。</p>
 <p>针对使用两个时钟沿，在这里还想补充以下两点：</p>
 <ul>
-<li>使用者虽然使用了同一个时钟的两个沿，但是<strong>保证不在同一个周期内同时使用双沿，则不会增加时钟频率</strong>。</li>
-<li>DDR 、QDR
+<li><p>使用者虽然使用了同一个时钟的两个沿，但是<strong>保证不在同一个周期内同时使用双沿，则不会增加时钟频率</strong>。</p></li>
+<li><p>DDR 、QDR
 本身就是利用了上下沿采样的原理，随着存储器件高速发展，时钟速度已经成为存取器件的瓶颈，所以可用时钟上下沿操作缓解对单沿
 RAM 时钟振荡器的要求。但是必须清楚，硬件的 DDR、QDR 电路（包括 ASIC 的
 DDR、QDR 与 FPGA 内嵌的 DDR、QDR
 电路）是专用高速设计电路，对时钟的正沿、负沿的 Jitter 、Skew
 和占空比等指标都有详细和明确的要求，这一点是和普通逻辑设计，特别是实现在
-FPGA 中设计的情况截然不同，希望读者加以区分。</li>
+FPGA 中设计的情况截然不同，希望大家加以区分。</p></li>
 </ul></li>
 </ol>
-<h3 id="异步时钟域数据同步常用方法">2.3.3
+<h3 id="异步时钟域数据同步常用方法">2.3.3.
 异步时钟域数据同步常用方法</h3>
-<p>下面分别介绍 <a href="#0203">2.3
+<p>下面分别介绍 <a href="#toc.2.3">2.3
 小节</a>提出的两大类异步时钟域数据同步问题的解决方法。</p>
 <ol type="1">
 <li><p>同频异相问题</p>
 <p>同频异相问题的简单解决方法是<strong>用后级时钟对前级数据采样两次</strong>，即通常所述的<strong>用寄存器打两次</strong>。数据同步如<a href="#fig.5-10">图 5-10</a>
 所示，这样的做法是有效地减少了亚稳态的传播，使后级电路数据都是有效电平值。但是这种做法并不能保证两级寄存器采样后的数据是正确的电平值，因为一旦
 Setup 或 Hold 时间不满足，采样发生亚稳态，则经判决时间（Resolution
-Time）后，还是可能判决到错误电平值。所以这种方法仅仅适用于对少量错误不敏感的功能单元。</p>
-<p><a name="fig.5-10"></a></p>
-<div data-align="center">
-<p><img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-100-DataSynchronization.png!sign" width="700px" alt="数据同步"></p>
-</div>
+Time）后，还是可能判决到错误电平值。所以<strong>这种方法仅仅适用于对少量错误不敏感的功能单元</strong>。</p>
+<p><a id="fig.5-10"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-100-DataSynchronization.png!sign" width="800" alt="图 5-10 数据同步">
+<figcaption aria-hidden="true">图 5-10 数据同步</figcaption>
+</figure>
 <p>可靠的做法是用 DPRAM 、FIFO 或者一段寄存器 Buffer
 完成异步时钟域的数据转换。把数据存放在 DPRAM 或FIFO
 的方法如下：将上级芯片提供的数据随路时钟作为写信号，将数据写入 DPRAM
@@ -5206,26 +5232,26 @@ Time）后，还是可能判决到错误电平值。所以这种方法仅仅适�
 <h1 id="代码风格">3. 代码风格</h1>
 <p>代码风格，即 Coding Style，其分为一般性 Coding Style
 和针对综合工具、实现工具、器件类型的 Coding Style。</p>
-<h2 id="coding-style-的分类">3.1 Coding Style 的分类</h2>
+<h2 id="coding-style-的分类">3.1. Coding Style 的分类</h2>
 <p>所谓一般性的 Coding
 Style，是指不依赖于综合、实现工具和器件类型的代码风格。不同的综合实现工具对一些语法细节的阐释略有不同，特别是那些关于优先级实现的先后顺序等，所以不同的综合工具在个别细节上对
-Coding Style 的解释有一定的差异。本篇笔记所述的 Coding
+Coding Style 的解释有一定的差异。本文所述的 Coding
 Style，如果没有特别声明，都是不依赖于具体 EDA 工具， 一般意义上的 Coding
 Style，适用于不同厂商的综合实现工具和不同目标器件。</p>
 <p>还有一类 Coding Style
 是针对某种综合工具或者特定器件结构的，根据器件硬件结构，正确地实例化底层单元模块，合理地使用其内嵌的硬件电路，以达到最优化的设计效果。另外需要特别声明一点，一般
 ASIC 设计的 Coding Style 和 PLD（主要指 FPGA 和 CPLD）设计的 Coding
-Style 有明显差异。这主要是因为PLD
+Style 有明显差异。这主要是因为 PLD
 设计是基于固有的硬件结构（如：逻辑单元、块
 RAM、PLL/DLL、时钟资源等）。而 ASIC
 设计结构灵活，目标多样，特别是在功耗、速度、时序等要求上，与 PLD
 设计有明显差异。例如， ASIC
 设计中根据要求会有意识地采样某些组合逻辑、门控时钟等降低功耗或提高速度。这里讲述的
 Coding Style 和基本原则如不特殊声明，均基于 PLD 设计要求。</p>
-<p>另外本篇笔记所述 Coding Style 主要是基于
+<p>另外本文所述 Coding Style 主要是基于
 RTL（寄存器传输级）而言，并非其他描述层次。所以诸如业界非常热门的结构化设计方法（Architectural-based
 Design）的代码风格的原则和方法与本章无关，甚至有很多原则和方法是与本章所述背道而驰的。</p>
-<h2 id="coding-style-的重要性">3.2 Coding Style 的重要性</h2>
+<h2 id="coding-style-的重要性">3.2. Coding Style 的重要性</h2>
 <p>当代的可编程逻辑设计日趋复杂，其系统复杂度和设计频率要求与 5
 年前不可同日而语。良好的 Coding Style
 对设计的工作频率，所消耗的芯片面积，甚至整个系统的稳定性都非常重要，良好规范的Coding
@@ -5234,16 +5260,16 @@ Style 便于设计移植。</p>
 技术的不断发展，综合、实现工具的优化能力越来越强大，可以自动完成许多复杂设计的面积和时序方面的优化，并且其优化效果日趋先进。但是如果盲目依赖综合、实现等
 EDA 工具的优化，而忽略自己设计的代码风格，就大错特错了。因为 Coding
 Style 对综合、实现等 EDA
-工具的优化结果的影响可以用这样一句话来概括：<strong>好的Coding Style
-会使综合、实现等优化事半功倍，达到最优化的结果；不良的Coding Style
+工具的优化结果的影响可以用这样一句话来概括：<strong>好的 Coding Style
+会使综合、实现等优化事半功倍，达到最优化的结果；不良的 Coding Style
 会使综合、实现优化南辕北辙，甚至产生错误的结果</strong>。所以必须明确：综合、实现等
 EDA 工具的优化能力和正确性最终取决于设计的 Coding Style 的优劣。</p>
 <p>在后面的几节中，将详细谈谈设计和代码风格。</p>
 <h1 id="结构层次和模块划分">4. 结构层次和模块划分<a id="toc.4"></a></h1>
-<h2 id="结构层次化编码">4.1 结构层次化编码</h2>
+<h2 id="结构层次化编码">4.1. 结构层次化编码</h2>
 <p>结构层次化编码（Hierarchical
 Coding）是模块化设计思想的一种体现。目前大型设计中必须采用结构层次化编码风格，以提高代码的可读性，易于模块划分，易于分工协作，易于设计仿真测试激励。最基本的结构化层次是由一个顶层模块和若干个子模块构成，每个子模块根据需要还可以包含自己的子模块。结构层次化编码结构如<a href="#fig.5-11">图 5-11</a> 所示。</p>
-<p><a name="fig.5-11"></a></p>
+<p><a id="fig.5-11"></a></p>
 <figure>
 <img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-110-StructuredCoding.png!sign" width="600" alt="结构层次化编码示意图">
 <figcaption aria-hidden="true">结构层次化编码示意图</figcaption>
@@ -5267,7 +5293,7 @@ RTL
 </ul>
 <p>结构层次化编码的本质不应该简单地理解为一种具体的设计手段，而应该认识到它更是<strong>一种系统层次的设计方法</strong>。很多初学者都有这样一个疑问：一个设计完全可以在同一个模块内完整描述，为什么还要将其中的时序逻辑和组合逻辑、不同优化目标、不同功能的电路分成多级层次，使用多个模块描述呢？模块划分增加了内部接口描述的工作量，这不是“自讨苦吃“么？</p>
 <p>虽然理论上任何设计都可以在同一个模块中完成，但是如果将不同功能、不同层次、不同类型的电路混淆在同一个模块中，这不是一种好的系统设计方法，对于比较复杂的设计，将会导致整个设计杂乱无章，不利于设计的阅读与维护，也会给综合和实现过程带来许多麻烦。</p>
-<h2 id="模块划分的技巧">4.2 模块划分的技巧</h2>
+<h2 id="模块划分的技巧">4.2. 模块划分的技巧</h2>
 <p>结构层次化设计方法的第一个要点就是模块划分，模块划分非常重要，关系到能否最大程度上发挥项目成员协同设计的能力，更重要的是它直接决定着设计的综合、实现的耗时与效率。模块划分的基本原则介绍如下：</p>
 <ol type="1">
 <li><p><strong>对每个同步时序设计的子模块的输出使用寄存器</strong></p>
@@ -5275,23 +5301,26 @@ RTL
 <li><p><strong>将相关的逻辑或者可以复用的逻辑划分在同一模块内</strong></p>
 <p>这个做法有时被称为<strong>呼应系统原则</strong>。这样做的好处有：一方面将相关的逻辑和可以复用的逻辑划分在同一模块，可在最大程度上复用资源，减少设计所消耗的面积；另一方面更利于综合工具优化某个具体功能的时序关键路径。其原因是，传统的综合工具只能同时优化某一部分的逻辑，而所能同时优化的逻辑的从本单元就是模块，所以将相关功能划分在同一模块将在时序和面积上获得更好的综合优化效果。</p></li>
 <li><p><strong>将不同优化目标的逻辑分开</strong></p>
-<p>在介绍速度、面积平衡与互换原则时，合理的设计目标应该综合考虑面积最小和频率最高两个指标。好的设计，在规划阶段设计者就应该初步规划了设计的规模和时序关键路径，并对设计的优化目标有一个整体上的把握。对于时序紧张的部分．应该独立划分为一个模块．其优化目标为“Speed”，这种划分方法便于设计者进行时序约束，也便于综合和实现工具进行优化。目前很多综合与实现工具都支持物理区域位置约束，以模块为单元进行物理区域约束，从而优化关键路径时序，以达到更高的系统工作频率就更为方便有效。另一类情况是，设计的矛盾主要集中在芯片的资源消耗上。这时应该将资源消耗过大的部分划分为独立的模块，这类模块的优化目标应该定为“Area”
+<p>在介绍速度、面积平衡与互换原则时，合理的设计目标应该综合考虑面积最小和频率最高两个指标。好的设计，在规划阶段设计者就应该初步规划了设计的规模和时序关键路径，并对设计的优化目标有一个整体上的把握。</p>
+<p>对于时序紧张的部分，应该独立划分为一个模块，其优化目标为“Speed”，这种划分方法便于设计者进行时序约束，也便于综合和实现工具进行优化。目前很多综合与实现工具都支持物理区域位置约束，以模块为单元进行物理区域约束，从而优化关键路径时序，以达到更高的系统工作频率就更为方便有效。</p>
+<p>另一类情况是，设计的矛盾主要集中在芯片的资源消耗上。这时应该将资源消耗过大的部分划分为独立的模块，这类模块的优化目标应该定为“Area”
 。同理，将它们规划到一起，更有利于区域布局与约束。这种根据优化目标进行优化的方法最大好处是，对于某个模块综合器仅需要考虑一种优化目标和策略，从而比较容易达到较好的优化效果。相反，如果同时考虑两种优化目标，会使综合器陷入互相制约的困境，耗费巨大的综合优化时间也得不到令人满意的综合优化结果。</p></li>
 <li><p><strong>将时序约束较松的逻辑归到同一模块</strong></p>
 <p>有些逻辑的时序非常宽松，不需要较高的时序约束，可以将这类逻辑归入同一模块，如多周期路径（Multi-cycle
 Path）等。将这些模块归类，并指定宽松约束，则可以让综合器尽量节省面积资源。</p></li>
 <li><p><strong>将存储逻辑独立划分成模块</strong></p>
 <p>RAM、ROM、CAM 和 FIFO
-等存储单元应该独立划分模块。这样做的好处是便于利用综合约束属性显化指定这些存储单元的结构和所使用的资源类型，也便于综合器将这些存储单元自动类推为指定器件的硬件原语。另一个好处是在仿真时消耗的内存也会减少，便于提高仿真速度。这是因为大多数仿真器对大面积的RAM都有独特的内存管理方式，以提高仿真效率。</p></li>
+等存储单元应该独立划分模块。这样做的好处是便于利用综合约束属性显化指定这些存储单元的结构和所使用的资源类型，也便于综合器将这些存储单元自动类推为指定器件的硬件原语。另一个好处是在仿真时消耗的内存也会减少，便于提高仿真速度。这是因为大多数仿真器对大面积的
+RAM 都有独特的内存管理方式，以提高仿真效率。</p></li>
 <li><p><strong>合适的模块规模</strong></p>
 <p>从理论上讲，模块的规模越大，越利于模块资源共享（Resource
-Sharing）。但是庞大的模块，将要求对综合器同时处理更多的逻辑结构．这将对综合器的处理能力和计算机的配置提出了较高的要求。另外，庞大的模块划分，不利于发挥目前非常流行的增拭综合与实现技术的优势。</p></li>
+Sharing）。但是庞大的模块，将要求对综合器同时处理更多的逻辑结构，这将对综合器的处理能力和计算机的配置提出了较高的要求。另外，庞大的模块划分，不利于发挥目前非常流行的增拭综合与实现技术的优势。</p></li>
 </ol>
-<h1 id="组合逻辑的注意事项">5. 组合逻辑的注意事项<a name="05"></a></h1>
+<h1 id="组合逻辑的注意事项">5. 组合逻辑的注意事项<a id="toc.5"></a></h1>
 <p>相对复杂一些的设计都是由两部分组成的，分别为时序逻辑（Sequential
 Logic）和组合逻辑（Combination
 Logic）。同步时序设计系统中并不是不包含组合逻辑，而是要更加合理地设计、划分组合逻辑。在以下几小节中将介绍组合逻辑设计的一些问题。</p>
-<h2 id="always-组合逻辑信号敏感表">5.1 <code>always</code>
+<h2 id="always-组合逻辑信号敏感表">5.1. <code>always</code>
 组合逻辑信号敏感表</h2>
 <p>几乎所有的编码指导手册都有关于信号敏感表的论述。时序逻辑的信号敏感表比较好写，在信号敏感表中写明时钟信号的正负触发沿即可，关于信号敏感表的主要问题集中在组合逻辑的信号敏感表的写法。在此，仅强调组合逻辑的信号敏感表的相关要点：</p>
 <ul>
@@ -5304,13 +5333,13 @@ Logic）。同步时序设计系统中并不是不包含组合逻辑，而是要
 <p>有些初学者发现在信号敏感表中增减一些信号，会得到不同的仿真结果，于是企图依靠修改信号敏感表，而方便地完成某些逻辑的设计，这种做法是不可能的。其实一般综合工具的默认操作都是将
 <code>always</code>
 模块中使用到的所有输入信号和条件判断信号都当作触发信号，综合到信号敏感表中，所以增减信号敏感表，其实得到的综合结果完全一致。而增减信号敏感表，得到的仿真结果不同是因为仿真器的工作机制决定的，大多数仿真器是数据流和时钟周期驱动的，如果信号敏感表中没有某个信号，则无法触发和该信号相关的仿真进程，从而得到的仿真结果不同。</p>
-<h2 id="组合逻辑环路">5.2 组合逻辑环路</h2>
+<h2 id="组合逻辑环路">5.2. 组合逻辑环路</h2>
 <p><strong>组合逻辑反馈环路是数字同步逻辑设计的大忌</strong>，它最容易因振荡、毛刺、时序违规等引起整个系统的不稳定和不可靠。</p>
 <p>典型的组合逻辑反馈环路如<a href="#fig.5-12">图 5-12</a>
 所示，寄存器的 Q 端输出直接通过组合逻辑反馈到寄存器的异步复位端，如果 Q
 输出为 0
 时，经组合逻辑运算后为异步复位端有效，则电路进入不断清零的死循环。</p>
-<p><a name="fig.5-12"></a></p>
+<p><a id="fig.5-12"></a></p>
 <figure>
 <img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-120-CombinatorialLogicFeedbackLoop.png!sign" width="400" alt="组合逻辑反馈环路示意图">
 <figcaption aria-hidden="true">组合逻辑反馈环路示意图</figcaption>
@@ -5329,14 +5358,16 @@ EDA
 <li><p>检查综合、实现报告的 Warning 信息，发现 Combinational Loops
 后进行相应修改。</p></li>
 </ul>
-<h2 id="脉冲产生器">5.3 脉冲产生器</h2>
+<h2 id="脉冲产生器">5.3. 脉冲产生器</h2>
 <p>在异步时序设计中，常用延时链（Delay
 Chains）产生脉冲，常用的异步脉冲产生方法如<a href="#fig.5-13">图
 5-13</a> 所示。</p>
-<a name="fig.5-13"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-130-AsynchronousPulseGeneration.png!sign" width="500px" alt="常用的异步脉冲产生方法示意图"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-13"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-130-AsynchronousPulseGeneration.png!sign" width="600" alt="图 5-13 常用的异步脉冲产生方法示意图">
+<figcaption aria-hidden="true">图 5-13
+常用的异步脉冲产生方法示意图</figcaption>
+</figure>
 <p>这类异步方法设计的脉冲产生电路的脉冲宽度取决于 Delay Chains
 的门延迟和线延迟，而在 FPGA/CPLD 中，大多数 Timing Driven
 的综合、布线工具无法保证其布线延迟恒定。另外，PLD 器件本身在不同的
@@ -5344,17 +5375,19 @@ PVT（工艺、电压、温度）环境下其延时参数也有微小波动，�
 STA
 工具也无法准确分析脉冲的特性，为时序仿真和验证带来了很多的不确定性。</p>
 <p>异步脉冲序列产生电路（Multi-Vibrators）也被称为毛刺生成器（Glitch
-Generator），<strong>利用组合反馈环路振荡而不断产生毛刺</strong>。正如前面所述，组合反馈环是同步时序必须避免的．这类基于组合反馈环的
+Generator），<strong>利用组合反馈环路振荡而不断产生毛刺</strong>。正如前面所述，组合反馈环是同步时序必须避免的，这类基于组合反馈环的
 Multi-Vibrator
 也会给设计带来稳定性、可靠性等方面的问题，必须避免使用。</p>
 <p>同步时序设计脉冲电路的常用方法如<a href="#fig.5-14">图 5-14</a>
 所示。该设计的脉冲宽度不因器件或设计移植而改变，恒等于时钟周期，而且避免了异步设计的诸多不确定因素，其时序路径便于计算、STA
 分析和仿真验证。</p>
-<a name="fig.5-14"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-140-SynchronousPulseGeneration.png!sign" width="500px" alt="常用的同步脉冲产生方法示意图"/&gt;</code></pre>
-</div>
-<h2 id="慎用锁存器">5.4 慎用锁存器</h2>
+<p><a id="fig.5-14"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-140-SynchronousPulseGeneration.png!sign" width="600" alt="图 5-14 常用的同步脉冲产生方法示意图">
+<figcaption aria-hidden="true">图 5-14
+常用的同步脉冲产生方法示意图</figcaption>
+</figure>
+<h2 id="慎用锁存器">5.4. 慎用锁存器</h2>
 <p>同步时序设计要尽量慎用锁存器（Latch），
 特别要注意综合出与设计意图不一致的 Latch
 导致仿真和设计的错误。对于某些特定设计一定要使用 Latch
@@ -5365,14 +5398,15 @@ Multi-Vibrator
 语句等（这仅是一种可能，并不一定生成
 Latch）；另外一种情况是设计中有组合逻辑的反馈环路（Combinatorial
 Feedback Loops）等异步逻辑。</p>
-<figure class="highlight verilog"><figcaption><span>latch.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/******************************</span></span><br><span class="line"><span class="comment">因if语句不完整而产生Latch的典型情况</span></span><br><span class="line"><span class="comment">******************************/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> latch (cond_1, data_in, data_out);</span><br><span class="line"></span><br><span class="line"><span class="keyword">input</span>   cond_1;</span><br><span class="line"><span class="keyword">input</span>   data_in;</span><br><span class="line"><span class="keyword">output</span>  data_out;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span></span><br><span class="line"><span class="keyword">reg</span>     data_out;</span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(cond_1 <span class="keyword">or</span> data_in) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (cond_1)</span><br><span class="line">        data_out &lt;= data_in;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight verilog"><figcaption><span>latch.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">/******************************</span></span><br><span class="line"><span class="comment">因if语句不完整而产生Latch的典型情况</span></span><br><span class="line"><span class="comment">******************************/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">module</span> latch (cond_1, data_in, data_out);</span><br><span class="line"></span><br><span class="line"><span class="keyword">input</span>   cond_1;</span><br><span class="line"><span class="keyword">input</span>   data_in;</span><br><span class="line"><span class="keyword">output</span>  data_out;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span></span><br><span class="line"><span class="keyword">reg</span>     data_out;</span><br><span class="line"></span><br><span class="line"><span class="keyword">always</span> @(cond_1 <span class="keyword">or</span> data_in) <span class="keyword">begin</span></span><br><span class="line">    <span class="keyword">if</span> (cond_1)</span><br><span class="line">        data_out &lt;= data_in;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
 <p>上述描述，由于未指定在条件 <code>cond_1</code> 等于 <code>0</code>
 时的动作，一般情况下会生成 Latch 结构如<a href="#fig.5-15">图 5-15</a>
 所示。</p>
-<a name="fig.5-15"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-150-LatchRTL.png!sign" width="400px" alt="Latch 的 RTL 示意图"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-15"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-150-LatchRTL.png!sign" width="500" alt="图 5-15 Latch 的 RTL 示意图">
+<figcaption aria-hidden="true">图 5-15 Latch 的 RTL 示意图</figcaption>
+</figure>
 <p>防止产生非目的性的Latch 的措施如下：</p>
 <ul>
 <li>使用完备的 <code>if ... else</code> 语句。</li>
@@ -5386,36 +5420,36 @@ Feedback Loops）等异步逻辑。</p>
 <code>case</code> 语句（full case）。目前，大多数综合工具支持 full case
 的综合约束属性，具体的语法请参考综合工具的约束属性指南。</li>
 </ul>
-<blockquote>
-<p>仔细检查综合器的综合报告，目前大多数的综合器对所综合出的 Latch
+<div class="note info"><p>仔细检查综合器的综合报告，目前大多数的综合器对所综合出的 Latch
 都会报“warning”， 通过综合报告可以较为方便地找出无意中生成的 Latch。</p>
-</blockquote>
-<h1 id="时钟设计的注意事项">6. 时钟设计的注意事项<a name="06"></a></h1>
+</div>
+<h1 id="时钟设计的注意事项">6. 时钟设计的注意事项<a id="toc.6"></a></h1>
 <p>时钟是同步设计的基础，在同步设计中，所有操作都是基于时钟沿触发的，所以时钟的设计对同步时序电路而言非常重要。对于
 PLD 设计，通常推荐使用 FPGA 内嵌的 PLL 或 DLL
 完成时钟的频率与相位变化，并用全局时钟和专用时钟选择器进行时钟布线。对于
 ASIC
 设计，常会用到各种各样的组合逻辑产生的时钟，但是这些设计如果直接移植到同步时序电路中会带来各种各样的问题，本节旨在辨析一些常用的时钟电路的优劣。</p>
-<h2 id="内部逻辑产生的时钟">6.1 内部逻辑产生的时钟</h2>
+<h2 id="内部逻辑产生的时钟">6.1. 内部逻辑产生的时钟</h2>
 <p><strong>如果需要使用内部逻辑产生时钟，必须要在组合逻辑产生的时钟后插入寄存器</strong>，如<a href="#fig.5-16">图 5-16</a>
 所示。如果直接使用组合逻辑产生的信号作为时钟信号或者异步置位/复位信号，会使设计不稳定。这是因为组合逻辑难免产生毛刺，这些毛刺到达一般数据路径，在经过寄存器采用后一般影响不大，但是如果作为时钟信号或者异步置位/复位信号时，如果毛刺的宽度足以驱动寄存器的时钟端或者异步置位/复位端，则必将产生错误的逻辑操作；即使毛刺的宽度不足以驱动时钟端或异步置位/复位端，也会带来寄存器的不稳定，甚至激发寄存器产生亚稳态。所以对于时钟路径，必须插入寄存器以过滤毛刺。</p>
-<p><a name="fig.5-16"></a></p>
+<p><a id="fig.5-16"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-160-InternalClockDesignwithRegister.png!sign" width="800" alt="内部时钟设计必须插入寄存器">
-<figcaption aria-hidden="true">内部时钟设计必须插入寄存器</figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-160-InternalClockDesignwithRegister.png!sign" width="800" alt="图 5-16 内部时钟设计必须插入寄存器">
+<figcaption aria-hidden="true">图 5-16
+内部时钟设计必须插入寄存器</figcaption>
 </figure>
 <p>另一方面，组合逻辑产生的时钟还会带来另外一个问题，组合逻辑电路的
 Jitter 和 Skew
 都比较大，如果时钟产生逻辑的延迟比数据路径的延迟更大，会带来负的
 Skew，负的 Skew
 同步逻辑设计是灾难性的。所以<strong>使用组合逻辑产生内部时钟仅适用于时钟频率较低、时钟精度要求不高的情况</strong>。另外，<strong>这类时钟应该使用快速布线资源布线，而且需要对组合逻辑电路附加一定的约束条件，以确保时钟质质量</strong>。</p>
-<h2 id="ripple-counter">6.2 Ripple Counter</h2>
+<h2 id="ripple-counter">6.2. Ripple Counter</h2>
 <p>所谓 Ripple
 Counter，即行波计数器，其结构为：一组寄存器级连，每个寄存器的输出端接到下一级寄存器的时钟管脚，这种计数器常常用于异步分频电路。早期的
 PLD 设计经常使用 Ripple Counter 以节约芯片资源。但是由于 Ripple Counter
 是一种典型的异步时序逻辑，正如前面“<a href="#toc.2.1">同步设计原则</a>”所述，异步时序逻辑会带来各种各样的时序问题，<strong>在同步时序电路设计中必须严格避免使用
 Ripple Counter</strong>。</p>
-<h2 id="时钟选择">6.3 时钟选择</h2>
+<h2 id="时钟选择">6.3. 时钟选择</h2>
 <p>在通信系统中，为了适应不同的数据速率要求，经常要进行时钟切换。有时为了节约功耗，也会把高速时钟切换到低速时钟，或者进行时钟休眠操作。时钟切换的最佳途径是使用芯片内部的专用
 Clock MUX 。这些 MUX
 的反应速度快，锁定时间短，切换瞬间带来的冲击和抖动小。</p>
@@ -5426,48 +5460,51 @@ Clock MUX 。这些 MUX
 等电路的状态不会锁死或进入死循环。</li>
 <li>所设计系统对时钟切换过程发生的短暂错误不敏感。</li>
 </ul>
-<h2 id="门控时钟">6.4 门控时钟</h2>
+<h2 id="门控时钟">6.4. 门控时钟</h2>
 <p>门控时钟即 Gated Clock，如<a href="#fig.5-17">图 5-17</a> 所示，是 IC
 设计的一种常用减少功耗的手段。通过 Gating Logic
 的控制，可以控制门后端的所有寄存器不再翻转，从而非常有效地节约功耗。</p>
-<a name="fig.5-17"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-170-GatedClock.png!sign" width="800px" alt="门控时钟"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-17"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-170-GatedClock.png!sign" width="800" alt="图 5-17 门控时钟">
+<figcaption aria-hidden="true">图 5-17 门控时钟</figcaption>
+</figure>
 <p>但是 Gated Clock 不是同步时序电路，其 Gating Logic（门控逻辑）会污染
 Clock 的质量，通过控制门后会产生毛刺并使时钟的
 Skew（偏斜）、Jitter（延时）等指标恶化。正如“<a href="#toc.2.1">同步设计原则</a>”
 一节所述，在同步时序电路中，应该尽量不使用 Gated Clock 。</p>
 <p>虽然有些材料指出当功耗成为主要矛盾时，可以使用门控时钟改进电路如<a href="#fig.5-18">图 5-18</a>
 所示的电路完成类似门控时钟的功能，但是笔者仍强烈建议在 PLD
-设计中不要使用该图所示的门控时钟改进电路。虽然这个改进电路已经在较大程度上解决了门控电路产生的毛刺，但是请读者注意，这个电路工作的前提是时钟源Clock
+设计中不要使用该图所示的门控时钟改进电路。虽然这个改进电路已经在较大程度上解决了门控电路产生的毛刺，但是请注意，这个电路工作的前提是时钟源Clock
 的占空比（Duty Cycle）是非常理想的 50%，如果时钟的占空比不能保证
 50%，则会产生许多有规律的毛刺信号。另外这个电路还有一个前提，那就是
 Clock 与 Enable 信号的不布线 Skew 为 0，否则也会造成宽度为 Skew
 的毛刺。</p>
-<a name="fig.5-18"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-180-ImprovedGatedClock.png!sign" width="800px" alt="门控时钟改进电路"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-18"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-180-ImprovedGatedClock.png!sign" width="800" alt="图 5-18 门控时钟">
+<figcaption aria-hidden="true">图 5-18 门控时钟</figcaption>
+</figure>
 <p>如果功耗真的成为了 PLD
 设计的首要问题，建议采用其他方法减少功耗。如果最近发展起来的低核电压芯片（Core
 电压为 1.0V），芯片休眠功能，Clock MUX
 等新技术器件能有效地节约芯片功耗。</p>
-<h2 id="时钟同步使能端">6.5 时钟同步使能端</h2>
+<h2 id="时钟同步使能端">6.5. 时钟同步使能端</h2>
 <p>大多数像寄存器这样的同步单元，都支持时钟的同步使能（Synchronous Clock
 Enable）。需要注意的是，虽然使能无效时这些单元无输出，但是这种方法并不能如
 Gated Clock 一样减少功耗。但 Synchronous Clock Enable
 却能够非常方便地完成一些逻辑功能，通过使用同步时钟使能端完成某些逻辑功能，有时可以节约芯片面积并提高设计频率。</p>
 <p>同步使能端如<a href="#fig.5-19">图 5-19</a>
 所示，上半部分是同步使能功能，在目前大多数的器件上可以直接将使能信号连接到芯片的同步使能端实现，如<a href="#fig.5-19">图 5-19</a> 的下半部分所示。</p>
-<a name="fig.5-19"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-190-EnableSynchronization.png!sign" width="500px" alt="同步使能端"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-19"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-190-EnableSynchronization.png!sign" width="500" alt="图 5-19 同步使能端">
+<figcaption aria-hidden="true">图 5-19 同步使能端</figcaption>
+</figure>
 <h1 id="rtl-代码优化技巧">7. RTL 代码优化技巧<a id="toc.7"></a></h1>
-<h2 id="使用-pipelining-技术优化时序">7.1 使用 Pipelining
+<h2 id="使用-pipelining-技术优化时序">7.1. 使用 Pipelining
 技术优化时序</h2>
-<p>Pipelining，即流水线时序优化方法，其本质是调整一个较长的组合逻辑路径中的寄存器位置，用寄存器合理分割该组合逻辑路径，从而降低了对路径的
+<p>Pipelining，即流水线时序优化方法，其<strong>本质是调整一个较长的组合逻辑路径中的寄存器位置</strong>，用寄存器合理分割该组合逻辑路径，从而降低了对路径的
 Output 和 Setup
 等时间参数的要求，达到提高设计频率的目的。但是必须要注意的是，使用
 Pipelining
@@ -5475,8 +5512,9 @@ Pipelining
 Pipelining 有时也被称为 Register Balance。</p>
 <p>目前一些先进的综合工具能根据用户参数配置，自动运用 Pipelining
 技术，通过用寄存器平衡设计中的较长组合路径（Register
-Balance)，在一定程度上提高设计的工作频率。这种时序优化手段对乘法器、ROM等单元效果显著。</p>
-<h2 id="模块复用与-resource-sharing">7.2 模块复用与 Resource
+Balance），在一定程度上提高设计的工作频率。这种时序优化手段对乘法器、ROM
+等单元效果显著。</p>
+<h2 id="模块复用与-resource-sharing">7.2. 模块复用与 Resource
 Sharing</h2>
 <p>本小节的模块复用和Resource Sharing
 主要站在微观的角度观察节约面积的问题。为了便与理解，首先看两个例子。</p>
@@ -5494,14 +5532,18 @@ Sharing</h2>
 1 bit 判断 16 bit 输出。</p>
 <p>两种代码的硬件结构示意图如<a href="#fig.5-20">图 5-20</a> 和图5 - 21
 所示。</p>
-<a name="fig.5-20"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-200-TwoMultipliedwithoutResourceSharing.png!sign" width="" alt="未Resource Sharing，2个乘法器的实现方案"/&gt;</code></pre>
-</div>
-<a name="fig.5-21"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-210-OneMultipliedwithResourceSharing.png!sign" width="" alt="Resource Sharing，1个乘法器的实现方案"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-20"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-200-TwoMultipliedwithoutResourceSharing.png!sign" width="800" alt="图 5-20 未 Resource Sharing，2 个乘法器的实现方案">
+<figcaption aria-hidden="true">图 5-20 未 Resource Sharing，2
+个乘法器的实现方案</figcaption>
+</figure>
+<p><a id="fig.5-21"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-210-OneMultipliedwithResourceSharing.png!sign" width="800" alt="图 5-21 Resource Sharing，1 个乘法器的实现方案">
+<figcaption aria-hidden="true">图 5-21 Resource Sharing，1
+个乘法器的实现方案</figcaption>
+</figure>
 <p>对于综合后的 RTL 视图，这里需要强调以下几点：</p>
 <ol type="1">
 <li><p>上例资源共享的单元是乘法器，通过 Resource
@@ -5520,40 +5562,43 @@ ASIC 设计中，综合工具非常忠于用户意图，这时 Coding Style
 更加重要。所以逻辑工程师必须注意自己 Coding Style
 方面的修养并不断提高。</p></li>
 </ol>
-<h2 id="逻辑复制">7.3 逻辑复制</h2>
+<h2 id="逻辑复制">7.3. 逻辑复制</h2>
 <p>逻辑复制是一种通过增加面积而改善时序条件的优化手段。逻辑复制最常使用的场合是调整信号的扇出。如果某个信号需要驱动后级的很多单元，换句话说，也就是其扇出非常大，那么为了增加这个信号的驱动能力，必须插入很多级
 Buffer，这样就在一定程度上增加了这个信号路径的延时。这时可以复制生成这个信号的逻辑，使多路同频同相的信号驱动后续电路，平均到每路的扇出变低，不需要加
 Buffer
 也能满足驱动能力的要求，这样就节约了该信号的路径时延。用逻辑复制改善扇头电路如<a href="#fig.5-22">图 5-22</a> 所示。</p>
-<a name="fig.5-22"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-220-DuplicationtoImproveFanOut.png!sign" width="" alt="用逻辑复制改善扇出"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-22"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-220-DuplicationtoImproveFanOut.png!sign" width="800" alt="图 5-22 用逻辑复制改善扇出">
+<figcaption aria-hidden="true">图 5-22 用逻辑复制改善扇出</figcaption>
+</figure>
 <p>需要说明的是，现在很多综合工具都可以自动设置最大扇出值（Max
 Fanout），如果某个信号的扇出值大于最大扇出，则该信号自动被综合工具复制。最大扇出值和器件的工艺密切相关，其合理值应该根据器件手册的声明和工程经验设置。这里举例用逻辑复制手段调整扇出，达到优化路径时延仅仅是为了讲述逻辑复制的概念，其实逻辑复制还有其他很多形式。例如，香农扩展（Shannon
-Expansion) 等时序优化技术，香农扩展在后面将会有详细的介绍。</p>
+Expansion）等时序优化技术，香农扩展在后面将会有详细的介绍。</p>
 <p>有的读者会有疑问，逻辑复制和资源共享是两个矛盾的概念，既然使用了资源共享优化技术，为什么还要做逻辑复制呢？</p>
 <p>其实这个问题的本质，还是面积与速度的平衡，<strong>逻辑复制与前面的
 Resource Sharing 是两个对立统一的概念</strong>。<strong>Resource Sharing
 的目的是为了节省面积资源，而逻辑复制的目的是为了提高工作频率</strong>。当使用逻辑复制手段提高工作频率的时候，必然会增加面积资源，这是与资源共享相对立的；但是正如前面介绍的面积与速度的对立统一一样，<strong>逻辑复制和资源共享都是到达设计目标的两种手段</strong>，一个侧重于速度目标，一个侧重于面积目标，两者存在一种转换与平衡的关系，所以两者又是统一的。</p>
 <p>首先看下面的一个加法器资源共享的例子。</p>
 <p>这个例子和前面乘法器的例子非常相似，只是将平方器换成了加法器。实现这个加法器也有两种代码写法，对应两种不同的硬件结构，资源共享如<a href="#fig.5-23">图 5-23</a> 所示。</p>
-<a name="fig.5-23"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-230-ResourceSharingExample.png!sign" width="700px" alt="资源共享示例"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-23"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-230-ResourceSharingExample.png!sign" width="700" alt="图 5-23 资源共享示例">
+<figcaption aria-hidden="true">图 5-23 资源共享示例</figcaption>
+</figure>
 <p>第一种写法，对应左边的 RTL 结构示意图：</p>
-<figure class="highlight verilog"><figcaption><span>mod_copy1.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> mod_copy1 (sel, a, b, c, d, data_out);</span><br><span class="line"><span class="keyword">input</span>   sel, a, b, c, d;</span><br><span class="line"><span class="keyword">output</span>  data_out;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span></span><br><span class="line"><span class="keyword">assign</span> data_out= (sel)? (a+b) : (c+d) ;</span><br><span class="line"><span class="comment">// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight verilog"><figcaption><span>mod_copy1.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> mod_copy1 (sel, a, b, c, d, data_out);</span><br><span class="line"><span class="keyword">input</span>   sel, a, b, c, d;</span><br><span class="line"><span class="keyword">output</span>  data_out;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span></span><br><span class="line"><span class="keyword">assign</span> data_out= (sel)? (a+b) : (c+d) ;</span><br><span class="line"><span class="comment">// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
 <p>第二种写法，对应右边的 RTL 结构示意图：</p>
-<figure class="highlight verilog"><figcaption><span>mod_copy2.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> mod_copy2 (sel, a, b, c, d, data_out);</span><br><span class="line"><span class="keyword">input</span>   sel, a, b, c, d;</span><br><span class="line"><span class="keyword">output</span>  data_out;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span></span><br><span class="line"><span class="keyword">wire</span> temp1, temp2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> temp1 = (sel) ? (a) : (c) ;</span><br><span class="line"><span class="keyword">assign</span> temp2 = (sel) ? (b) : (d) ;</span><br><span class="line"><span class="keyword">assign</span> data_out = temp1 + temp2;</span><br><span class="line"><span class="comment">// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
+<figure class="highlight verilog"><figcaption><span>mod_copy2.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> mod_copy2 (sel, a, b, c, d, data_out);</span><br><span class="line"><span class="keyword">input</span>   sel, a, b, c, d;</span><br><span class="line"><span class="keyword">output</span>  data_out;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓</span></span><br><span class="line"><span class="keyword">wire</span> temp1, temp2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> temp1 = (sel) ? (a) : (c) ;</span><br><span class="line"><span class="keyword">assign</span> temp2 = (sel) ? (b) : (d) ;</span><br><span class="line"><span class="keyword">assign</span> data_out = temp1 + temp2;</span><br><span class="line"><span class="comment">// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
 <p>第一种写法比第二种省了一个加法器。而且第一种写法比第二种写法耗时略少一些，这在本例还不算十分明显，当运算模块不是加法器而是一些较复杂的逻辑时，会比较明显。当<strong>设计的时序满足要求，或者设计的面积紧张时，一般会采用资源共享的优化方法</strong>，将第一种设计转换为第二种设计，绝大多数情况如是；但是<strong>在某些特殊情况下，时序非常紧张，就会反其道而行之，将第二种设计转换为第一种设计</strong>，从而便于调整组合逻辑信号的到达时间，提高这个加法选择器的工作频率。</p>
-<h2 id="香农扩展">7.4 香农扩展</h2>
+<h2 id="香农扩展">7.4. 香农扩展</h2>
 <p>前面已经讲到，香农扩展（Shannon
 Expansion）也是一种逻辑复制、增加面积、提高频率的时序优化手段。</p>
-<p>其定义如下，布尔逻辑可以做如下扩展： <span class="math display">\[
+<p>其定义如下，布尔逻辑可以做如下扩展：</p>
+<p><span class="math display">\[\begin{equation}
 F\left(a,b,c\right) = aF\left(a,b,c\right) +\bar{a}F\left(a,b,c\right)
-\]</span>
-从上面的定义可以看到，香农扩展即布尔逻辑扩展，是卡诺逻辑化简反向运算，香农扩展相当于逻辑复制，提高频率；而卡诺逻辑化简相当于资源共享，节约面积。</p>
+\end{equation}\]</span></p>
+<p>从上面的定义可以看到，香农扩展即布尔逻辑扩展，是卡诺逻辑化简反向运算，香农扩展相当于逻辑复制，提高频率；而卡诺逻辑化简相当于资源共享，节约面积。</p>
 <p>香农扩展通过增加
 MUX，从而缩短了某个优先级，但是组合路径长的信号路径时延，从而提高了该关键路径的工作频率。通过下面的例子，会对香农扩展有更全面的理解。</p>
 <p>设所需的运算逻辑表达式为：</p>
@@ -5570,19 +5615,23 @@ MUX，从而缩短了某个优先级，但是组合路径长的信号路径时�
 信号的优先级被提高，其信号路径的延时降低，但是其代价是设计的面积增加了，并且需要两个比较运算符。</p>
 <p>未使用香农扩展的 Verilog 代码描述如下：</p>
 <figure class="highlight verilog"><figcaption><span>un_shannon.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> un_shannon (in0, in1, in2, late, en, out);</span><br><span class="line"><span class="keyword">input</span>   [<span class="number">7</span>:<span class="number">0</span>]   in0, in1, in2;</span><br><span class="line"><span class="keyword">input</span>           late, en;</span><br><span class="line"><span class="keyword">output</span>          out;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> out = ((({<span class="number">8</span>{late}} | in0) + in1) == in2) &amp; en;</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
-<a name="fig.5-24"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-240-BeforeShannonExtension.png!sign" width="" alt="未使用香农扩展前的逻辑表达式对应的RTL视图"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-24"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-240-BeforeShannonExtension.png!sign" width="1000" alt="图 5-24 未使用香农扩展前的逻辑表达式对应的RTL视图">
+<figcaption aria-hidden="true">图 5-24
+未使用香农扩展前的逻辑表达式对应的RTL视图</figcaption>
+</figure>
 <p>从图中可以清晰地看到，未使用香农扩展时，从输入 PAD late 到输出 PAD
 out 之间共有4 个逻辑单元， 5 段路径。其综合结果使用了 8 个 2 输入或门，1
 个 8 bit 输入加法器， 1 个 8 bit 比较器， 1 个 2 输入与门。</p>
 <p>使用香农扩展的 Verilog 代码如下：</p>
 <figure class="highlight verilog"><figcaption><span>shannon_fast.v</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">module</span> shannon_fast (in0, in1, in2, late, en, out);</span><br><span class="line"><span class="keyword">input</span>   [<span class="number">7</span>:<span class="number">0</span>]   in0, in1, in2;</span><br><span class="line"><span class="keyword">input</span>           late, en;</span><br><span class="line"><span class="keyword">output</span>          out;</span><br><span class="line"></span><br><span class="line"><span class="keyword">wire</span>            late_eq_0, late_eq_1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">assign</span> late_eq_0 = ((in0+in1) == in2) &amp; en;</span><br><span class="line"><span class="comment">//assign late_eq_0 = ((({8{1'b0}} | in0) + in1) == in2) &amp; en;</span></span><br><span class="line"><span class="keyword">assign</span> late_eq_1 = ((<span class="number">8'b1</span>+in1) == in2) &amp; en;</span><br><span class="line"><span class="comment">//assign late_eq_1 = ((({8{1'b1}} | in0) + in1) == in2) &amp; en;</span></span><br><span class="line"><span class="keyword">assign</span> out = (late) ? late_eq_1 : late_eq_0;</span><br><span class="line"></span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></tbody></table></figure>
-<a name="fig.5-25"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-250-AfterShannonExtension.png!sign" width="" alt="香农扩展后的逻辑表达式对应的RTL视图"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-25"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-250-AfterShannonExtension.png!sign" width="1000" alt="图 5-25 香农扩展后的逻辑表达式对应的RTL视图">
+<figcaption aria-hidden="true">图 5-25
+香农扩展后的逻辑表达式对应的RTL视图</figcaption>
+</figure>
 <p>在图中可以清晰地看到，使用香农扩展后，从输入 PAD late 到输出 PAD out
 之间共有 1 个逻辑单元，2 段路径。其综合结果使用了 2 个 8 bit
 输入加法器， 2 个 8 bit 比较器，2 个输入与门和一个 2 输入选择器。</p>
@@ -5597,23 +5646,27 @@ out 之间共有4 个逻辑单元， 5 段路径。其综合结果使用了 8 �
 编码的全面设计目标，它们是：</p>
 <ul>
 <li>时序（Timing）：要求设计满足预期的时序约束条件，满足预期频率要求。</li>
-<li>面积（Areag）：要求设计所消耗的资源满足所规划的面积要求。</li>
-<li>时钟（Clocksg）：要求设计中的时钟质量满足规划要求。</li>
-<li>验证（Verificationg）：要求设计通过仿真验证的测试。</li>
+<li>面积（Area）：要求设计所消耗的资源满足所规划的面积要求。</li>
+<li>时钟（Clocks）：要求设计中的时钟质量满足规划要求。</li>
+<li>验证（Verification）：要求设计通过仿真验证的测试。</li>
 <li>可测试性（DFT, Design For
-Testg）：要求设计时充分考量设计的可测试性。</li>
-<li>可重用性（Reuseg）：希望设计便于被重用，便千继承设计成果。</li>
-<li>功耗（Powerg）：要求设计的最大功耗在规定范围之内。</li>
+Test）：要求设计时充分考量设计的可测试性。</li>
+<li>可重用性（Reuse）：希望设计便于被重用，便千继承设计成果。</li>
+<li>功耗（Power）：要求设计的最大功耗在规定范围之内。</li>
 <li>Vendor Policies（原厂的要求）：这里主要指 EDA 工具的优化测量和 PLD
 或 ASIC 厂方的设计规格与软硬件需求。</li>
 </ul>
-<a name="fig.5-26"></a>
-<div data-align="center">
-<pre><code>&lt;img src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-260-GoalsofRTLCode.png!sign" width="600px" alt="RTL代码的设计目标"/&gt;</code></pre>
-</div>
+<p><a id="fig.5-26"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2020-12-05-josh-verilog-part-5/2020-12-05-josh-verilog-part-5-260-GoalsofRTLCode.png!sign" width="1000" alt="图 5-26 RTL代码的设计目标">
+<figcaption aria-hidden="true">图 5-26 RTL代码的设计目标</figcaption>
+</figure>
 <p>对一个 RTL
 设计求全责备地要求它同时满足上述所有目标是非常困难的，应该根据这个RTL
 设计的实现载体和具体应用，分析上述要求对本设计的重要性，然后综合考虑以上因素。</p>
+<h1 id="参考文献">参考文献</h1>
+<p>EDA 先锋工作室. <em>轻松成为设计高手——Verilog HDL 实用精解.</em>
+北京航空航天大学出版社, 2012.</p>
 ]]></content>
       <categories>
         <category>Josh 的学习笔记</category>
