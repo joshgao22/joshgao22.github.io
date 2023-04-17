@@ -3468,8 +3468,9 @@ Design（模块化设计方法），并行开展设计工作，提高模块重�
 <code>reg</code> 型，但是实现时是纯组合逻辑。<strong>只有定义为
 <code>reg</code> 型，且 <code>always</code> 的敏感表为
 <code>posedge</code> 或 <code>negedge</code>
-沿敏感操作时，该信号才是寄存器</strong>。在 [Part 2——Verilog 语言基础][]
-和 [Part 3——描述方式和设计层次][] 也有相关内容描述这个问题。</p>
+沿敏感操作时，该信号才是寄存器</strong>。在 <a href="https://josh-gao.top/posts/fd2ca242.html">Part 2——Verilog
+语言基础</a> 和 <a href="https://josh-gao.top/posts/fd117896.html">Part
+3——描述方式和设计层次</a> 也有相关内容描述这个问题。</p>
 </div><p></p></li>
 <li><p><strong>时钟输入</strong></p>
 <p>在每个时钟的正沿或负沿对数据进行处理。数据的正沿或负沿起作用，是在
@@ -3709,9 +3710,9 @@ PLD）和 ASIC
 <li><p>使用同步复位可以设计 100%
 的同步时序电路，利于时序分析，其综合结果的频率往往较高。</p></li>
 <li><p>同步复位仅在时钟的有效沿生效，可以<strong>有效地避免因复位电路毛刺造成的亚稳态和错误</strong>。在进行复位和释放复位信号时，都是仅当时钟沿采到复位信号电平变化时才进行相关操作，如果复位信号树的组合逻辑出现了某种毛刺，此时时钟沿采样到毛刺的概率非常低，通过时钟沿采样，可以十分有效地过滤复位电路组合逻辑产生的毛刺，增强电路稳定性。</p>
-<div class="note info"><p>同步时序电路的概念参见 [Part 5——RTL 设计与编码指导的 2.1
-同步设计原则][]小节；亚稳态的概念参见 [Part 5——RTL 设计与编码指导的 2.2
-亚稳态][]小节。</p>
+<div class="note info"><p>同步时序电路的概念参见 <a href="https://josh-gao.top/posts/53b8b42e.html#toc.2.1">Part 5——RTL
+设计与编码指导的 2.1 同步设计原则</a>小节；亚稳态的概念参见 <a href="https://josh-gao.top/posts/53b8b42e.html#toc.2.2">Part 5——RTL
+设计与编码指导的 2.2 亚稳态</a>小节。</p>
 </div></li>
 </ul>
 <h4 id="同步复位的缺点">3.9.1.3. 同步复位的缺点</h4>
