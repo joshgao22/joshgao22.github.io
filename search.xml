@@ -3468,9 +3468,8 @@ Design（模块化设计方法），并行开展设计工作，提高模块重�
 <code>reg</code> 型，但是实现时是纯组合逻辑。<strong>只有定义为
 <code>reg</code> 型，且 <code>always</code> 的敏感表为
 <code>posedge</code> 或 <code>negedge</code>
-沿敏感操作时，该信号才是寄存器</strong>。在<a href="https://josh-gao.top/posts/fd2ca242.html">《Part 2 —— Verilog
-语言基础》</a>和<a href="https://josh-gao.top/posts/fd117896.html">《Part 3 ——
-描述方式和设计层次》</a>也有相关内容描述这个问题。</p>
+沿敏感操作时，该信号才是寄存器</strong>。在 [Part 2——Verilog 语言基础][]
+和 [Part 3——描述方式和设计层次][] 也有相关内容描述这个问题。</p>
 </div><p></p></li>
 <li><p><strong>时钟输入</strong></p>
 <p>在每个时钟的正沿或负沿对数据进行处理。数据的正沿或负沿起作用，是在
