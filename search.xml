@@ -22479,7 +22479,7 @@ medium）里传播的平面波，定义波数 <span class="math inline">\(\vec{k
   \vec{F}(\omega) = F(\omega) \vec{v}_{\vec{k}}(\vec{k})
 \end{equation}\]</span></p>
 <p>矢量 <span class="math inline">\(\vec{v}_{\vec{k}}(\vec{k})\)</span>
-包含了阵列的所有空间特征，称为<strong><mark class="label primary">阵列流形矢量</mark></strong>。在我们的讨论中，阵列流形矢量具有非常核心的作用。下标
+包含了阵列的所有空间特征，称为<strong><mark class="label primary">阵列流形矢量（array manifold vector）</mark></strong>。在我们的讨论中，阵列流形矢量具有非常核心的作用。下标
 <span class="math inline">\(\vec{k}\)</span> 表示参数属于 $
 空间。这个下标的作用是把它和以后将在阵列流形矢量中使用的其他变量相区分。</p>
 ]]></content>
