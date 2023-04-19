@@ -22335,7 +22335,7 @@ y(t) = \int_{-\infty}^{\infty} \vec{h}^\mathrm{T} (t-\tau)
 \vec{f}\left(\tau,\vec{p}\right) \mathrm{d} \tau
 \end{equation}\]</span></p>
 <p>其中</p>
-<p><span class="math display">\[\begin{equation}
+<p><span class="math display">\[\begin{equation} \label{ImpulseResponse}
 \vec{h}(\tau) = \left[ \begin{array}{c}
   h_0(\tau) \\
   h_1(\tau) \\
@@ -22441,7 +22441,7 @@ y(t) = \int_{-\infty}^{\infty} \vec{h}^\mathrm{T} (t-\tau)
 medium）里传播的平面波，定义波数 <span class="math inline">\(\vec{k}\)</span>
 （在波传播的方向上单位长度内的周期数目）为</p>
 <p><span class="math display">\[\begin{equation}
-\lebel{DefinitionOfWavenumber}
+\label{DefinitionOfWavenumber}
   \vec{k} = \frac{\omega}{c} \vec{a} = \frac{2\pi}{\lambda} \vec{a}
 \end{equation}\]</span></p>
 <p>其中，<span class="math inline">\(\lambda\)</span> 是对应于频率 <span class="math inline">\(\omega\)</span> 的波长。等效地，</p>
@@ -22467,6 +22467,7 @@ medium）里传播的平面波，定义波数 <span class="math inline">\(\vec{k
 \end{equation}\]</span></p>
 <p>定义</p>
 <p><span class="math display">\[\begin{equation}
+\label{DefinitionOfArrayManifoldVector}
   \vec{v}_{\vec{k}}(\vec{k}) = \left[ \begin{array}{c}
     e^{-j \vec{k}^\mathrm{T}\vec{p}_0} \\
     e^{-j \vec{k}^\mathrm{T}\vec{p}_1} \\
@@ -22480,8 +22481,87 @@ medium）里传播的平面波，定义波数 <span class="math inline">\(\vec{k
 \end{equation}\]</span></p>
 <p>矢量 <span class="math inline">\(\vec{v}_{\vec{k}}(\vec{k})\)</span>
 包含了阵列的所有空间特征，称为<strong><mark class="label primary">阵列流形矢量（array manifold vector）</mark></strong>。在我们的讨论中，阵列流形矢量具有非常核心的作用。下标
-<span class="math inline">\(\vec{k}\)</span> 表示参数属于 $
+<span class="math inline">\(\vec{k}\)</span> 表示参数属于 <span class="math inline">\(\vec{k}\)</span>
 空间。这个下标的作用是把它和以后将在阵列流形矢量中使用的其他变量相区分。</p>
+<p>  在这种情况下，把每个阵元的输入信号平移，使之在时间上对齐，然后把它们相加。这
+个操作过程如<a href="#fig.1-1-5">图 1-1-5</a> 所示，其中包含了归一化因子
+<span class="math inline">\(1/N\)</span>, 使得输出为 <span class="math inline">\(f(t)\)</span>。在这里，</p>
+<p><span class="math display">\[\begin{equation}
+\label{DelayAndSumBeamformer}
+  h_n(\tau) = \frac{1}{N} \delta(\tau + \tau_n)
+\end{equation}\]</span></p>
+<p><a id="fig.1-1-5"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-18-josh-oap-part-1-1/2023-04-18-josh-oap-part-1-1-050-DelayAndSumBeamformer.png!sign" width="600" alt="图 1-1-5 延时-求和波束形成器">
+<figcaption aria-hidden="true">图 1-1-5 延时-求和波束形成器</figcaption>
+</figure>
+<p>且</p>
+<p><span class="math display">\[\begin{equation}
+  y(t) = f(t)
+\end{equation}\]</span></p>
+<p>  这个处理器称为<strong><mark class="label primary">延时求和波束形成器（delay-and-sum beamformer）</mark></strong>或<strong><mark class="label primary">常规波束形成器（conventional beamformer）</mark></strong>。在实际中会在每个通道中加上一个共同的延时，使得<a href="#fig.1-1-5">图 1-1-5</a> 中的操作是物理可实现的。</p>
+<p>  此外，还可以把 <span class="math inline">\(\eqref{DelayAndSumBeamformer}\)</span>
+在频域内写成简洁的矩阵形式。如果 <span class="math inline">\(\vec{k}_\mathrm{s}\)</span>
+是我们所感兴趣的平面波信号的波数，则</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{H}^\mathrm{T} (\omega) = \frac{1}{N} \vec{v}_{\vec{k}}^\mathrm{H}
+\left( \vec{k}_\mathrm{s} \right)
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(\vec{v}_{\vec{k}}(\vec{k})\)</span>
+在 <span class="math inline">\(\eqref{DefinitionOfArrayManifoldVector}\)</span>
+中定义。</p>
+<p>  现在回到一般的问题，我们想要确定阵列对一个输入场 <span class="math inline">\(\vec{f}(t, \vec{p})\)</span>
+的响应，这可以通过之前给出的卷积求和操作来实现，但更有用的方法是首先确定阵列对单位平面波（unit
+plane wave）的响应，响应为单位平面波时域（弧度）频率 <span class="math inline">\(\omega\)</span> 和波数 <span class="math inline">\(\vec{k}\)</span>
+的函数。（利用叠加的复指数基函数对一个线性时不变系统进行分析的系统理论方法可以扩展到空时信号的情况。）</p>
+<p>这里的基函数形式为</p>
+<p><span class="math display">\[\begin{equation}
+  f_n \left( t, \vec{p}_n \right) = \exp \left[ j \left( \omega t -
+\vec{k}^\mathrm{T} \vec{p}_n\right) \right], \, n = 0, 1, \cdots, N-1
+\end{equation}\]</span></p>
+<p>或</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{f} \left( t, \vec{p} \right) = e^{j\omega t}
+\vec{v}_{\vec{k}}(\vec{k})
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(\vec{v}_{\vec{k}}(\vec{k})\)</span>
+在 <span class="math inline">\(\eqref{DefinitionOfArrayManifoldVector}\)</span>
+中定义。</p>
+<p>  <span class="math inline">\(\eqref{VectorFormOfLinearArrayOutputInTimeDomain}\)</span>
+中的阵列处理器对于一个平面波的响应为</p>
+<p><span class="math display">\[\begin{equation}
+\label{ArrayResponseToUnitPlaneWaveInTimeDomain}
+  y \left( t, \vec{k} \right) = \vec{H}^\mathrm{T} (\omega)
+\vec{v}_{\vec{k}}(\vec{k}) e^{j\omega t}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(\vec{H}^\mathrm{T} (\omega)\)</span>
+是 <span class="math inline">\(\eqref{ImpulseResponse}\)</span> 中 <span class="math inline">\(\vec{h}(\tau)\)</span> 的傅里叶变换。</p>
+<p>  这里用了符号 <span class="math inline">\(y \left( t, \vec{k}
+\right)\)</span>, 以强调输出和输入波数 <span class="math inline">\(\vec{k}\)</span>
+的关系。时域上的相关性体现在输出是一个复指数，和输入平面波具有相同的频率。在频域内，<span class="math inline">\(\eqref{ArrayResponseToUnitPlaneWaveInTimeDomain}\)</span>
+可以写成下面的形式：</p>
+<p><span class="math display">\[\begin{equation}
+\label{ArrayResponseToUnitPlaneWaveInFreqDomain}
+  Y \left( \omega, \vec{k} \right) = \vec{H}^\mathrm{T} (\omega)
+\vec{v}_{\vec{k}}(\vec{k})
+\end{equation}\]</span></p>
+<p>  注意，<span class="math inline">\(\omega\)</span>
+是对应输入频率的单一频率。阵列的空时处理完全可以由 <span class="math inline">\(\eqref{ArrayResponseToUnitPlaneWaveInFreqDomain}\)</span>
+的右端描述。把这一项定义为</p>
+<p><span class="math display">\[\begin{equation}
+\label{FrequencyWavenumberResponse}
+  \boxed{\vec{\varUpsilon} \left( \omega, \vec{k} \right) \triangleq
+\vec{H}^\mathrm{T} (\omega) \vec{v}_{\vec{k}}(\vec{k})}
+\end{equation}\]</span></p>
+<p>称之为阵列的<strong><mark class="label primary">频率-波数响应函数（frequency-wavenumber response function）</mark></strong>。它描述了一个阵列对于波数为
+<span class="math inline">\(\vec{k}\)</span>、时域频率为 <span class="math inline">\(\omega\)</span>
+的输入平面波的复增益，具有与线性、时不变系统的传递函数相同的解释（这里我们用了
+<span class="math inline">\(\vec{\varUpsilon} \left( \omega, \vec{k}
+\right)\)</span>, 是因为 <span class="math inline">\(Y \left( \omega,
+\vec{k} \right)\)</span> 在后面将要用于描述对任意输入的输出）。 <span class="math inline">\(\vec{\varUpsilon} \left( \omega, \vec{k}
+\right)\)</span> 是定义在整个 <span class="math inline">\(\vec{k}\)</span> 空间上的。<span class="math inline">\(\eqref{FrequencyWavenumberResponse}\)</span>
+中的第二项 <span class="math inline">\(\vec{v}_{\vec{k}}(\vec{k})\)</span> 是在 <span class="math inline">\(\eqref{DefinitionOfArrayManifoldVector}\)</span>
+中定义的阵列流形矢量。</p>
 ]]></content>
       <categories>
         <category>Josh 的学习笔记</category>
