@@ -22724,7 +22724,7 @@ Sons, 2002.</li>
 所示，其中有 <span class="math inline">\(N\)</span> 个位于 <span class="math inline">\(z\)</span> 轴上的阵元，阵元间距均匀，记为 <span class="math inline">\(d\)</span>；这里将阵列的中心放在了坐标系的原点上，这种放置方法可以简化计算量。</p>
 <p><a id="fig.1-2-1"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-opa-part-1-2/2023-04-20-josh-oap-part-1-2-010-LinearArrayAlongZAaxis.png!sign" width="600" alt="图 1-2-1 放置在 z 轴上的线阵">
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-2/2023-04-20-josh-oap-part-1-2-010-LinearArrayAlongZAaxis.png!sign" width="600" alt="图 1-2-1 放置在 z 轴上的线阵">
 <figcaption aria-hidden="true">图 1-2-1 放置在 <span class="math inline">\(z\)</span> 轴上的线阵</figcaption>
 </figure>
 <span id="more"></span>
@@ -23010,9 +23010,7 @@ B(\psi_N)\end{array}\right]
 <ol type="1">
 <li><p>上述讨论已经假设 <span class="math inline">\(B_\psi(\psi)\)</span> 在式 <span class="math inline">\(\eqref{ShortBeamPatternInDirectionCosineDomain}\)</span>
 中进行了定义，是由一个 <span class="math inline">\(N \times 1\)</span>
-维复数矢量 <span class="math inline">\(\vec{w}\)</span> 产生的。如果
-<span class="math inline">\(B_\psi(\psi)\)</span> 是任意函数，且使用式
-<span class="math inline">\(\eqref{WeightVecCalculation}\)</span>，那么将产生一个方向图，和
+维复矢量 <span class="math inline">\(\vec{w}\)</span> 产生的。如果 <span class="math inline">\(B_\psi(\psi)\)</span> 是任意函数，且使用式 <span class="math inline">\(\eqref{WeightVecCalculation}\)</span>，那么将产生一个方向图，和
 <span class="math inline">\(B(\psi_i), i = 1,\cdots,N\)</span>
 相匹配，但不一定和函数 <span class="math inline">\(B_\psi(\psi)\)</span>
 相匹配。</p></li>
@@ -23039,6 +23037,66 @@ Sons, 2002.</li>
         <tag>均匀线阵</tag>
         <tag>ULA</tag>
         <tag>可视区域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Josh&#39;s Notes: 最优阵列处理（Part 1.3 —— 均匀加权线阵）</title>
+    <url>/posts/aa32ec76.html</url>
+    <content><![CDATA[<p>  现在把注意力集中到均匀加权的情况</p>
+<p><span class="math display">\[\begin{equation}
+  w_n = \frac{1}{N}, \, n = 0,1,\cdots,N-1
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+  \vec{w} = \frac{1}{N} \vec{1}
+\end{equation}\]</span></p>
+<p>其中 1 是 <span class="math inline">\(N \times 1\)</span>
+维的单位矢量</p>
+<p>则在 <span class="math inline">\(\psi\)</span>
+空间的频率-波数函数可以写成（利用等比级数的求和公式）</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \vec{\varUpsilon}_\psi(\psi) &amp;= \frac{1}{N}
+\sum_{n=0}^{N-1}  e^{j \left(n - \frac{N-1}{2}\right)\psi} \\
+    &amp;= \frac{1}{N} e^{-j \left(\frac{N-1}{2}\right)\psi}
+\sum_{n=0}^{N-1} e^{j n \psi} \\
+    &amp;= \frac{1}{N} e^{-j \left(\frac{N-1}{2}\right)\psi} \left[
+\frac{1-e^{jN\psi}}{1-e^{j\psi}} \right]
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>或（利用欧拉公式）</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{\varUpsilon}_\psi(\psi) = \frac{1}{N} \frac{\sin\left( N
+\frac{\psi}{2} \right)}{\sin\frac{\psi}{2}}
+\end{equation}\]</span></p>
+<p>观察到，当 <span class="math inline">\(N\)</span> 是奇数时，<span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span>
+是周期函数，周期为 <span class="math inline">\(2\pi\)</span>。如果 <span class="math inline">\(N\)</span> 为偶数，波瓣在 <span class="math inline">\(\pm 2 \pi\)</span>、<span class="math inline">\(\pm 6 \pi\)</span> 处的值为负值，周期为 <span class="math inline">\(4 \pi\)</span>。对任意 <span class="math inline">\(N\)</span> 值， <span class="math inline">\(\left|\vec{\varUpsilon}_\psi(\psi)\right|\)</span>
+的周期为 <span class="math inline">\(2 \pi\)</span>。当 <span class="math inline">\(N = 11\)</span> 时， <span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span> 和 <span class="math inline">\(\psi\)</span> 的关系在<a href="#fig.1-3-1">图
+1-3-1</a> 中给出。<a href="#fig.1-3-2">图 1-3-2</a> 给出了 <span class="math inline">\(\left|\vec{\varUpsilon}_\psi(\psi)\right|\)</span>，单位为
+dB, 其中</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{\varUpsilon}_\mathrm{dB}(\psi) = 10 \log_{10}
+\left|\vec{\varUpsilon}_\psi(\psi)\right|^2
+\end{equation}\]</span></p>
+<p><a id="fig.1-3-1"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-010-FrequencyWavenumberResponseFunction.svg" width="600" alt="图 1-3-1 \vec{\varUpsilon}(\psi): \psi = \frac{2\pi}{\lambda} d \cos\theta, N=11">
+<figcaption aria-hidden="true">图 1-3-1 <span class="math inline">\(\vec{\varUpsilon}(\psi): \psi =
+\frac{2\pi}{\lambda} d \cos\theta, N=11\)</span></figcaption>
+</figure>
+<p><a id="fig.1-3-2"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-020-FrequencyWavenumberResponseFunctionInDB.svg" width="600" alt="图 1-3-1 用 dB 表示 \left|\vec{\varUpsilon}(\psi)\right|">
+<figcaption aria-hidden="true">图 1-3-1 用 dB 表示 <span class="math inline">\(\left|\vec{\varUpsilon}(\psi)\right|\)</span></figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>Josh 的学习笔记</category>
+        <category>最优阵列处理</category>
+        <category>阵列和空域滤波器</category>
+      </categories>
+      <tags>
+        <tag>阵列信号处理</tag>
+        <tag>均匀加权线阵</tag>
       </tags>
   </entry>
 </search>
