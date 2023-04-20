@@ -22277,7 +22277,8 @@ testbench 。希望大家能通过实例熟练掌握 testbench 的设计方法�
   <entry>
     <title>Josh&#39;s Notes: 最优阵列处理（Part 1.1 —— 频率-波数响应和波束方向图）</title>
     <url>/posts/8b61f5a7.html</url>
-    <content><![CDATA[<p>  假设在空时场（space-time
+    <content><![CDATA[<h1 id="阵列信号处理的目的及基本坐标系">阵列信号处理的目的及基本坐标系</h1>
+<p>  假设在空时场（space-time
 field）的某个区域内有一个或多个信号，同时在某些区域内存在噪声和/或干扰。在一些阵列信号处理的应用场景中，这些区域是部分重叠的。阵列可以利用信号的空域特征，对空时场域内的信号进行滤波。这种滤波可以用一种与角度或波数的相关性（in
 terms of a dependence upon angle or
 wavenumber）进行描述。从频域看，这种滤波是通过使用复增益对阵列输出进行加权，根据信号的空域相关性对信号进行增强或抑制来实现的。通常我们对空时场进行空域滤波的目的是：使得从一个（或一组）特定角度到来的信号通过有效的组合得到增强，抑制从其他角度到来的噪声或干扰。</p>
@@ -22296,6 +22297,7 @@ z &amp;= r \cos\theta
 \end{aligned}
 \end{equation}\]</span></p>
 <span id="more"></span>
+<h1 id="阵列的基本模型">阵列的基本模型</h1>
 <p>  本文分析一个阵列对外部信号场的响应。阵列由一组全向阵元组成，阵元的位置为
 <span class="math inline">\(\vec{p}_n\)</span>，如<a href="#fig.1-1-2">图 1-1-2</a> 所示。阵元在位置 <span class="math inline">\(\vec{p}_n : n = 0, 1, \cdots, N — 1\)</span>
 上对信号场进行空域采样。这产生了一组信号，表示为矢量 <span class="math inline">\(\vec{f}\left(t, \vec{p}\right)\)</span></p>
@@ -22367,6 +22369,7 @@ y(t) = \int_{-\infty}^{\infty} \vec{h}^\mathrm{T} (t-\tau)
 \end{equation}\]</span></p>
 <p>在大多数情况下，可以去掉式 <span class="math inline">\(\eqref{SampleVectorInFreqDomain}\)</span> 中左边的
 <span class="math inline">\(\vec{p}\)</span>，直接使用 <span class="math inline">\(\vec{F}(\omega)\)</span> 。</p>
+<h1 id="信号到达不同阵元的时延">信号到达不同阵元的时延</h1>
 <p>  下面考虑如<a href="#fig.1-1-4">图 1-1-4</a>
 所示的简单的波束形成操作。外部信号输入为传播方向为 <span class="math inline">\(\vec{a}\)</span>，时域频率（弧度）为 <span class="math inline">\(\omega\)</span>
 的平面波，则在时域上每个阵元的输入信号可以用两种等效的方式进行表示。</p>
@@ -22511,6 +22514,7 @@ medium）里传播的平面波，定义波数 <span class="math inline">\(\vec{k
 <p>其中 <span class="math inline">\(\vec{v}_{\vec{k}}\left(\vec{k}\right)\)</span>
 在式 <span class="math inline">\(\eqref{DefinitionOfArrayManifoldVector}\)</span>
 中定义。</p>
+<h1 id="单位平面波模型">单位平面波模型</h1>
 <p>  现在回到一般的问题，我们想要确定阵列对一个输入场 <span class="math inline">\(\vec{f}(t, \vec{p})\)</span>
 的响应，这可以通过之前给出的卷积求和操作来实现，但更有用的方法是首先确定阵列对单位平面波（unit
 plane wave）的响应，响应为单位平面波时域（弧度）频率 <span class="math inline">\(\omega\)</span> 和波数 <span class="math inline">\(\vec{k}\)</span>
@@ -22581,6 +22585,7 @@ plane wave）的响应，响应为单位平面波时域（弧度）频率 <span 
 的球上的值</strong>。</p>
 <p>  阵列的波束方向图是确定阵列性能的关键要素。后续将会研究均匀加权线阵（uniformly
 weighted linear array）的波束方向图。</p>
+<h1 id="窄带假设">窄带假设</h1>
 <p>  在这里中，我们强调 <span class="math inline">\(f\left( t,\vec{p}_n
 \right)\)</span> 是带通信号的情况，即</p>
 <p><span class="math display">\[\begin{equation}
@@ -22691,6 +22696,14 @@ T_{nm} \left( \vec{u} \right)\}
 <p>这里主要关注的是窄带模型，对于宽带信号，一种处理方法是利用离散傅里叶变换（DFT）把信号分解到更窄的频率柜
 （frequency
 bin），每个频率柜内的信号是满足窄带条件的，因此所有的窄带结果可以直接得到应用。</p>
+<h1 id="参考文献">参考文献</h1>
+<ol type="1">
+<li>Van Trees, Harry L. <em>Optimum array processing: Part IV of
+detection, estimation, and modulation theory.</em> John Wiley &amp;
+Sons, 2002.</li>
+<li>Van Trees, Harry L, 汤俊. <em>最优阵列处理技术.</em> 清华大学出版社.
+2008.</li>
+</ol>
 ]]></content>
       <categories>
         <category>Josh 的学习笔记</category>
@@ -22706,15 +22719,16 @@ bin），每个频率柜内的信号是满足窄带条件的，因此所有的�
   <entry>
     <title>Josh&#39;s Notes: 最优阵列处理（Part 1.2 —— 均匀线阵模型）</title>
     <url>/posts/de20fd09.html</url>
-    <content><![CDATA[<p>  我们感兴趣的线阵如<a href="#fig.1-2-1">图 1-2-1</a> 所示，其中有
-<span class="math inline">\(N\)</span> 个位于 <span class="math inline">\(z\)</span> 轴上的阵元，阵元间距均匀，记为 <span class="math inline">\(d\)</span>。我们把这种阵列称为<strong><mark class="label primary">均匀线性阵列（uniform linear array, ULA）</mark></strong>。我们已经把阵列的中心放在了坐标系的原点上，这种阵列中心放置方法将在计算量上具有优点。</p>
+    <content><![CDATA[<h1 id="均匀线阵的基本模型">均匀线阵的基本模型</h1>
+<p>  <strong><mark class="label primary">均匀线性阵列（uniform linear array, ULA）</mark></strong>如<a href="#fig.1-2-1">图 1-2-1</a>
+所示，其中有 <span class="math inline">\(N\)</span> 个位于 <span class="math inline">\(z\)</span> 轴上的阵元，阵元间距均匀，记为 <span class="math inline">\(d\)</span>；这里将阵列的中心放在了坐标系的原点上，这种放置方法可以简化计算量。</p>
 <p><a id="fig.1-2-1"></a></p>
 <figure>
 <img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-opa-part-1-2/2023-04-20-josh-oap-part-1-2-010-LinearArrayAlongZAaxis.png!sign" width="600" alt="图 1-2-1 放置在 z 轴上的线阵">
 <figcaption aria-hidden="true">图 1-2-1 放置在 <span class="math inline">\(z\)</span> 轴上的线阵</figcaption>
 </figure>
 <span id="more"></span>
-<p>  阵元的位置为</p>
+<p>  如<a href="#fig.1-2-1">图 1-2-1</a>，阵元的位置为</p>
 <p><span class="math display">\[\begin{equation} \label{ElementLocation}
 \begin{cases}
   p_{x_n} = 0 \\
@@ -22742,7 +22756,8 @@ bin），每个频率柜内的信号是满足窄带条件的，因此所有的�
 <p><span class="math display">\[\begin{equation}
   k_0 \triangleq \left| \vec{k} \right| = \frac{2\pi}{\lambda}
 \end{equation}\]</span></p>
-<p>意线阵在 0 方向是没有分辨能力的。将<a href="https://josh-gao.top/posts/8b61f5a7.html#ComplexWeightVector">复权矢量</a>
+<p>注意，线阵在 <span class="math inline">\(\varphi\)</span>
+方向是没有分辨能力的。将<a href="https://josh-gao.top/posts/8b61f5a7.html#ComplexWeightVector">复权矢量</a>
 和式 <span class="math inline">\(\eqref{ManifoldVectorOfULA}\)</span>
 代入<a href="https://josh-gao.top/posts/8b61f5a7.html#FrequencyWavenumberResponseWithComplexWeigh">用复权矢量表示的波数-频率响应函数</a>，得到
 ULA 在角度域的频率-波数响应函数</p>
@@ -22751,8 +22766,8 @@ ULA 在角度域的频率-波数响应函数</p>
   \begin{aligned}
     \vec{\varUpsilon}(\omega,k_z) &amp;=
 \vec{w}^\mathrm{H}\vec{v}_{\vec{k}}\left(k_z\right) \\
-    &amp;= \sum_{n=0}^{N-1} w_n^\ast e^{-j\left( n - \frac{N-1}{2} k_z d
-\right)}
+    &amp;= \sum_{n=0}^{N-1} w_n^\ast e^{-j\left( n - \frac{N-1}{2}
+\right) k_z d}
   \end{aligned}
 \end{equation}\]</span></p>
 <p>定义下面的变量也是很有用的（波数在 <span class="math inline">\(z\)</span>
@@ -22762,20 +22777,21 @@ ULA 在角度域的频率-波数响应函数</p>
   \psi = -k_z d = \frac{2\pi}{\lambda}\cos\theta\cdot d =
 \frac{2\pi}{\lambda}u_z d
 \end{equation}\]</span></p>
-<p>其中 <span class="math inline">\(u_z\)</span> 是针对 <span class="math inline">\(z\)</span> 轴的方向余弦，</p>
+<p>其中 <span class="math inline">\(u_z\)</span> 是方向余弦的 <span class="math inline">\(z\)</span> 方向分量，</p>
 <p><span class="math display">\[\begin{equation}
   u_z = \cos\theta
 \end{equation}\]</span></p>
 <p>将式 <span class="math inline">\(\eqref{DefinitionOfWavenumberDiffOfTwoElements}\)</span>
-代入式 <span class="math inline">\(\eqref{WFRFOfULAInAngleDomain}\)</span>，得到</p>
+代入式 <span class="math inline">\(\eqref{WFRFOfULAInAngleDomain}\)</span>，得到<strong>在
+<span class="math inline">\(\psi\)</span>
+空间的频率-波数函数（frequency-wavenumber function in <span class="math inline">\(\psi\)</span>-space）</strong></p>
 <p><span class="math display">\[\begin{equation}  \label{WFRFOfULAInWavenumberDomain}
   \vec{\varUpsilon}_\psi(\psi) = e^{-j \frac{N-1}{2} \psi }
 \sum_{n=0}^{N-1} w_n^\ast e^{j n\psi}
 \end{equation}\]</span></p>
-<p>我们把 <span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span>
-称为<strong>在 <span class="math inline">\(\psi\)</span>
-空间的频率-波数函数（frequency-wavenumber function in <span class="math inline">\(\psi\)</span>-space）</strong>。<span class="math inline">\(\vec{\varUpsilon}(\omega,k_z)\)</span> 和 <span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span> 的定义域均为
-<span class="math inline">\(-\infty\)</span> 到 <span class="math inline">\(\infty\)</span>, 但仅在区域 <span class="math inline">\(0 \leqslant \theta \leqslant \pi\)</span>（或
+<p><span class="math inline">\(\vec{\varUpsilon}(\omega,k_z)\)</span> 和
+<span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span>
+的定义域均为 <span class="math inline">\(-\infty\)</span> 到 <span class="math inline">\(\infty\)</span>，但仅在区域 <span class="math inline">\(0 \leqslant \theta \leqslant \pi\)</span>（或
 <span class="math inline">\(-1 \leqslant u_z \leqslant 1\)</span> ）
 内代表传播的信号，即有 <span class="math inline">\(-\displaystyle\frac{2\pi d}{\lambda} \leqslant
 \psi \leqslant \frac{2\pi
@@ -22834,19 +22850,22 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} \cos \theta}
 \frac{2\pi d}{\lambda} u}, \, -1 \leqslant u \leqslant 1
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
+\label{BeamPatternInDirectionCosineDomain}
   B_\psi(\psi) = \vec{w}^\mathrm{H} \vec{v}_\psi(\psi) =
 e^{-j\left(\frac{N-1}{2} \right) \psi} \sum_{n=0}^{N-1} w_n^\ast e^{j n
 \psi}, \, -\frac{2\pi d}{\lambda} \leqslant \psi \leqslant \frac{2\pi
 d}{\lambda}
 \end{equation}\]</span></p>
 <p>当函数的变量很清楚时，我们将省略掉 <span class="math inline">\(B(\,\cdot\,)\)</span> 中的下标。</p>
+<h1 id="均匀线阵的阵列流形">均匀线阵的阵列流形</h1>
 <p>  对于均匀线阵，通常用 <span class="math inline">\(\psi\)</span>
-来写出阵列流形</p>
+表示阵列流形</p>
 <p><span class="math display">\[\begin{equation}
   \left[ \vec{v}_\psi(\psi) \right]_n = e^{j\left( n - \frac{N-1}{2}
-\right)\psi}
+\right)\psi}, \, n = 0, 1, \cdots, N-1
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
+\label{ManifoldVecOfULAWithConjugateSymmetry}
   \boxed{\vec{v}_\psi(\psi) = \left[ \begin{array}{c}
     e^{-j\left(\frac{N-1}{2} \right)\psi} \\
     e^{-j\left(\frac{N-3}{2} \right)\psi} \\
@@ -22855,7 +22874,7 @@ d}{\lambda}
     e^{j\left(\frac{N-1}{2} \right)\psi} \\
   \end{array} \right]}
 \end{equation}\]</span></p>
-<p>可以看到一个均匀线阵的阵列流形矢量具有共扼对称性。</p>
+<p>可以看到 ULA 的阵列流形矢量具有<strong><mark class="label primary">共扼对称性（conjugate symmetry）</mark></strong>。</p>
 <div class="tabs" id="阵列流形矢量具有共扼对称性"><ul class="nav-tabs"><li class="tab active"><a href="#阵列流形矢量具有共扼对称性-1">$N$ 为偶数</a></li><li class="tab"><a href="#阵列流形矢量具有共扼对称性-2">$N$ 为奇数</a></li></ul><div class="tab-content"><div class="tab-pane active" id="阵列流形矢量具有共扼对称性-1"><p>当 <span class="math inline">\(N\)</span> 为偶数时，如果定义一个
 <span class="math inline">\(N/2\)</span> 维的矢量 <span class="math inline">\(\vec{v}_{\psi_1}(\psi)\)</span>，对应与 <span class="math inline">\(\vec{v}_\psi(\psi)\)</span> 的前 <span class="math inline">\(N/2\)</span> 个元素，则有</p>
 <p><span class="math display">\[\begin{equation}
@@ -22904,9 +22923,112 @@ d}{\lambda}
 \right]
   \end{aligned}
 \end{equation}\]</span></p>
-<p>所以波束方向图是一个实函数。假设权矢量也是实对称的，则同样能够满足式
+<p>所以波束方向图是一个实函数。注意到，实对称的权矢量同样能够满足式
 <span class="math inline">\(\eqref{ConjugateSymmetry}\)</span>；当 <span class="math inline">\(N\)</span>
 为奇数时，也有类似的结果。我们将发现很多其他的阵列结构也具有共枙对称性质。</p>
+<p>  式 <span class="math inline">\(\eqref{ManifoldVecOfULAWithConjugateSymmetry}\)</span>
+强调了 <span class="math inline">\(\vec{v}_\psi(\psi)\)</span>
+的共枙对称性质。也可以把 <span class="math inline">\(\vec{v}_\psi(\psi)\)</span> 写成</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{v}_\psi(\psi) = e^{-j\left(\frac{N-1}{2} \right)\psi} \left[
+\begin{array}{c}
+    1 \\
+    e^{j\psi} \\
+    \vdots \\
+    e^{j(N-1)\psi} \\
+  \end{array} \right]
+\end{equation}\]</span></p>
+<p>这个形式强调了 <span class="math inline">\(\vec{v}_\psi(\psi)\)</span> 的 Vandermonde
+结构。</p>
+<h1 id="从波束方向图导出权矢量">从波束方向图导出权矢量</h1>
+<p>  下面讨论如何从特定的方向图 <span class="math inline">\(B(\psi)_\psi\)</span> 中获得权矢量 <span class="math inline">\(\vec{w}\)</span>，我们从式 <span class="math inline">\(\eqref{BeamPatternInDirectionCosineDomain}\)</span>
+中的关系开始</p>
+<p><span class="math display">\[\begin{equation}
+\label{ShortBeamPatternInDirectionCosineDomain}
+  B_\psi(\psi) = \vec{w}^\mathrm{H} \vec{v}_\psi(\psi)
+\end{equation}\]</span></p>
+<p>假设 <span class="math inline">\(B(\psi)_\psi\)</span>
+是已知的，我们想确定产生这个 <span class="math inline">\(B(\psi)_\psi\)</span> 的 <span class="math inline">\(\vec{w}\)</span>。由于 <span class="math inline">\(\vec{w}^\mathrm{H}\)</span> 是一个 <span class="math inline">\(1 \times N\)</span> 维的矢量，因此如果知道 <span class="math inline">\(B(\psi)_\psi\)</span> 在 <span class="math inline">\(N\)</span> 个 <span class="math inline">\(\psi\)</span> 值上的值，就可以确定 <span class="math inline">\(\vec{w}\)</span>。</p>
+<p>  我们对波束方向图在 <span class="math inline">\(N\)</span> 个 <span class="math inline">\(\psi_i, i = 1,\cdots,N\)</span> 上进行采样。<span class="math inline">\(\psi_i\)</span>
+必须是不同的，但不一定是等距的，记采样点处的波束方向图的值为 <span class="math inline">\(B(\psi_i)\)</span>。根据式 <span class="math inline">\(\eqref{ShortBeamPatternInDirectionCosineDomain}\)</span>，有</p>
+<p><span class="math display">\[\begin{equation}
+\label{ElementOfShortBeamPatternInDirectionCosineDomain}
+  \vec{w}^\mathrm{H} \vec{v}(\psi_i) = B(\psi_i), \, i = 1, \cdots, N
+\end{equation}\]</span></p>
+<p>定义一个 <span class="math inline">\(N \times N\)</span>
+维的阵列流形矩阵</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{V}(\psi) \triangleq \left[ \begin{array}{c}\vec{v}(\psi_1) &amp;
+\cdots &amp; \vec{v}(\psi_N)\end{array}\right]
+\end{equation}\]</span></p>
+<p>和一个 <span class="math inline">\(1 \times N\)</span>
+维的波束方向图矩阵</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{B} \triangleq \left[ \begin{array}{c}B(\psi_1) &amp; \cdots &amp;
+B(\psi_N)\end{array}\right]
+\end{equation}\]</span></p>
+<p>则式 <span class="math inline">\(\eqref{ElementOfShortBeamPatternInDirectionCosineDomain}\)</span>
+可以写成</p>
+<p><span class="math display">\[\begin{matrix}
+  \vec{w}^\mathrm{H} \vec{V}(\psi) = \vec{B}
+\end{matrix}\]</span></p>
+<p>或</p>
+<p><span class="math display">\[\begin{matrix}
+  \vec{V}^\mathrm{H}(\psi) \vec{w} = \vec{B}^\mathrm{H}
+\end{matrix}\]</span></p>
+<p>由于 <span class="math inline">\(\vec{V}^\mathrm{H}(\psi)\)</span>
+是满秩的，所以</p>
+<p><span class="math display">\[\begin{equation}
+\label{WeightVecCalculation}
+  \boxed{\vec{w} = \left[ \vec{V}^\mathrm{H}(\psi)
+\right]^{-1}\vec{B}^\mathrm{H}}
+\end{equation}\]</span></p>
+<p>尽管 <span class="math inline">\(\psi_i\)</span>
+可以任意选择，但如果它们相距太近，那么阵列流形矢量将接近于线性相关，在式
+<span class="math inline">\(\eqref{WeightVecCalculation}\)</span>
+中的求逆可能会有数值计算的问题。如果采用均匀间距 <span class="math inline">\(2\pi/N\)</span>，那么后续将会推导一个高效的权值计算算法。</p>
+<p>  我们特别感兴趣的一种情况是已经定义了波束方向图的 <span class="math inline">\(N — 1\)</span>
+个零点。如果假设阵列的指向为正侧向（broadside，即阵列排布方向和信号来向垂直），令</p>
+<p><span class="math display">\[\begin{equation}
+  \psi_1 = 0
+\end{equation}\]</span></p>
+<p>且 <span class="math inline">\(\psi_2, \psi_3, \cdots,
+\psi_N\)</span> 对应于零点的位置。假设预期的归一化波束方向图为：</p>
+<p><span class="math display">\[\begin{matrix}
+  \vec{B} = \left[ \begin{array}{c} 1 &amp; 0 &amp; \cdots &amp; 0
+\end{array} \right] = \vec{e}_1^\mathrm{T}
+\end{matrix}\]</span></p>
+<p>则式 <span class="math inline">\(\eqref{WeightVecCalculation}\)</span> 简化为</p>
+<p><span class="math display">\[\begin{equation}
+\label{WeightVecCalculationWithAllZeroExceptMainAxis}
+  \boxed{\vec{w} = \left[ \vec{V}^\mathrm{H}(\psi)
+\right]^{-1}\vec{e}_1}
+\end{equation}\]</span></p>
+<p>后续将发现这些算法是非常有用的。</p>
+<p>在式 <span class="math inline">\(\eqref{WeightVecCalculation}\)</span> 和式 <span class="math inline">\(\eqref{WeightVecCalculationWithAllZeroExceptMainAxis}\)</span>
+中有两点需要强调：</p>
+<ol type="1">
+<li><p>我们已经假设 <span class="math inline">\(B_\psi(\psi)\)</span>
+在式 <span class="math inline">\(\eqref{ShortBeamPatternInDirectionCosineDomain}\)</span>
+中进行了定义。换句话说，它是由一个 <span class="math inline">\(N \times
+1\)</span> 维复数矢量 <span class="math inline">\(\vec{w}\)</span>
+产生的。如果 <span class="math inline">\(B_\psi(\psi)\)</span>
+是任意函数，且使用式 <span class="math inline">\(\eqref{WeightVecCalculation}\)</span>，那么将产生一个方向图，和
+<span class="math inline">\(B(\psi_i), i = 1,\cdots,N\)</span>
+相匹配，但不一定和函数 <span class="math inline">\(B_\psi(\psi)\)</span>
+相匹配。</p></li>
+<li><p>我们是在一个均匀线阵的背景下介绍这个结果的。但是，这个推导过程适用于任意结构的
+<span class="math inline">\(N\)</span> 阵元阵列。</p></li>
+</ol>
+<p>我们已经推导了阵列流形矢量、权值矢量和波束方向图之间的基本关系。下一节将考虑均匀加权的特殊情况。</p>
+<h1 id="参考文献">参考文献</h1>
+<ol type="1">
+<li>Van Trees, Harry L. <em>Optimum array processing: Part IV of
+detection, estimation, and modulation theory.</em> John Wiley &amp;
+Sons, 2002.</li>
+<li>Van Trees, Harry L, 汤俊. <em>最优阵列处理技术.</em> 清华大学出版社.
+2008.</li>
+</ol>
 ]]></content>
       <categories>
         <category>Josh 的学习笔记</category>
@@ -22917,6 +23039,7 @@ d}{\lambda}
         <tag>阵列信号处理</tag>
         <tag>均匀线阵</tag>
         <tag>ULA</tag>
+        <tag>可视区域</tag>
       </tags>
   </entry>
 </search>
