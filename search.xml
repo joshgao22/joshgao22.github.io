@@ -23042,16 +23042,15 @@ Sons, 2002.</li>
   <entry>
     <title>Josh&#39;s Notes: 最优阵列处理（Part 1.3 —— 均匀加权线阵）</title>
     <url>/posts/aa32ec76.html</url>
-    <content><![CDATA[<p>  现在把注意力集中到均匀加权的情况</p>
+    <content><![CDATA[<h1 id="均匀加权线阵的频率-波数响应函数">均匀加权线阵的频率-波数响应函数</h1>
+<p>  现在把注意力集中到均匀加权的情况，即</p>
 <p><span class="math display">\[\begin{equation}
   w_n = \frac{1}{N}, \, n = 0,1,\cdots,N-1
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
   \vec{w} = \frac{1}{N} \vec{1}
 \end{equation}\]</span></p>
-<p>其中 1 是 <span class="math inline">\(N \times 1\)</span>
-维的单位矢量</p>
-<p>则在 <span class="math inline">\(\psi\)</span>
+<p>其中 <span class="math inline">\(\vec{1}\)</span> 是 <span class="math inline">\(N \times 1\)</span> 维的单位矢量，则在 <span class="math inline">\(\psi\)</span>
 空间的频率-波数函数可以写成（利用等比级数的求和公式）</p>
 <p><span class="math display">\[\begin{equation}
   \begin{aligned}
@@ -23068,9 +23067,16 @@ Sons, 2002.</li>
   \vec{\varUpsilon}_\psi(\psi) = \frac{1}{N} \frac{\sin\left( N
 \frac{\psi}{2} \right)}{\sin\frac{\psi}{2}}
 \end{equation}\]</span></p>
-<p>观察到，当 <span class="math inline">\(N\)</span> 是奇数时，<span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span>
-是周期函数，周期为 <span class="math inline">\(2\pi\)</span>。如果 <span class="math inline">\(N\)</span> 为偶数，波瓣在 <span class="math inline">\(\pm 2 \pi\)</span>、<span class="math inline">\(\pm 6 \pi\)</span> 处的值为负值，周期为 <span class="math inline">\(4 \pi\)</span>。对任意 <span class="math inline">\(N\)</span> 值， <span class="math inline">\(\left|\vec{\varUpsilon}_\psi(\psi)\right|\)</span>
-的周期为 <span class="math inline">\(2 \pi\)</span>。当 <span class="math inline">\(N = 11\)</span> 时， <span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span> 和 <span class="math inline">\(\psi\)</span> 的关系在<a href="#fig.1-3-1">图
+<span id="more"></span>
+<p>观察到，</p>
+<ul>
+<li>当 <span class="math inline">\(N\)</span> 是奇数时，<span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span>
+是周期函数，周期为 <span class="math inline">\(2\pi\)</span>；</li>
+<li>当 <span class="math inline">\(N\)</span> 为偶数时，波瓣在 <span class="math inline">\(\pm 2 \pi\)</span>、<span class="math inline">\(\pm 6 \pi\)</span> 处的值为负值，周期为 <span class="math inline">\(4 \pi\)</span>；</li>
+<li>对任意的 <span class="math inline">\(N\)</span>，<span class="math inline">\(\left|\vec{\varUpsilon}_\psi(\psi)\right|\)</span>
+的周期为 <span class="math inline">\(2 \pi\)</span>。</li>
+</ul>
+<p>当 <span class="math inline">\(N = 11\)</span> 时， <span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span> 和 <span class="math inline">\(\psi\)</span> 的关系在<a href="#fig.1-3-1">图
 1-3-1</a> 中给出。<a href="#fig.1-3-2">图 1-3-2</a> 给出了 <span class="math inline">\(\left|\vec{\varUpsilon}_\psi(\psi)\right|\)</span>，单位为
 dB, 其中</p>
 <p><span class="math display">\[\begin{equation}
@@ -23079,15 +23085,245 @@ dB, 其中</p>
 \end{equation}\]</span></p>
 <p><a id="fig.1-3-1"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-010-FrequencyWavenumberResponseFunction.svg" width="600" alt="图 1-3-1 \vec{\varUpsilon}(\psi): \psi = \frac{2\pi}{\lambda} d \cos\theta, N=11">
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-010-FrequencyWavenumberResponseFunction.svg" width="700" alt="图 1-3-1 \vec{\varUpsilon}(\psi): \psi = \frac{2\pi}{\lambda} d \cos\theta, N=11">
 <figcaption aria-hidden="true">图 1-3-1 <span class="math inline">\(\vec{\varUpsilon}(\psi): \psi =
 \frac{2\pi}{\lambda} d \cos\theta, N=11\)</span></figcaption>
 </figure>
 <p><a id="fig.1-3-2"></a></p>
 <figure>
-<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-020-FrequencyWavenumberResponseFunctionInDB.svg" width="600" alt="图 1-3-1 用 dB 表示 \left|\vec{\varUpsilon}(\psi)\right|">
-<figcaption aria-hidden="true">图 1-3-1 用 dB 表示 <span class="math inline">\(\left|\vec{\varUpsilon}(\psi)\right|\)</span></figcaption>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-020-FrequencyWavenumberResponseFunctionInDB.svg" width="700" alt="图 1-3-2 用 dB 表示 \left|\vec{\varUpsilon}(\psi)\right|">
+<figcaption aria-hidden="true">图 1-3-2 用 dB 表示 <span class="math inline">\(\left|\vec{\varUpsilon}(\psi)\right|\)</span></figcaption>
 </figure>
+<p>若不指定 <span class="math inline">\(\vec{w}\)</span> 的类型, 则
+<span class="math inline">\(\vec{\varUpsilon}_\psi(\psi)\)</span>
+是复数，所以相位也应该画出来。但是，均匀加权线阵具有对称性，因此得到的频率-波数响应是实函数。</p>
+<p>  也可以用 <span class="math inline">\(k_z\)</span>
+来表示频率-波数响应</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{\varUpsilon}(\omega:k_z) = \frac{1}{N} \frac{\sin\left( N k_z
+\frac{d}{2} \right)}{\sin \left(k_z\frac{d}{2}\right)}
+\end{equation}\]</span></p>
+<p>这里 <span class="math inline">\(\vec{\varUpsilon}(\omega:k_z)\)</span>
+是周期函数，周期为 <span class="math inline">\(2\pi/d\)</span>。</p>
+<p>  注意，响应函数仅依赖于波数分量 <span class="math inline">\(k_z\)</span>, 是 <span class="math inline">\(k_z\)</span> 的周期函数，间隔为 <span class="math inline">\(2\pi/d\)</span>，这是线性阵列的一维特性导致的，所以该阵列仅能分析在
+<span class="math inline">\(k_z\)</span> 方向上投影的波数分量。</p>
+<h1 id="均匀加权线阵的波束方向图">均匀加权线阵的波束方向图</h1>
+<p>  均匀加权线阵的波束方向图的波束方向图为</p>
+<p>$$<span class="math display">\[\begin{align}
+  &amp;\theta 空间: &amp;&amp; B_\theta(\theta) = \frac{1}{N}
+\frac{\sin\left(\frac{N}{2} \cdot \frac{2\pi}{\lambda} \cos \theta \cdot
+d \right)}{\sin \left( \frac{1}{2} \cdot \frac{2\pi}{\lambda} \cos\theta
+\cdot d\right)}, \quad 0 \leqslant \theta \leqslant \pi \\
+
+  &amp;u 空间: &amp;&amp; B_u(u) = \frac{1}{N} \frac{\sin\left(\frac{N
+\pi d}{\lambda} u \right)}{\sin \left( \frac{N d}{\lambda} u\right)},
+\quad -1 \leqslant u \leqslant 1
+\label{BeamPatternOfUWLAInDirectionCosineDomain} \\
+
+  &amp;\psi 空间:  &amp;&amp;B_\psi(\psi) = \frac{1}{N}
+\frac{\sin\left(N\frac{\psi}{2}\right)}{\sin \left( \frac{\psi}{2}
+\right)}, \quad -\frac{2\pi d}{\lambda} \leqslant \psi \leqslant
+\frac{2\pi d}{\lambda}
+\end{align}\]</span>$$</p>
+<p>其中定义域分别为 <span class="math inline">\(0 \leqslant \theta
+\leqslant \pi\)</span>、<span class="math inline">\(-1 \leqslant u
+\leqslant 1\)</span> 和 <span class="math inline">\(-\displaystyle\frac{2\pi d}{\lambda} \leqslant
+\psi \leqslant \frac{2\pi
+d}{\lambda}\)</span>，称为<strong><mark class="label primary">可视区域（visible region）</mark></strong>。</p>
+<p>  函数 <span class="math inline">\(B_u(u)\)</span> 和 <span class="math inline">\(B_\psi(\psi)\)</span>
+有时称为<strong><mark class="label primary">阵列因子（Array Factor）</mark></strong>。当我们研究非全向性阵元时，将发现这个量的重要性。</p>
+<p>  <a href="#fig.1-3-3">图 1-3-3</a> 给出了 <span class="math inline">\(B_\theta(\theta)\)</span> 的极坐标形式，单位为
+dB。如果在三维空间画出波束方向图，在<a href="#fig.1-3-3">图 1-3-3</a>
+中的图将对应沿着任意方位角 <span class="math inline">\(\theta\)</span>
+切割得到的方向图。<a href="#fig.1-3-4">图 1-3-4</a>
+给出了波束方向图的幅度和不同变量之间的关系。</p>
+<p><a id="fig.1-3-3"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-030-PloarPlotOfBeamPatternInAngleSpace.svg" width="600" alt="图 1-3-3 在极坐标系中画出 B_\theta(\theta)">
+<figcaption aria-hidden="true">图 1-3-3 在极坐标系中画出 <span class="math inline">\(B_\theta(\theta)\)</span></figcaption>
+</figure>
+<p><a id="fig.1-3-4"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-040-AbsOfWFRFForALinearArray.svg" width="700" alt="图 1-3-4 d = \lambda/2, N=10，线阵的 \left|\vec{\varUpsilon}_\psi(\psi)\right|">
+<figcaption aria-hidden="true">图 1-3-4 <span class="math inline">\(d =
+\lambda/2, N=10\)</span>，线阵的 <span class="math inline">\(\left|\vec{\varUpsilon}_\psi(\psi)\right|\)</span></figcaption>
+</figure>
+<p>  尽管这是一个简单的例子，但可以用来展示线性阵列的一些重要特征。第一组重要特
+征描述了波束方向图的参数。</p>
+<h1 id="波束方向图的参数">波束方向图的参数</h1>
+<ol type="1">
+<li>3dB 带宽（半功率波束宽度，half-power beamwidth，HPBW）</li>
+<li>到第一零点的距离（这个距离的两倍称为 <span class="math inline">\(BW_{NN}\)</span>）</li>
+<li>到第一旁瓣的距离</li>
+<li>第一旁瓣的高度</li>
+<li>其余零点的位置</li>
+<li>旁瓣衰减的速率</li>
+<li>栅瓣（Grating lobes）</li>
+</ol>
+<h2 id="db-带宽">3 dB 带宽</h2>
+<p>为了说明前两个参数，考虑在<a href="#fig.1-3-5">图 1-3-5</a>
+中给出的原点附近的波束方向图。</p>
+<p><a id="fig.1-3-5"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-20-josh-oap-part-1-3/2023-04-20-josh-oap-part-1-3-050-MainLobeOfBeamPattern.svg" width="700" alt="图 1-3-5 波束方向图的主波束">
+<figcaption aria-hidden="true">图 1-3-5 波束方向图的主波束</figcaption>
+</figure>
+<p>  3dB 波束宽度是波束宽度的一个度量。定义为对应 <span class="math inline">\(\left| B_u(u) \right|^2 = 0.5\)</span> 或 <span class="math inline">\(\left| B_u(u) \right| = 1/\sqrt{2}\)</span>
+的点。可以通过使式 <span class="math inline">\(\eqref{BeamPatternOfUWLAInDirectionCosineDomain}\)</span>
+中的 <span class="math inline">\(B_u(u)\)</span> 的值等于 <span class="math inline">\(1/\sqrt{2}\)</span> 来确定出在 <span class="math inline">\(u\)</span> 空间的半功率点。当 <span class="math inline">\(N\)</span> 增加时，计算这个值，我们发现，对于
+<span class="math inline">\(N\geqslant 10\)</span>,
+通过解下面的方程可以得到一个很好的近似值：</p>
+<p><span class="math display">\[\begin{equation}
+  \frac{\pi N d}{\lambda} u = 1.4
+\end{equation}\]</span></p>
+<p>则</p>
+<p><span class="math display">\[\begin{equation}
+  \frac{\Delta u_1}{2} = 1.4 \frac{\lambda}{\pi N d}
+\end{equation}\]</span></p>
+<p>或</p>
+<p><span class="math display">\[\begin{equation}
+\label{DefinitionOfHPBW}
+\Delta u_1 = 0.891 \frac{\lambda}{N d}
+\end{equation}\]</span></p>
+<p>我们把这个间隔称为<strong><mark class="label primary">半功率波束宽度（half-power beamwidth，HPBW）</mark></strong>。当 <span class="math inline">\(N\)</span> 增加时，式 <span class="math inline">\(\eqref{DefinitionOfHPBW}\)</span>
+中的系数稍稍减小。对于 <span class="math inline">\(N &gt;
+30\)</span>，<span class="math inline">\(0.886 \lambda/Nd\)</span>
+是一个更好的近似表达式。</p>
+<p>  <a href="#table.1-3-1">表 1-3-1</a> 中列出了不同空间内 HPBW
+的表达式。</p>
+<p><a id="table.1-3-1"></a></p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 40%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">空间</th>
+<th style="text-align: center;">任意 <span class="math inline">\(d\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d=\lambda/2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.891
+\frac{\lambda}{Nd}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1.782
+\frac{1}{N}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\bar{\theta}\)</span>[^]</td>
+<td style="text-align: center;"><span class="math inline">\(2\sin^{-1}
+\left( 0.446 \frac{\lambda}{Nd} \right)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\sin^{-1}
+\left( 0.891 \frac{1}{N} \right)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">较小的 <span class="math inline">\(\bar{\theta}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\simeq 0.891
+\frac{\lambda}{Nd}\)</span> radians <br> <span class="math inline">\(\simeq 51.05 \frac{\lambda}{Nd}\)</span>
+degrees</td>
+<td style="text-align: center;"><span class="math inline">\(\simeq 1.782
+\frac{1}{N}\)</span> radians <br> <span class="math inline">\(\simeq
+102.1 \frac{1}{N}\)</span> degrees</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\psi\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.891
+\frac{2\pi}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.891
+\frac{2\pi}{N}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(k_z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.891
+\frac{2\pi}{dN}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1.782
+\frac{2\pi}{\lambda N}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="到第一零点的距离">到第一零点的距离</h2>
+<p>  方向图的零点出现在当 <span class="math inline">\(B_u(u)\)</span>
+的分子为零而分母不为零时，即</p>
+<p><span class="math display">\[\begin{equation}
+  \sin \left( \frac{\pi N d}{\lambda} u \right) = 0
+\end{equation}\]</span></p>
+<p>成立的条件为</p>
+<p><span class="math display">\[\begin{equation}
+  \frac{\pi N d}{\lambda} u = m\pi, \quad m = 1,2,\cdots
+\end{equation}\]</span></p>
+<p>则出现零点需要满足下面的两个条件：</p>
+<p><span class="math display">\[\begin{equation}
+  u = m \frac{\lambda}{Nd}, \quad m = 1,2,\cdots
+\end{equation}\]</span></p>
+<p>且</p>
+<p><span class="math display">\[\begin{equation}
+  u \ne m \frac{\lambda}{d}, \quad m = 1,2,\cdots
+\end{equation}\]</span></p>
+<p>则第一个零点的位置为 <span class="math inline">\(\lambda/Nd\)</span>,
+且</p>
+<p><span class="math display">\[\begin{equation}
+  \Delta u_2 = 2 \frac{\lambda}{Nd}
+\end{equation}\]</span></p>
+<p>我们把 <span class="math inline">\(\Delta u_2\)</span>
+称为零点-零点波束宽度（null-to-null beamwidth），并表示为 <span class="math inline">\(BW_{NN}\)</span> 。 <span class="math inline">\(BW_{NN}\)</span> 的一半是到第一零点的距离 (<span class="math inline">\(0.5 BW_{NN}\)</span>)
+。这个量衡量了阵列分辨两个不同平面波的能力，也称为<mark class="label primary">瑞利限（Rayleigh resolution limit）</mark>。如果第二个波束方向图的峰值在第一个波束方向图的第一零点之外（间隔
+<span class="math inline">\(\geqslant \Delta u_2 / 2\)</span> ）,
+则我们认为这两个平面波是可以分辨的。在后面，我们将研究一个阵列的分辨能力的统计性度量。</p>
+<p>  注意到线阵在方位角方向（<span class="math inline">\(\varphi\)</span>）没有分辨能力，因为该阵列在 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span>
+方向上没有扩展。我们将在后面详细讨论分辨率的问题。</p>
+<p>  <a href="#table.1-3-1">表 1-3-1</a>中列出了在各个不同空间表示出的
+<span class="math inline">\(BW_{NN}\)</span>。</p>
+<p><a id="table.1-3-2"></a></p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 40%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">空间</th>
+<th style="text-align: center;">任意 <span class="math inline">\(d\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d=\lambda/2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2
+\frac{\lambda}{Nd}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{4}{N}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\bar{\theta}\)</span>[^]</td>
+<td style="text-align: center;"><span class="math inline">\(2\sin^{-1}
+\left( \frac{\lambda}{Nd} \right)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\sin^{-1}
+\left( \frac{2}{N} \right)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">较小的 <span class="math inline">\(\bar{\theta}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\simeq 2
+\frac{\lambda}{Nd}\)</span> radians</td>
+<td style="text-align: center;"><span class="math inline">\(\simeq
+\frac{4}{N}\)</span> radians</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\psi\)</span></td>
+<td style="text-align: center;">$ $</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{4\pi}{N}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(k_z\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{4\pi}{dN}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{8\pi}{\lambda N}\)</span></td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       <categories>
         <category>Josh 的学习笔记</category>
