@@ -23431,4 +23431,89 @@ testbench 。希望大家能通过实例熟练掌握 testbench 的设计方法�
         <tag>任务</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Josh&#39;s Notes: 最优阵列处理（Part 1.4 —— 阵列调向）</title>
+    <url>/posts/c2604c43.html</url>
+    <content><![CDATA[<p>  <a href="https://josh-gao.top/posts/8b61f5a7.html">1.1 节</a>、<a href="https://josh-gao.top/posts/de20fd09.html">1.2 节</a>和 <a href="https://josh-gao.top/posts/aa32ec76.html">1.3
+节</a>已经考虑了最大响应在正侧向（broadside），即 <span class="math inline">\(k_z=0\)</span>
+的阵列。在大多数应用中，我们希望能够把最大响应放置到，或者说调向（steer）到任意一个波数位置或方向上。有两种方法可以实现这个目标。直接的方法是改变传感器的位置，使得阵列的轴线和目标方向之间是垂直的，称为机械调向（mechanical
+steering）。当一个天线在物理上是可旋转的时候，我们可以采取这种方法，如雷达系统中抛物面孔径。通常机械调向的实现有很大的困难，原因可能是当处理长波长信号时所需阵列的物理维度较大，也可能是当传感器被移动时需要进行重新校准。</p>
+<p>  另外一个方法是引入时间延时（或在窄带的情况下，引入相移）来实现对一个阵列的<strong><mark class="label primary">主响应轴 (main response axis，MRA)</mark></strong>进行调向。随着高速信号处理器的发展，电子调向（electronic
+steering）技术正在被更广泛地应用在阵列处理中，其不仅仅突破了机械调向的限制，还具有迅速改变响应函数的灵活能力。此外，在有些阵列中，在一个方向上采用机械调向，在其他的方向上采用电子调向。</p>
+<p>  首先考虑任意结构阵列，然后讨论均匀加权阵列的结果。</p>
+<span id="more"></span>
+<h1 id="任意结构阵列的调向">任意结构阵列的调向</h1>
+<p><a id="fig.1-4-1"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-04-22-josh-oap-part-1-4/2023-04-22-josh-oap-part-1-4-010-ArraySteeringWithDelays.png!sign" width="800" alt="图 1-4-1 利用延时实现阵列调向">
+<figcaption aria-hidden="true">图 1-4-1
+利用延时实现阵列调向</figcaption>
+</figure>
+<p>  <a href="https://josh-gao.top/posts/de20fd09.html">1.2
+节</a>开头的简单例子说明了把阵列调向某个特定方向的主要思想，调向在波数空间的影响是很直接的。考虑<a href="#fig.1-4-1">图 1-4-1</a> 中的处理器，输入到调向环节的基函数为</p>
+<p><span class="math display">\[\begin{equation}
+  f\left( t, \vec{p}\right) = e^{j\omega t}
+\vec{v}_{\vec{k}}\left(\vec{k}\right)
+\end{equation}\]</span></p>
+<p>我们希望当波数等于“目标”的波数时，即</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{k} = \vec{k}_\mathrm{T}
+\end{equation}\]</span></p>
+<p>输出是对齐的。我们把 <span class="math inline">\(\vec{k}_\mathrm{T}\)</span>
+称为<strong><mark class="label primary">所调方向（steering direction）</mark></strong>或在 <span class="math inline">\(k\)</span>
+空间的<strong><mark class="label primary">主响应轴（main response axis）</mark></strong>。可以使用一个 <span class="math inline">\(N \times N\)</span>
+的对角调向矩阵来完成这个操作</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{I}_\mathrm{s}\left(\vec{k}_\mathrm{T}\right) = \left[
+\begin{matrix}
+    e^{j \vec{k}^\mathrm{T}_\mathrm{T}\vec{p}_1} &amp; 0 &amp; \cdots
+&amp; 0 \\
+    0 &amp; e^{j \vec{k}^\mathrm{T}_\mathrm{T}\vec{p}_2} &amp; \cdots
+&amp; 0 \\
+    \vdots &amp; \vdots &amp;  &amp; \vdots \\
+    0 &amp; 0 &amp; \cdots &amp; e^{j
+\vec{k}^\mathrm{T}_\mathrm{T}\vec{p}_N}
+  \end{matrix} \right]
+\end{equation}\]</span></p>
+<p>得到的输出为</p>
+<p><span class="math display">\[\begin{equation}
+  f_\mathrm{s}\left( t, \vec{p}\right) = e^{j\omega t}
+\vec{v}_{\vec{k}}\left(\vec{k} - \vec{k}_\mathrm{T}\right)
+\end{equation}\]</span></p>
+<p>总的频率-波数响应为</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{\varUpsilon} \left(\left. \omega, \vec{k} \right|
+\vec{k}_\mathrm{T} \right) = \vec{\varUpsilon} \left( \omega, \vec{k} -
+\vec{k}_\mathrm{T} \right)
+\end{equation}\]</span></p>
+<p>  阵列的响应函数仅是简单地平移到 <span class="math inline">\(\vec{k}_\mathrm{T}\)</span>
+的位置，这是利用波数空间来解释阵列响应函数的好处之一。如果在波数空间考虑波束方向图，也会得到一个简单的平移关系。</p>
+<h1 id="均匀幅度加权的情形">均匀幅度加权的情形</h1>
+<p>  当采用均匀幅度加权时，在<a href="#fig.1-4-1">图 1-4-1</a>
+中的两步的过程是不必要的。令</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{w} = \frac{1}{N} \vec{v}_{\vec{k}}\left(\vec{k}_\mathrm{T}\right)
+\end{equation}\]</span></p>
+<p>和</p>
+<p><span class="math display">\[\begin{equation}
+  B_c \left( \vec{k}, \vec{k}_\mathrm{T} \right) = \frac{1}{N}
+\vec{v}_{\vec{k}}^\mathrm{H}  \left(\vec{k}_\mathrm{T}\right)
+\vec{v}_{\vec{k}}\left(\vec{k}\right)
+\end{equation}\]</span></p>
+<p>我们称 <span class="math inline">\(B_c \left( \vec{k},
+\vec{k}_\mathrm{T} \right)\)</span>
+为<strong><mark class="label primary">常规波束方向图（conventional beam pattern）</mark></strong>。我们将发现常规波束方向图是后面要讨论的很多最优处理内容的基础。</p>
+<h1 id="线性阵列的调向">线性阵列的调向</h1>
+]]></content>
+      <categories>
+        <category>Josh 的学习笔记</category>
+        <category>最优阵列处理</category>
+        <category>阵列和空域滤波器</category>
+      </categories>
+      <tags>
+        <tag>阵列信号处理</tag>
+        <tag>阵列调向</tag>
+        <tag>主响应轴</tag>
+      </tags>
+  </entry>
 </search>

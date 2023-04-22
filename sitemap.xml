@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://josh-gao.top/posts/c2604c43.html</loc>
+    
+    <lastmod>2023-04-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://josh-gao.top/posts/aa32ec76.html</loc>
     
     <lastmod>2023-04-22</lastmod>
@@ -1281,6 +1290,20 @@
   
   <url>
     <loc>http://josh-gao.top/tags/%E4%BB%BB%E5%8A%A1/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://josh-gao.top/tags/%E9%98%B5%E5%88%97%E8%B0%83%E5%90%91/</loc>
+    <lastmod>2023-04-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://josh-gao.top/tags/%E4%B8%BB%E5%93%8D%E5%BA%94%E8%BD%B4/</loc>
     <lastmod>2023-04-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
