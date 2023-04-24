@@ -23731,4 +23731,74 @@ testbench 。希望大家能通过实例熟练掌握 testbench 的设计方法�
         <tag>任务</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Josh&#39;s Notes: 最优阵列处理（Part 1.5 —— 阵列性能度量）</title>
+    <url>/posts/6a7100b0.html</url>
+    <content><![CDATA[<p> 有很多性能度量方法都可以用于评估一个阵列的能力，每一中度量方法都试图量化阵列的某一个重要特性，或者是阵列对信号环境的响应，或者是阵列设计的敏感度。我们已经采用了第一零点间距作为波束宽度，或频率-波数响应的分辨率的度量，也利用了均匀加权线阵的主要旁瓣水平作为一种度量。本节将讨论三个常用的阵列性能度量方法：</p>
+<ol type="1">
+<li>方向性（Directivity）</li>
+<li>对空域自噪声的阵列增益 (Array gain versus spatially white
+noise，<span class="math inline">\(A_w\)</span>)</li>
+<li>敏感度（Sensitivity）和容错因子（Tolerance Factor）</li>
+</ol>
+<span id="more"></span>
+<h1 id="方向性">方向性</h1>
+<p>  阵列和孔径的一个常用性能度量是方向性。我们将在一般情况下给出定义，并讨论线性阵列的特殊情况。</p>
+<p>  定义<strong><mark class="label primary">功率方向图（power pattern）</mark></strong> <span class="math inline">\(P(\theta,\varphi)\)</span> 为波束方向图 <span class="math inline">\(B(\omega : \theta, \varphi)\)</span>
+幅度的平方，即</p>
+<p><span class="math display">\[\begin{equation}
+  P(\theta,\varphi) = \left| B(\omega : \theta, \varphi) \right|^2
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(P(\theta,\varphi)\)</span>
+和频率的关系在符号表示中省略掉了。则方向性 <span class="math inline">\(D\)</span> 定义为</p>
+<p><span class="math display">\[\begin{equation}
+\label{DefinitionOfDirectivity}
+  D = \frac{P(\theta_\mathrm{T},\varphi_\mathrm{T})}{
+\displaystyle\frac{1}{4\pi} \int_0^\pi \int_0^{2\pi} \sin \theta \cdot
+P(\theta,\varphi) \,\mathrm{d} \varphi \,\mathrm{d} \theta}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\((\theta_\mathrm{T},\varphi_\mathrm{T})\)</span>
+是主响应轴（main response axis，MRA）的指向。</p>
+<p>  对于一个发射阵列或孔径， <span class="math inline">\(D\)</span>
+代表最大发射密度（每单位立体角对应的发射功率）和平均发射密度（在球面上平均）的比值。</p>
+<p>  对于一个接收天线，分母代表的是阵列（或孔径）对全向噪声（在一个球内均匀分布的噪声）的输出噪声功率。分子代表的是对应从
+<span class="math inline">\((\theta_\mathrm{T},\varphi_\mathrm{T})\)</span>
+方向入射的 信号的功率。所以，<span class="math inline">\(D\)</span>
+可以解释为是对全向噪声的阵列增益。</p>
+<p>  如果假设权值做了归一化，使得 <span class="math inline">\(P_n(\theta_\mathrm{T},\varphi_\mathrm{T}) =
+1\)</span>, 则式 <span class="math inline">\(\eqref{DefinitionOfDirectivity}\)</span>
+可以写成</p>
+<p><span class="math display">\[\begin{equation}
+\label{NormalizedDefinitionOfDirectivity}
+  D = \left\{ \frac{1}{4\pi} \int_0^\pi \int_0^{2\pi} \sin \theta \cdot
+P(\theta,\varphi) \,\mathrm{d} \varphi \,\mathrm{d}
+\theta  \right\}^{-1}
+\end{equation}\]</span></p>
+<p>对于线性阵列，有</p>
+<p><span class="math display">\[\begin{equation}
+  B(\theta,\varphi) = B(\theta)
+\end{equation}\]</span></p>
+<p>则式 <span class="math inline">\(\eqref{NormalizedDefinitionOfDirectivity}\)</span>
+可写为</p>
+<p><span class="math display">\[\begin{equation}
+  D = \left\{ \frac{1}{2} \int_0^\pi \left| B(\theta) \right|^2 \sin
+\theta \,\mathrm{d} \theta  \right\}^{-1}
+\end{equation}\]</span></p>
+<p>在 <span class="math inline">\(u\)</span> 空间可以表示为</p>
+<p><span class="math display">\[\begin{equation}
+  D = \left\{ \frac{1}{2} \int_{-1}^1 \left| B(u) \right|^2 \,\mathrm{d}
+u  \right\}^{-1}
+\end{equation}\]</span></p>
+<p>通常，这个表达式必须用数值的方法计算。</p>
+]]></content>
+      <categories>
+        <category>Josh 的学习笔记</category>
+        <category>最优阵列处理</category>
+        <category>阵列和空域滤波器</category>
+      </categories>
+      <tags>
+        <tag>阵列信号处理</tag>
+        <tag>阵列性能</tag>
+      </tags>
+  </entry>
 </search>
