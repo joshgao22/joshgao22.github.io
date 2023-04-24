@@ -21424,13 +21424,14 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} \cos \theta}
 \sum_{n=0}^{N-1} w_n^\ast e^{j n \frac{2\pi d}{\lambda} \cos \theta}, \,
 0 \leqslant \theta \leqslant \pi
 \end{equation}\]</span></p>
+<p><a id="BeamPatternInDirectionCosineDomain"></a></p>
 <p><span class="math display">\[\begin{equation}
   B_u(u) = \vec{w}^\mathrm{H} \vec{v}_u(u) = e^{-j\left(\frac{N-1}{2}
 \right) \frac{2\pi d}{\lambda} u} \sum_{n=0}^{N-1} w_n^\ast e^{j n
 \frac{2\pi d}{\lambda} u}, \, -1 \leqslant u \leqslant 1
 \end{equation}\]</span></p>
 <p><span class="math display">\[\begin{equation}
-\label{BeamPatternInDirectionCosineDomain}
+\label{BeamPatternInWavenumberDomain}
   B_\psi(\psi) = \vec{w}^\mathrm{H} \vec{v}_\psi(\psi) =
 e^{-j\left(\frac{N-1}{2} \right) \psi} \sum_{n=0}^{N-1} w_n^\ast e^{j n
 \psi}, \, -\frac{2\pi d}{\lambda} \leqslant \psi \leqslant \frac{2\pi
@@ -21521,18 +21522,18 @@ d}{\lambda}
 <p>这个形式强调了 <span class="math inline">\(\vec{v}_\psi(\psi)\)</span> 的 Vandermonde
 结构。</p>
 <h1 id="从波束方向图获得权矢量">从波束方向图获得权矢量</h1>
-<p>  下面讨论如何从特定的方向图 <span class="math inline">\(B_\psi(\psi)\)</span> 中获得权矢量 <span class="math inline">\(\vec{w}\)</span>，我们从式 <span class="math inline">\(\eqref{BeamPatternInDirectionCosineDomain}\)</span>
+<p>  下面讨论如何从特定的方向图 <span class="math inline">\(B_\psi(\psi)\)</span> 中获得权矢量 <span class="math inline">\(\vec{w}\)</span>，我们从式 <span class="math inline">\(\eqref{BeamPatternInWavenumberDomain}\)</span>
 中的关系开始</p>
 <p><span class="math display">\[\begin{equation}
-\label{ShortBeamPatternInDirectionCosineDomain}
+\label{ShortBeamPatternInWavenumberDomain}
   B_\psi(\psi) = \vec{w}^\mathrm{H} \vec{v}_\psi(\psi)
 \end{equation}\]</span></p>
 <p>假设 <span class="math inline">\(B_\psi(\psi)\)</span>
 是已知的，我们想确定产生这个 <span class="math inline">\(B_\psi(\psi)\)</span> 的 <span class="math inline">\(\vec{w}\)</span>。由于 <span class="math inline">\(\vec{w}^\mathrm{H}\)</span> 是一个 <span class="math inline">\(1 \times N\)</span> 维的矢量，因此如果知道 <span class="math inline">\(B_\psi(\psi)\)</span> 在 <span class="math inline">\(N\)</span> 个 <span class="math inline">\(\psi\)</span> 值上的值，就可以确定 <span class="math inline">\(\vec{w}\)</span>。</p>
 <p>  对波束方向图在 <span class="math inline">\(N\)</span> 个 <span class="math inline">\(\psi_i\)</span> 上进行采样，这里要求 <span class="math inline">\(\psi_i\)</span>
-必须是不同的，但不一定是等距的，记采样点处的波束方向图的值为 <span class="math inline">\(B(\psi_i)\)</span>。根据式 <span class="math inline">\(\eqref{ShortBeamPatternInDirectionCosineDomain}\)</span>，有</p>
+必须是不同的，但不一定是等距的，记采样点处的波束方向图的值为 <span class="math inline">\(B(\psi_i)\)</span>。根据式 <span class="math inline">\(\eqref{ShortBeamPatternInWavenumberDomain}\)</span>，有</p>
 <p><span class="math display">\[\begin{equation}
-\label{ElementOfShortBeamPatternInDirectionCosineDomain}
+\label{ElementOfShortBeamPatternInWavenumberDomain}
   \vec{w}^\mathrm{H} \vec{v}(\psi_i) = B(\psi_i), \, i = 1, \cdots, N
 \end{equation}\]</span></p>
 <p>定义一个 <span class="math inline">\(N \times N\)</span>
@@ -21547,7 +21548,7 @@ d}{\lambda}
   \vec{B} \triangleq \left[ \begin{array}{c}B(\psi_1) &amp; \cdots &amp;
 B(\psi_N)\end{array}\right]
 \end{equation}\]</span></p>
-<p>则式 <span class="math inline">\(\eqref{ElementOfShortBeamPatternInDirectionCosineDomain}\)</span>
+<p>则式 <span class="math inline">\(\eqref{ElementOfShortBeamPatternInWavenumberDomain}\)</span>
 可以写成</p>
 <p><span class="math display">\[\begin{matrix}
   \vec{w}^\mathrm{H} \vec{V}(\psi) = \vec{B}
@@ -21589,7 +21590,7 @@ B(\psi_N)\end{array}\right]
 <p>在式 <span class="math inline">\(\eqref{WeightVecCalculation}\)</span> 和式 <span class="math inline">\(\eqref{WeightVecCalculationWithAllZeroExceptMainAxis}\)</span>
 中有两点需要强调：</p>
 <ol type="1">
-<li><p>上述讨论已经假设 <span class="math inline">\(B_\psi(\psi)\)</span> 在式 <span class="math inline">\(\eqref{ShortBeamPatternInDirectionCosineDomain}\)</span>
+<li><p>上述讨论已经假设 <span class="math inline">\(B_\psi(\psi)\)</span> 在式 <span class="math inline">\(\eqref{ShortBeamPatternInWavenumberDomain}\)</span>
 中进行了定义，是由一个 <span class="math inline">\(N \times 1\)</span>
 维复矢量 <span class="math inline">\(\vec{w}\)</span> 产生的。如果 <span class="math inline">\(B_\psi(\psi)\)</span> 是任意函数，且使用式 <span class="math inline">\(\eqref{WeightVecCalculation}\)</span>，那么将产生一个方向图，和
 <span class="math inline">\(B(\psi_i), i = 1,\cdots,N\)</span>
@@ -21650,8 +21651,9 @@ steering）技术正在被更广泛地应用在阵列处理中，其不仅仅突
 \end{equation}\]</span></p>
 <p>输出是对齐的。我们把 <span class="math inline">\(\vec{k}_\mathrm{T}\)</span>
 称为<strong><mark class="label primary">所调方向（steering direction）</mark></strong>或在 <span class="math inline">\(k\)</span>
-空间的<strong><mark class="label primary">主响应轴（main response axis）</mark></strong>。可以使用一个 <span class="math inline">\(N \times N\)</span>
-的对角调向矩阵来完成这个操作</p>
+空间的<strong><mark class="label primary">主响应轴（main response axis）</mark></strong>。可以使用一个 <span class="math inline">\(N \times N\)</span> 的对角调向矩阵（diagonal
+steering matrix）来完成这个操作</p>
+<p><a id="DiagonalSteeringMatrix"></a></p>
 <p><span class="math display">\[\begin{equation}
   \vec{I}_\mathrm{s}\left(\vec{k}_\mathrm{T}\right) = \left[
 \begin{matrix}
@@ -23786,10 +23788,45 @@ P(\theta,\varphi) \,\mathrm{d} \varphi \,\mathrm{d}
 \end{equation}\]</span></p>
 <p>在 <span class="math inline">\(u\)</span> 空间可以表示为</p>
 <p><span class="math display">\[\begin{equation}
+\label{NormalizedDefinitionOfDirectivityInDirectionCosineSpaceOfLA}
   D = \left\{ \frac{1}{2} \int_{-1}^1 \left| B(u) \right|^2 \,\mathrm{d}
 u  \right\}^{-1}
 \end{equation}\]</span></p>
 <p>通常，这个表达式必须用数值的方法计算。</p>
+<p>  利用 <a href="https://josh-gao.top/posts/de20fd09.html#BeamPatternInDirectionCosineDomain"><span class="math inline">\(u\)</span> 空间的波束方向图的表达式</a>, 式 <span class="math inline">\(\eqref{NormalizedDefinitionOfDirectivityInDirectionCosineSpaceOfLA}\)</span>
+中的表达式可以利用阵列的权值写成</p>
+<p><span class="math display">\[\begin{equation}
+  D = \left\{ \frac{1}{2} \int_{-1}^1 \sum_{n=0}^{N-1}w_n^\ast
+e^{jn\left( \frac{2\pi d}{\lambda} \right) \left( u - u_\mathrm{T}
+\right)} \sum_{m=0}^{N-1} w_m e^{-jm\left( \frac{2\pi d}{\lambda}
+\right) \left( u - u_\mathrm{T} \right)} \,\mathrm{d} u  \right\}^{-1}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(u_\mathrm{T}\)</span> 是 <span class="math inline">\(u\)</span>
+空间内的阵列的所调方向。交换积分和求和的顺序，并积分，得到</p>
+<p><span class="math display">\[\begin{equation}
+  D = \left\{ \sum_{n=0}^{N-1} \sum_{m=0}^{N-1} w_m w_n^\ast e^{j \left(
+\frac{2\pi d}{\lambda} \right) (m-n) u_\mathrm{T} } \mathrm{sinc} \left(
+\frac{2\pi d}{\lambda} (n-m)\right)  \right\}^{-1}
+\end{equation}\]</span></p>
+<p>定义几个矩阵以得到一个简洁的表达式。定义 <span class="math inline">\(\overrightarrow{\mathrm{sinc}}\)</span> 矩阵的第
+<span class="math inline">\(n,m\)</span> 个元素为</p>
+<p><span class="math display">\[\begin{equation}
+  \left[ \overrightarrow{\mathrm{sinc}} \right]_{nm} \triangleq
+\mathrm{sinc} \left( \frac{2\pi d}{\lambda} (n-m)\right)
+\end{equation}\]</span></p>
+<p><a href="https://josh-gao.top/posts/c2604c43.html#DiagonalSteeringMatrix">对角调向矩阵</a>
+在 <span class="math inline">\(u\)</span> 空间的表示形式为</p>
+<p><span class="math display">\[\begin{equation}
+  \vec{I}_{\mathrm{s}u} = \mathrm{diag}\left( 1, e^{j \frac{2\pi
+d}{\lambda}u_\mathrm{T}} , e^{j \frac{2\pi d}{\lambda} 2u_\mathrm{T}},
+\cdots, , e^{j \frac{2\pi d}{\lambda}(N-1)u_\mathrm{T}} \right)
+\end{equation}\]</span></p>
+<p>则</p>
+<p><span class="math display">\[\begin{equation}
+  D = \vec{I}_{\mathrm{s}u} \vec{w}^\mathrm{H} \left[
+\overrightarrow{\mathrm{sinc}} \right] \vec{w}
+\vec{I}_{\mathrm{s}u}^\mathrm{H}
+\end{equation}\]</span></p>
 ]]></content>
       <categories>
         <category>Josh 的学习笔记</category>
