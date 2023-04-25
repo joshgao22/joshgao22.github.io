@@ -22947,7 +22947,7 @@ P(\theta,\varphi) \,\mathrm{d} \varphi \,\mathrm{d} \theta}
 方向入射的 信号的功率。所以，<span class="math inline">\(D\)</span>
 可以解释为是对全向噪声的阵列增益。</p>
 <p>  如果假设权值做了归一化，使得 <span class="math inline">\(P_n(\theta_\mathrm{T},\varphi_\mathrm{T}) =
-1\)</span>, 则式 <span class="math inline">\(\eqref{DefinitionOfDirectivity}\)</span>
+1\)</span>，则式 <span class="math inline">\(\eqref{DefinitionOfDirectivity}\)</span>
 可以写成</p>
 <p><span class="math display">\[\begin{equation}
 \label{NormalizedDefinitionOfDirectivity}
@@ -22972,7 +22972,7 @@ P(\theta,\varphi) \,\mathrm{d} \varphi \,\mathrm{d}
 u  \right\}^{-1}
 \end{equation}\]</span></p>
 <p>通常，这个表达式必须用数值的方法计算。</p>
-<p>  利用 <a href="https://josh-gao.top/posts/de20fd09.html#BeamPatternInDirectionCosineDomain"><span class="math inline">\(u\)</span> 空间的波束方向图的表达式</a>, 式 <span class="math inline">\(\eqref{NormalizedDefinitionOfDirectivityInDirectionCosineSpaceOfLA}\)</span>
+<p>  利用 <a href="https://josh-gao.top/posts/de20fd09.html#BeamPatternInDirectionCosineDomain"><span class="math inline">\(u\)</span> 空间的波束方向图的表达式</a>，式 <span class="math inline">\(\eqref{NormalizedDefinitionOfDirectivityInDirectionCosineSpaceOfLA}\)</span>
 中的表达式可以利用阵列的权值写成</p>
 <p><span class="math display">\[\begin{equation}
   D = \left\{ \frac{1}{2} \int_{-1}^1 \sum_{n=0}^{N-1}w_n^\ast
@@ -23041,6 +23041,46 @@ d}{\lambda}u_\mathrm{T}} , e^{j \frac{2\pi d}{\lambda} 2u_\mathrm{T}},
 <p>是矢量 <span class="math inline">\(\vec{w}\)</span> 的 2-模。</p>
 <p>  所以一个标准线阵的方向性是权值矢量幅度平方的倒数。方向性不依赖于阵列的指向。当阵列指向从阵列的正侧向移开时，波束变宽，但是
 <span class="math inline">\(\varphi\)</span> 的积分范围减小了</p>
+<p>  对于 <span class="math inline">\(d \ne \lambda/2\)</span>，利用式
+<span class="math inline">\(\eqref{ResultOfDirectivityInDirectionCosineSpaceOfLA}\)</span>，则方向性将和阵列的指向有关。</p>
+<p>  对于均匀加权的标准线阵（UWLA），<span class="math inline">\(w_n =
+1/N\)</span>，所以</p>
+<p><span class="math display">\[\begin{equation}
+  \sum_{n=0}^{N-1} \left| w_n \right|^2 = \frac{1}{N}
+\end{equation}\]</span></p>
+<p>所以</p>
+<p><span class="math display">\[\begin{equation}
+  D = N
+\end{equation}\]</span></p>
+<p>  均匀加权使得标准线阵的方向性最大。为了说明这一点，施加约束条件</p>
+<p><span class="math display">\[\begin{equation}
+\label{ConstraintOfLagrangeMultiplier}
+  \sum_{n=0}^{N-1} w_n = 1
+\end{equation}\]</span></p>
+<p>这保证了波束方向图在 <span class="math inline">\(u_\mathrm{T}\)</span> 的值为 1，并求 <span class="math inline">\(\displaystyle\sum_{n=0}^{N-1} \left| w_n
+\right|^2\)</span> 的最小值，这里利用 Lagrange 乘子法，另</p>
+<p><span class="math display">\[\begin{equation}
+  F = \sum_{n=0}^{N-1} \left| w_n \right|^2 + \lambda \left(
+\sum_{n=0}^{N-1} w_m - 1 \right)
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(\lambda\)</span> 是 Lagrange
+乘子。对 <span class="math inline">\(w_n\)</span>
+求导，并令结果等于零，得到</p>
+<p><span class="math display">\[\begin{equation}
+  w_n^\ast = -\lambda
+\end{equation}\]</span></p>
+<p>也即</p>
+<p><span class="math display">\[\begin{equation}
+\label{ResultOfLagrangeMultiplier}
+  w_n = -\lambda^\ast
+\end{equation}\]</span></p>
+<p>把式 <span class="math inline">\(\eqref{ResultOfLagrangeMultiplier}\)</span>
+代入到式 <span class="math inline">\(\eqref{ConstraintOfLagrangeMultiplier}\)</span>，得到
+<span class="math inline">\(\lambda = -\frac{1}{N}\)</span>，则有</p>
+<p><span class="math display">\[\begin{equation}
+  w_n = \frac{1}{N}
+\end{equation}\]</span></p>
+<p>此即为我们想要得到的结果。</p>
 <aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
