@@ -24119,9 +24119,10 @@ ID、文件类型、文件字节数、<code>size-in-packfil</code> 和
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git for-each-ref --format=<span class="string">'delete %(refname)'</span> refs/original | git update-ref --stdin</span><br><span class="line">git reflog expire --expire=now --all</span><br></pre></td></tr></tbody></table></figure>
 <h1 id="垃圾回收">垃圾回收</h1>
 <p>上面 2
-步把大文件的索引都切断了，这个时候进行垃圾回收，就可以很明显看到效果了</p>
+步把大文件的索引都切断了，这个时候进行垃圾回收，就可以很明显看到效果。</p>
 <figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git gc --prune=now</span><br></pre></td></tr></tbody></table></figure>
 <p>这时候的仓库中的大文件就已经被删除了，把仓库<strong>推送到新的远程仓库</strong>或者<strong>强制推送到现在的远程仓库</strong>都是可以的。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git push --force</span><br></pre></td></tr></tbody></table></figure>
 <h1 id="参考">参考</h1>
 <p><a href="https://www.cnblogs.com/oloroso/p/13367120.html">删除 git
 仓库中无用大文件</a></p>
