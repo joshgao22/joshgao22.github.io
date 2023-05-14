@@ -24085,4 +24085,52 @@ e^{j\omega \beta} \vec{h}^\ast(\beta) \, \mathrm{d} \beta
         <tag>阵列性能</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Git 删除已提交的大文件</title>
+    <url>/posts/a587d6e6.html</url>
+    <content><![CDATA[<p>在使用 git
+管理代码仓库的时候，有可能不小心提交了一些大文件，虽然后来从工作区删除了，但是已经于事无补，大文件的历史记录仍然保存在
+git 仓库里。以下提供了基于文件大小排序的 Git
+仓库文件搜索和删除方法。</p>
+<h1 id="查找大文件">查找大文件</h1>
+<p>在 Git 仓库目录下执行命令对归档的文件进行排序，并给出文件大小前 5
+的文件 ID 等信息：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git verify-pack -v .git/objects/pack/pack-*.idx | <span class="built_in">sort</span> -k 3 -g | <span class="built_in">tail</span> -5</span><br></pre></td></tr></tbody></table></figure>
+<p>输出结果如下，依次是文件
+ID、文件类型、文件字节数、<code>size-in-packfil</code> 和
+<code>offset-in-packfile</code>：</p>
+<figure class="highlight plaintext"><figcaption><span>Example Output</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">10eaa37e6e1999cf5652e9b4c6b3ca5fa43a90b1 blob   14873202 11312961 77109113</span><br><span class="line">c8aeb64369be1be657633e92d07dc49ed91fbdc1 blob   14873202 11313163 23914709</span><br><span class="line">1ed41690c8dced0c2ac10b41fafbf23b72a081fd blob   17416456 749732 16400558</span><br><span class="line">b7cb7ef09404b7514d04a5d0f56a7a99e96c072d blob   26776467 1877027 96312339</span><br><span class="line">66e27e2c0159a8439a744d57f058d63dbe192e95 blob   552933714 543247488 117101156</span><br></pre></td></tr></tbody></table></figure>
+<span id="more"></span>
+<p>根据文件的 ID（SHA1），查找文件路径：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git rev-list --objects --all | grep &lt;targrt_file_ID&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>示例输入如下：</p>
+<figure class="highlight bash"><figcaption><span>Example Input</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">git rev-list --objects --all | grep 66e27e2c0159a8439a744d57f058d63dbe192e95</span><br></pre></td></tr></tbody></table></figure>
+<p>输出结果如下，以此是文件 ID 和文件路径：</p>
+<figure class="highlight plaintext"><figcaption><span>Example Output</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">66e27e2c0159a8439a744d57f058d63dbe192e95 projects/duifei/duifei_online_acq_par/duifei_online_acq_par_20230511.xpr.zip</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="将要删除的大文件从各个分支中移除">将要删除的大文件从各个分支中移除</h1>
+<p>执行下面命令，将文件从分支的提交中移除</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch &lt;target_file_path&gt;'</span> --prune-empty --tag-name-filter <span class="built_in">cat</span> -- --all</span><br></pre></td></tr></tbody></table></figure>
+<p>示例输入如下：</p>
+<figure class="highlight bash"><figcaption><span>Example Input</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">git filter-branch --force --index-filter <span class="string">'git rm --cached --ignore-unmatch projects/duifei/duifei_online_acq_par/duifei_online_acq_par_20230511.xpr.zip'</span> --prune-empty --tag-name-filter <span class="built_in">cat</span> -- --all</span><br></pre></td></tr></tbody></table></figure>
+<p>示例输出如下：</p>
+<figure class="highlight plaintext"><figcaption><span>Example Output</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line">WARNING: git-filter-branch has a glut of gotchas generating mangled history</span><br><span class="line">         rewrites.  Hit Ctrl-C before proceeding to abort, then use an</span><br><span class="line">         alternative filtering tool such as 'git filter-repo'</span><br><span class="line">         (https://github.com/newren/git-filter-repo/) instead.  See the</span><br><span class="line">         filter-branch manual page for more details; to squelch this warning,</span><br><span class="line">         set FILTER_BRANCH_SQUELCH_WARNING=1.</span><br><span class="line">Proceeding with filter-branch...</span><br><span class="line"></span><br><span class="line">Rewrite 28271ddd7ce45bc13561bc7343664d937c267a2f (4/10) (1 seconds passed, remaining 1 predicted)    rm 'projects/duifei/duifei_online_acq_par/duifei_online_acq_par_20230511.xpr.zip'</span><br><span class="line">Rewrite e6b6be1ada32ad2eff5f52b45372ed9274a04f30 (9/10) (1 seconds passed, remaining 0 predicted)</span><br><span class="line">Ref 'refs/heads/master' was rewritten</span><br><span class="line">WARNING: Ref 'refs/remotes/github/master' is unchanged</span><br><span class="line">Ref 'refs/remotes/jgnas/master' was rewritten</span><br><span class="line">Ref 'refs/remotes/localhost/master' was rewritten</span><br><span class="line">Ref 'refs/remotes/origin/master' was rewritten</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="删除缓存下来的-ref-和-git-操作记录">删除缓存下来的 ref 和 git
+操作记录</h1>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git for-each-ref --format=<span class="string">'delete %(refname)'</span> refs/original | git update-ref --stdin</span><br><span class="line">git reflog expire --expire=now --all</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="垃圾回收">垃圾回收</h1>
+<p>上面 2
+步把大文件的索引都切断了，这个时候进行垃圾回收，就可以很明显看到效果了</p>
+<figure class="highlight bash"><table><tbody><tr><td class="code"><pre><span class="line">git gc --prune=now</span><br></pre></td></tr></tbody></table></figure>
+<p>这时候的仓库中的大文件就已经被删除了，把仓库<strong>推送到新的远程仓库</strong>或者<strong>强制推送到现在的远程仓库</strong>都是可以的。</p>
+<h1 id="参考">参考</h1>
+<p><a href="https://www.cnblogs.com/oloroso/p/13367120.html">删除 git
+仓库中无用大文件</a></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
 </search>
