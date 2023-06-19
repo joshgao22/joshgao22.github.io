@@ -24224,7 +24224,7 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} u}
 = -\frac{N-1}{2}, \cdots, \frac{N-1}{2}
 \end{equation}\]</span></p>
 <h1 id="cosine-加权">2. Cosine 加权</h1>
-<p>  当 <span class="math inline">\(N\)</span> 为奇数时，cosine
+<p>  当 <span class="math inline">\(N\)</span> 为奇数时，Cosine
 权值为</p>
 <p><span class="math display">\[\begin{equation}
   w(\tilde{n}) = \sin\left( \frac{\pi}{2N} \right)\cos\left(
@@ -24232,7 +24232,7 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} u}
 \leqslant \frac{N-1}{2}
 \end{equation}\]</span></p>
 <p>其中归一化因子 <span class="math inline">\(\sin\left(
-\displaystyle\frac{\pi}{2N} \right)\)</span> 是一个常数，使得 <span class="math inline">\(B_u (0) = 1\)</span>。把 cosine
+\displaystyle\frac{\pi}{2N} \right)\)</span> 是一个常数，使得 <span class="math inline">\(B_u (0) = 1\)</span>。把 Cosine
 写成指数形式，有</p>
 <p><span class="math display">\[\begin{equation}
   w(\tilde{n}) = \sin\left( \frac{\pi}{2N} \right)\left[
@@ -24260,7 +24260,8 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} u}
 \right)}{\sin\left( \displaystyle\frac{\pi}{2} \left( u + \frac{1}{N}
 \right) \right)} \right\}
 \end{equation}\]</span></p>
-<p>这种移位常规波束叠加的现象是很多下面将要介绍的方向图的共同特点。<a href="#fig.2-1-1">图 2-1-1</a> 给出了一个 11 阵元阵列利用 Cosine
+<p>下面将要介绍的很多方向图都是常规波束的叠加。<a href="#fig.2-1-1">图
+2-1-1</a> 给出了一个 11 阵元阵列使用 Cosine
 加权得到的波束方向图，同时还给出了常规波束方向图作为参考。可以看到，旁瓣得到了降低，但是主波束变得更宽。两个波束方向图的参数为</p>
 <table>
 <colgroup>
@@ -24309,12 +24310,221 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} u}
 加权的波束方向图: <span class="math inline">\(N =
 11\)</span></figcaption>
 </figure>
+<h1 id="升-cosine-加权">3. 升 Cosine 加权</h1>
+<p>  可以把矩形均匀加权和 Cosine
+加权组合起来，获得两种加权方法一些理想性质的组合。对应的阵列加权为</p>
+<p><span class="math display">\[\begin{equation}
+  w(\tilde{n}) = c(p) \left( p + (1-p) \cos \left( \pi
+\frac{\tilde{n}}{N} \right)\right), \quad \tilde{n} = -\frac{N-1}{2},
+\cdots, \frac{N-1}{2}
+\end{equation}\]</span></p>
+<p>其中归一化常数</p>
+<p><span class="math display">\[\begin{equation}
+  c(p) = \frac{p}{N} + \frac{1-p}{2} \sin\left( \frac{\pi}{2N} \right)
+\end{equation}\]</span></p>
+<p>使得 <span class="math inline">\(B_u(0) = 1\)</span>。</p>
+<p>  在<a href="#fig.2-1-2">图 2.1.2</a> 中给出了 <span class="math inline">\(p = 0.31, 0.17, 0\)</span> 时的升 Cosine
+加权的波束方向图。当 <span class="math inline">\(p\)</span>
+减小时，第一旁瓣的高度减小，主波束宽度增加。波束方向图参数如下：</p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(p\)</span></th>
+<th style="text-align: center;">HPBW</th>
+<th style="text-align: center;"><span class="math inline">\(BW_{NN}\)</span></th>
+<th style="text-align: center;">第一旁瓣高度</th>
+<th style="text-align: center;"><span class="math inline">\(D_N\)</span><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0.31</td>
+<td style="text-align: center;"><span class="math inline">\(1.03
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2.50
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-20.0
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.928\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.17</td>
+<td style="text-align: center;"><span class="math inline">\(1.09
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3.70
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-22.0
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.886\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><span class="math inline">\(1.18
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3.00
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-23.5
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.816\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><a id="fig.2-1-2"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-06-19-josh-oap-part-2-1/2023-06-19-josh-oap-part-2-1-020-BeamPatternForRaisedCosineWeighting.svg" width="700" alt="图 2-1-2 升 Cosine 加权的波束方向图: N = 11">
+<figcaption aria-hidden="true">图 2-1-2 升 Cosine 加权的波束方向图:
+<span class="math inline">\(N = 11\)</span></figcaption>
+</figure>
+<p>  至此，我们已经可以使 HPBW
+变窄，并使得第一旁瓣比均匀分布的情况要低得多。</p>
+<h1 id="cosinem-加权">4. Cosine<span class="math inline">\(^m\)</span>
+加权</h1>
+<p>  下面考虑一系列 Cosine 加权，形式为 <span class="math inline">\(\cos^m(\pi \tilde{n} /
+N)\)</span>。阵列的权值为</p>
+<p><span class="math display">\[\begin{equation}
+  w_m(\tilde{n}) = \begin{cases}
+    c_2 \cos^2 \left( \displaystyle \frac{\pi \tilde{n}}{N}
+\right),\quad m = 2 \\
+    c_3 \cos^3 \left( \displaystyle \frac{\pi \tilde{n}}{N}
+\right),\quad m = 3 \\
+    c_4 \cos^4 \left( \displaystyle \frac{\pi \tilde{n}}{N}
+\right),\quad m = 4 \\
+  \end{cases}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(c_2, c_3, c_4\)</span>
+是归一化常数。</p>
+<p>  <span class="math inline">\(m=2\)</span> 时的加权有时称为是 Hann
+加权<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>。同样，波束方向图可以利用 Cosine
+函数的指数形式来计算。波束方向图在<a href="#fig.2-1-3">图 2.1.3</a>
+中给出。当 <span class="math inline">\(m\)</span>
+增加时，旁瓣减小，但是主波束变宽。波束方向图的参数为:</p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(m\)</span></th>
+<th style="text-align: center;">HPBW</th>
+<th style="text-align: center;"><span class="math inline">\(BW_{NN}\)</span></th>
+<th style="text-align: center;">第一旁瓣高度</th>
+<th style="text-align: center;"><span class="math inline">\(D_N\)</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(1.44
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-31.4
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.667\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(1.66
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(5
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-39.4
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.576\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><span class="math inline">\(1.85
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-46.7
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.514\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><a id="fig.2-1-3"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-06-19-josh-oap-part-2-1/2023-06-19-josh-oap-part-2-1-030-BeamPatternForCosineMWeighting.svg" width="700" alt="图 2-1-3 Cosine^m 加权的波束方向图: N = 11">
+<figcaption aria-hidden="true">图 2-1-3 Cosine<span class="math inline">\(^m\)</span> 加权的波束方向图: <span class="math inline">\(N = 11\)</span></figcaption>
+</figure>
+<h1 id="升-cosine-平方加权">5. 升 Cosine 平方加权</h1>
+<p>  升 Cosine 平方系列的加权为</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    w(\tilde{n}) &amp;= c_2 (p) \left\{ p + (1-p) \cos^2 \left(
+\frac{\pi \tilde{n}}{N} \right) \right\} \\
+    &amp;= \frac{c_2(p)}{2} \left\{ (1+p) + (1-p) \cos \left( \frac{2
+\pi \tilde{n}}{N} \right) \right\}, \quad \tilde{n} = -\frac{N-1}{2},
+\cdots, \frac{N-1}{2}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(c_2 (p)\)</span>
+是归一化常数。下面考虑一个特别的加权，称为 Hamming 加权。</p>
+<h1 id="hamming-加权">6. Hamming 加权</h1>
+<p>  Hamming 加权利用了矩形方向图和 Cosine
+平方方向图的特点，在第一旁瓣的峰值上放置了一个零点。加权函数为</p>
+<p><span class="math display">\[\begin{equation}
+  w(\tilde{n}) = g_0 + g_1 \cos \left( \frac{2 \pi \tilde{n}}{N}
+\right), \quad \tilde{n} = -\frac{N-1}{2}, \cdots, \frac{N-1}{2}
+\end{equation}\]</span></p>
+<p>选择系数 <span class="math inline">\(g_0\)</span> 和 <span class="math inline">\(g_1\)</span> 的使 <span class="math inline">\(u =
+3/N\)</span> 的位置上有一个零点，并将正侧向的响应归一化，有</p>
+<p><span class="math display">\[\begin{equation}
+  w(\tilde{n}) = 0.54 + 0.46 \cos \left( \frac{2 \pi \tilde{n}}{N}
+\right), \quad -\frac{N-1}{2} \leqslant \tilde{n} \leqslant
+\frac{N-1}{2}
+\end{equation}\]</span></p>
+<p>对应升 Cosine 平方加权中 <span class="math inline">\(p =
+0.08\)</span> 的情况，得到的波束方向图是三个常规波束方向图的和</p>
+<p><span class="math display">\[\begin{equation}
+  B_u(u) = 0.54 \frac{\sin\left(\displaystyle\frac{N\pi
+u}{2}\right)}{\sin\left(\displaystyle\frac{\pi u}{2}\right)} + 0.23
+\left[ \frac{\sin\left( \displaystyle\frac{N\pi}{2} \left( u -
+\frac{2}{N} \right) \right)}{\sin\left( \displaystyle\frac{\pi}{2}
+\left( u - \frac{2}{N} \right) \right)} + \frac{\sin\left(
+\displaystyle\frac{N\pi}{2} \left( u + \frac{2}{N} \right)
+\right)}{\sin\left( \displaystyle\frac{\pi}{2} \left( u + \frac{2}{N}
+\right) \right)} \right]
+\end{equation}\]</span></p>
+<p>  <a href="#fig.2-1-4">图 2.1.4</a> 给出了 Hamming 加权、Hann 加权和
+Blackman-Harris 加权的波束方向图。第一个零点的位置在 <span class="math inline">\(u = 4/N\)</span>，第一个非零旁瓣的高度为 <span class="math inline">\(-39.5\text{dB}\)</span>。加权有步进不连续性，使得旁瓣的衰减渐近为
+<span class="math inline">\(O(1/n)\)</span>。但是，第一个旁瓣被完全对消掉了，剩余的旁瓣都很低，尽管它们的衰减比较慢。而且，注意到
+Hamming 窗的波束宽度小于 Hann
+加权的波束宽度，且第一旁瓣更低。这是一般变化趋势的一个例外情况。</p>
+<p><a id="fig.2-1-4"></a></p>
+<figure>
+<img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-06-19-josh-oap-part-2-1/2023-06-19-josh-oap-part-2-1-040-BeamPatternForHannHammingAndBlackmanHarrisWeighting.svg" width="700" alt="图 2-1-4 Hann 加权、Hamming 加权和 Blackman-Harris 加权的波束方向图: N = 11">
+<figcaption aria-hidden="true">图 2-1-4 Hann 加权、Hamming 加权和
+Blackman-Harris 加权的波束方向图: <span class="math inline">\(N =
+11\)</span></figcaption>
+</figure>
 <aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>参数 <span class="math inline">\(D_N\)</span>
 是阵列的归一化方向性。它是相对于一个均匀加权阵列的方向性进行归一化的。对于标准线阵,
 <span class="math inline">\(D_N\)</span> 也是归一化的白噪声增益。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>参数 <span class="math inline">\(D_N\)</span>
+是阵列的归一化方向性。它是相对于一个均匀加权阵列的方向性进行归一化的。对于标准线阵,
+<span class="math inline">\(D_N\)</span> 也是归一化的白噪声增益。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>这个权值是奥地利气象学家 Von Hann 提出的，有时也称为
+Hanning 加权。<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>参数 <span class="math inline">\(D_N\)</span>
+是阵列的归一化方向性。它是相对于一个均匀加权阵列的方向性进行归一化的。对于标准线阵,
+<span class="math inline">\(D_N\)</span> 也是归一化的白噪声增益。<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </aside>
 ]]></content>
