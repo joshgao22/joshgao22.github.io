@@ -24908,7 +24908,8 @@ Dictionary, 10th edition.</em> Oxford University Press, 2020.</p></li>
   <entry>
     <title>Josh&#39;s Notes: 最优阵列处理（Part 2.1 —— 谱加权）</title>
     <url>/posts/61f0754c.html</url>
-    <content><![CDATA[<p>  下面主要研究对每个传感器输出进行加权的技术，以获得具有理想性质的频率-波数响应和波束方向图。加权的过程在一些文献中也称为锐化
+    <content><![CDATA[<p>  谱加权（Spectral
+Weighting）技术主要研究对如何每个传感器输出进行加权，以获得具有理想性质的频率-波数响应和波束方向图。加权的过程在一些文献中也称为锐化
 (tapering) 或赋形 (shading)
 。许多阵列加权技术等价于时间序列谱分析中的加窗或锐化 (Taper) 技术。</p>
 <p>  对于一个阵元间距小于或等于 <span class="math inline">\(\lambda/2\)</span>
@@ -25042,6 +25043,11 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} u}
 加权的波束方向图: <span class="math inline">\(N =
 11\)</span></figcaption>
 </figure>
+<details class="note primary"><summary><p>MATLAB Code</p>
+</summary>
+<figure class="highlight matlab"><figcaption><span>fig3_01.m</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"><span class="comment">% Figure 3.1</span></span><br><span class="line"><span class="comment">% Cosine weighting: Array beam patterns</span></span><br><span class="line"><span class="comment">% Kristine Bell</span></span><br><span class="line"><span class="comment">% Modified by Xin Zhang 3/17/99</span></span><br><span class="line"><span class="comment">% Lillian 04/16/2001, K. Bell 7/20/01, K. Bell 9/30/01</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line">clear all</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line">M=<span class="number">11</span>;</span><br><span class="line">d=<span class="number">0.5</span>;                        <span class="comment">% sensor spacing wrt wavelength</span></span><br><span class="line">D = (-(M<span class="number">-1</span>)/<span class="number">2</span>:<span class="number">1</span>:(M<span class="number">-1</span>)/<span class="number">2</span>)*d;   <span class="comment">% sensor positions in wavelengths</span></span><br><span class="line"><span class="comment">% weights, normalized so that w(0)=1</span></span><br><span class="line">W_unf = <span class="built_in">ones</span>(<span class="number">1</span>,M);</span><br><span class="line">W_cos = <span class="built_in">cos</span>(<span class="built_in">pi</span>*D*<span class="number">2</span>/M);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Beampatterns</span></span><br><span class="line">u = <span class="number">0</span>:<span class="number">0.001</span>:<span class="number">1</span>;</span><br><span class="line">A = <span class="built_in">exp</span>(<span class="number">-1</span><span class="built_in">i</span>*<span class="number">2</span>*<span class="built_in">pi</span>*D.'*u);</span><br><span class="line">G_unf = W_unf*A;</span><br><span class="line">G_unf = G_unf/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_unf)));</span><br><span class="line">G_cos = W_cos*A;</span><br><span class="line">G_cos = G_cos/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_cos)));</span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line"><span class="comment">% array only</span></span><br><span class="line">clf</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_unf)),<span class="string">'--'</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_cos)),<span class="string">'-'</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br><span class="line">axis([<span class="number">0</span> <span class="number">1</span> <span class="number">-80</span> <span class="number">0</span>])</span><br><span class="line"><span class="comment">%title([int2str(M) ' element array'])</span></span><br><span class="line">h=<span class="built_in">legend</span>(<span class="string">'Uniform'</span>,<span class="string">'Cosine'</span>);</span><br><span class="line">xlabel(<span class="string">'$u$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)</span><br><span class="line">ylabel(<span class="string">'Beam pattern (dB)'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+</details>
 <h1 id="升-cosine-加权">3. 升 Cosine 加权</h1>
 <p>  可以把矩形均匀加权和 Cosine
 加权组合起来，获得两种加权方法一些理想性质的组合。对应的阵列加权为</p>
@@ -25114,6 +25120,11 @@ e^{-j\left(\frac{N-1}{2} \right) \frac{2\pi d}{\lambda} u}
 <figcaption aria-hidden="true">图 2-1-2 升 Cosine 加权的波束方向图:
 <span class="math inline">\(N = 11\)</span></figcaption>
 </figure>
+<details class="note primary"><summary><p>MATLAB Code</p>
+</summary>
+<figure class="highlight matlab"><figcaption><span>fig3_02.m</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"><span class="comment">% Figure 3.2</span></span><br><span class="line"><span class="comment">% Raised cosine weighting function</span></span><br><span class="line"><span class="comment">% Kristine Bell</span></span><br><span class="line"><span class="comment">% Modified by Xin Zhang 3/17/99</span></span><br><span class="line"><span class="comment">% Lillian Xu 04/16/2001, K. Bell 7/20/01, 9/30/01</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line">clear all</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line">M=<span class="number">11</span>;</span><br><span class="line">d=<span class="number">0.5</span>;                        <span class="comment">% sensor spacing wrt wavelength</span></span><br><span class="line">D = (-(M<span class="number">-1</span>)/<span class="number">2</span>:<span class="number">1</span>:(M<span class="number">-1</span>)/<span class="number">2</span>)*d;   <span class="comment">% sensor positions in wavelengths</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% weights, normalized so that w(0)=1</span></span><br><span class="line">p=[<span class="number">0</span>;<span class="number">0.17</span>;<span class="number">0.31</span>;<span class="number">1</span>];</span><br><span class="line">W_rcos = p*<span class="built_in">ones</span>(<span class="number">1</span>,M)+(<span class="built_in">ones</span>(<span class="number">4</span>,<span class="number">1</span>)-p)*<span class="built_in">cos</span>(<span class="built_in">pi</span>*D*<span class="number">2</span>/M);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Beampatterns</span></span><br><span class="line">u = <span class="number">0</span>:<span class="number">0.001</span>:<span class="number">1</span>;</span><br><span class="line">c=p+(<span class="built_in">ones</span>(<span class="number">4</span>,<span class="number">1</span>)-p)*<span class="number">2</span>/<span class="built_in">pi</span>;</span><br><span class="line">A = <span class="built_in">exp</span>(<span class="number">-1</span><span class="built_in">i</span>*<span class="number">2</span>*<span class="built_in">pi</span>*D.'*u);</span><br><span class="line">G_rcos = W_rcos*A;</span><br><span class="line"><span class="keyword">for</span> m=<span class="number">1</span>:<span class="number">4</span></span><br><span class="line"> G_rcos(m,:) = G_rcos(m,:)/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_rcos(m,:))));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">clf</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_rcos(<span class="number">3</span>,:))),<span class="string">'-.'</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_rcos(<span class="number">2</span>,:))),<span class="string">'--'</span>)</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_rcos(<span class="number">1</span>,:))),<span class="string">'-'</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br><span class="line">axis([<span class="number">0</span> <span class="number">1</span> <span class="number">-80</span> <span class="number">0</span>])</span><br><span class="line">h=<span class="built_in">legend</span>({<span class="string">'$p=0.31$'</span>,<span class="string">'$p=0.17$'</span>,<span class="string">'$p=0$'</span>},<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);</span><br><span class="line">xlabel(<span class="string">'$u$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)</span><br><span class="line">ylabel(<span class="string">'Beam pattern (dB)'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+</details>
 <p>  至此，我们已经可以使 HPBW
 变窄，并使得第一旁瓣比均匀分布的情况要低得多。</p>
 <h1 id="cosinem-加权">4. Cosine<span class="math inline">\(^m\)</span>
@@ -25192,6 +25203,11 @@ N)\)</span>。阵列的权值为</p>
 <img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-06-19-josh-oap-part-2-1/2023-06-19-josh-oap-part-2-1-030-BeamPatternForCosineMWeighting.svg" width="700" alt="图 2-1-3 Cosine^m 加权的波束方向图: N = 11">
 <figcaption aria-hidden="true">图 2-1-3 Cosine<span class="math inline">\(^m\)</span> 加权的波束方向图: <span class="math inline">\(N = 11\)</span></figcaption>
 </figure>
+<details class="note primary"><summary><p>MATLAB Code</p>
+</summary>
+<figure class="highlight matlab"><figcaption><span>fig3_03.m</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"><span class="comment">% Figure 3.3</span></span><br><span class="line"><span class="comment">% Cosine^m weighting: m = 2,3,and 4</span></span><br><span class="line"><span class="comment">% Kristine Bell</span></span><br><span class="line"><span class="comment">% Modified by Xin Zhang 3/17/99</span></span><br><span class="line"><span class="comment">% Lillian Xu 04/16/2001, K. Bell 7/20/01, 9/30/01</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line">clear all</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line">M=<span class="number">11</span>;</span><br><span class="line">d=<span class="number">0.5</span>;                        <span class="comment">% sensor spacing wrt wavelength</span></span><br><span class="line">D = (-(M<span class="number">-1</span>)/<span class="number">2</span>:<span class="number">1</span>:(M<span class="number">-1</span>)/<span class="number">2</span>)*d;   <span class="comment">% sensor positions in wavelengths</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% weights, normalized so that w(0)=1</span></span><br><span class="line">W_cos2 = <span class="built_in">cos</span>(<span class="built_in">pi</span>*D*<span class="number">2</span>/M).^<span class="number">2</span>;</span><br><span class="line">W_cos3 = <span class="built_in">cos</span>(<span class="built_in">pi</span>*D*<span class="number">2</span>/M).^<span class="number">3</span>;</span><br><span class="line">W_cos4 = <span class="built_in">cos</span>(<span class="built_in">pi</span>*D*<span class="number">2</span>/M).^<span class="number">4</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% Beampatterns</span></span><br><span class="line"></span><br><span class="line">u = <span class="number">0</span>:<span class="number">0.001</span>:<span class="number">1</span>;</span><br><span class="line">A = <span class="built_in">exp</span>(<span class="number">-1</span><span class="built_in">i</span>*<span class="number">2</span>*<span class="built_in">pi</span>*D.'*u);</span><br><span class="line">G_cos2 = W_cos2*A;</span><br><span class="line">G_cos2 = G_cos2/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_cos2)));</span><br><span class="line">G_cos3 = W_cos3*A;</span><br><span class="line">G_cos3 = G_cos3/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_cos3)));</span><br><span class="line">G_cos4 = W_cos4*A;</span><br><span class="line">G_cos4 = G_cos4/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_cos4)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">clf</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_cos2)),<span class="string">'--'</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_cos3)),<span class="string">'-'</span>)</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_cos4)),<span class="string">'-.'</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br><span class="line">axis([<span class="number">0</span> <span class="number">1</span> <span class="number">-80</span> <span class="number">0</span>])</span><br><span class="line">h=<span class="built_in">legend</span>({<span class="string">'$m=2$'</span>,<span class="string">'$m=3$'</span>,<span class="string">'$m=4$'</span>},<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>);</span><br><span class="line">set(h,<span class="string">'Fontsize'</span>,<span class="number">12</span>)</span><br><span class="line">xlabel(<span class="string">'$u$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)</span><br><span class="line">ylabel(<span class="string">'Beam pattern (dB)'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+</details>
 <h1 id="升-cosine-平方加权">5. 升 Cosine 平方加权</h1>
 <p>  升 Cosine 平方系列的加权为</p>
 <p><span class="math display">\[\begin{equation}
@@ -25232,10 +25248,9 @@ u}{2}\right)}{\sin\left(\displaystyle\frac{\pi u}{2}\right)} + 0.23
 \right) \right)} \right]
 \end{equation}\]</span></p>
 <p>  <a href="#fig.2-1-4">图 2.1.4</a> 给出了 Hamming 加权、Hann 加权和
-Blackman-Harris 加权的波束方向图。第一个零点的位置在 <span class="math inline">\(u = 4/N\)</span>，第一个非零旁瓣的高度为 <span class="math inline">\(-39.5\text{dB}\)</span>。加权有步进不连续性，使得旁瓣的衰减渐近为
-<span class="math inline">\(O(1/n)\)</span>。但是，第一个旁瓣被完全对消掉了，剩余的旁瓣都很低，尽管它们的衰减比较慢。而且，注意到
-Hamming 窗的波束宽度小于 Hann
-加权的波束宽度，且第一旁瓣更低。这是一般变化趋势的一个例外情况。</p>
+Blackman-Harris 加权的波束方向图。第一个零点的位置在 <span class="math inline">\(u = 4/N\)</span>，第一个非零旁瓣的高度为 <span class="math inline">\(-39.5\text{dB}\)</span>。由于加权具有步进不连续性（step
+discontinuity），旁瓣的衰减渐近为 <span class="math inline">\(O(1/n)\)</span>。但是，第一个旁瓣被完全对消掉了，尽管剩余的旁瓣衰减得比较慢，它们的幅度都不是很高。而且注意到
+Hamming 窗的波束宽度小于 Hann 加权的波束宽度，且第一旁瓣更低。</p>
 <p><a id="fig.2-1-4"></a></p>
 <figure>
 <img data-src="https://josh-blog-1257563604.cos.ap-beijing.myqcloud.com/img/2023-06-19-josh-oap-part-2-1/2023-06-19-josh-oap-part-2-1-040-BeamPatternForHannHammingAndBlackmanHarrisWeighting.svg" width="700" alt="图 2-1-4 Hann 加权、Hamming 加权和 Blackman-Harris 加权的波束方向图: N = 11">
@@ -25243,6 +25258,153 @@ Hamming 窗的波束宽度小于 Hann
 Blackman-Harris 加权的波束方向图: <span class="math inline">\(N =
 11\)</span></figcaption>
 </figure>
+<details class="note primary"><summary><p>MATLAB Code</p>
+</summary>
+<figure class="highlight matlab"><figcaption><span>fig3_04.m</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"><span class="comment">% Figure 3.4</span></span><br><span class="line"><span class="comment">% Beam patterns for Hann, Hamming, and Blackman-Harris</span></span><br><span class="line"><span class="comment">% Kristine Bell</span></span><br><span class="line"><span class="comment">% Modified by Xin Zhang 3/17/99</span></span><br><span class="line"><span class="comment">% Lillian Xu 04/16/2001, K. Bell 7/20/01, 9/30/01</span></span><br><span class="line"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% Hann, Hamming, Blackman-Harris</span></span><br><span class="line"><span class="comment">% M-element array, d=lambda/2</span></span><br><span class="line"></span><br><span class="line">clear all</span><br><span class="line">close all</span><br><span class="line"></span><br><span class="line">M=<span class="number">11</span>;</span><br><span class="line">d=<span class="number">0.5</span>;                        <span class="comment">% sensor spacing wrt wavelength</span></span><br><span class="line">D = (-(M<span class="number">-1</span>)/<span class="number">2</span>:<span class="number">1</span>:(M<span class="number">-1</span>)/<span class="number">2</span>)*d;   <span class="comment">% sensor positions in wavelengths</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% weights, normalized so that w(0)=1</span></span><br><span class="line">W_Hann = <span class="number">0.5</span>*(<span class="built_in">ones</span>(<span class="number">1</span>,M)+<span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*D*<span class="number">2</span>/M));</span><br><span class="line">W_Hamm = <span class="number">0.54</span>*<span class="built_in">ones</span>(<span class="number">1</span>,M)+<span class="number">0.46</span>*<span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*D*<span class="number">2</span>/M);</span><br><span class="line">W_BH   = <span class="number">0.42</span>*<span class="built_in">ones</span>(<span class="number">1</span>,M)+<span class="number">0.5</span>*<span class="built_in">cos</span>(<span class="number">2</span>*<span class="built_in">pi</span>*D*<span class="number">2</span>/M)+<span class="number">0.08</span>*<span class="built_in">cos</span>(<span class="number">4</span>*<span class="built_in">pi</span>*D*<span class="number">2</span>/M);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Beampatterns</span></span><br><span class="line"></span><br><span class="line">u = <span class="number">0</span>:<span class="number">0.001</span>:<span class="number">1</span>;</span><br><span class="line">A = <span class="built_in">exp</span>(<span class="number">-1</span><span class="built_in">i</span>*<span class="number">2</span>*<span class="built_in">pi</span>*D.'*u);</span><br><span class="line">G_Hann = W_Hann*A;</span><br><span class="line">G_Hann = G_Hann/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_Hann)));</span><br><span class="line">G_Hamm = W_Hamm*A;</span><br><span class="line">G_Hamm = G_Hamm/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_Hamm)));</span><br><span class="line">G_BH = W_BH*A;</span><br><span class="line">G_BH = G_BH/(<span class="built_in">max</span>(<span class="built_in">abs</span>(G_BH)));</span><br><span class="line"></span><br><span class="line"><span class="built_in">figure</span></span><br><span class="line">clf</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_Hann)),<span class="string">'--'</span>)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_Hamm)),<span class="string">'-'</span>)</span><br><span class="line"><span class="built_in">plot</span>(u,<span class="number">20</span>*<span class="built_in">log10</span>(<span class="built_in">abs</span>(G_BH)),<span class="string">'-.'</span>)</span><br><span class="line"><span class="built_in">hold</span> off</span><br><span class="line">axis([<span class="number">0</span> <span class="number">1</span> <span class="number">-80</span> <span class="number">0</span>])</span><br><span class="line">h=<span class="built_in">legend</span>(<span class="string">'Hann'</span>,<span class="string">'Hamming'</span>,<span class="string">'Blackman-Harris'</span>);</span><br><span class="line">xlabel(<span class="string">'$u$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)</span><br><span class="line">ylabel(<span class="string">'Beam pattern (dB)'</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+</details>
+<h1 id="blackman-harris-加权">7. Blackman-Harris 加权</h1>
+<p>  Blackman-Harris
+加权把加权过程扩展到了更高阶谐波的情况，并在前两个旁瓣的峰值位置上放置了零点。加权函数为</p>
+<p><span class="math display">\[\begin{equation}
+  w(\tilde{n}) = 0.42 + 0.5 \cos\left( \frac{2\pi \tilde{n}}{N} \right)
++ 0.08 \cos\left( \frac{4\pi \tilde{n}}{N} \right), \quad \tilde{n} =
+-\frac{N-1}{2}, \cdots, \frac{N-1}{2}
+\end{equation}\]</span></p>
+<p>对应的波束方向图是多个常规波束方向图的和，已在<a href="#fig.2-1-4">图
+2.1.4</a> 中给出</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    B_u(u) =&amp; 0.42 \frac{\sin\left( \displaystyle\frac{N\pi u}{2}
+\right)}{\sin\left( \displaystyle\frac{\pi u}{2} \right)} + 0.25 \left[
+\frac{\sin\left( \displaystyle\frac{N\pi}{2} \left( u - \frac{2}{N}
+\right) \right)}{\sin\left( \displaystyle\frac{\pi}{2} \left( u -
+\frac{2}{N} \right) \right)} + \frac{\sin\left(
+\displaystyle\frac{N\pi}{2} \left( u + \frac{2}{N} \right)
+\right)}{\sin\left( \displaystyle\frac{\pi}{2} \left( u + \frac{2}{N}
+\right) \right)} \right] \\
+    &amp;+ 0.04 \left[ \frac{\sin\left( \displaystyle\frac{N\pi}{2}
+\left( u - \frac{2}{N} \right) \right)}{\sin\left(
+\displaystyle\frac{\pi}{2} \left( u - \frac{2}{N} \right) \right)} +
+\frac{\sin\left( \displaystyle\frac{N\pi}{4} \left( u + \frac{4}{N}
+\right) \right)}{\sin\left( \displaystyle\frac{\pi}{4} \left( u +
+\frac{4}{N} \right) \right)} \right]
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>波束方向图的参数为</p>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">加权方式</th>
+<th style="text-align: center;">HPBW</th>
+<th style="text-align: center;"><span class="math inline">\(BW_{NN}\)</span></th>
+<th style="text-align: center;">第一旁瓣高度</th>
+<th style="text-align: center;"><span class="math inline">\(D_N\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Hann</td>
+<td style="text-align: center;"><span class="math inline">\(1.44
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4.0
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-31.4
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.667\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Hamming</td>
+<td style="text-align: center;"><span class="math inline">\(1.31
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4.0
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-39.5
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.730\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Blackman-Harris</td>
+<td style="text-align: center;"><span class="math inline">\(1.65
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6.0
+\displaystyle\frac{2}{N}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-56.6
+\text{dB}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.577\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>至此，所有的加权方法都是基于各种正弦函数进行的。现在看看其他类型的阵列加权技术，试试能否更好在波束宽度和旁瓣之间的获得折中。</p>
+<h1 id="长球函数-prolate-spheroidal-functions">8. 长球函数 (Prolate
+Spheroidal Functions)</h1>
+<p>  在设计加权方案时，我们的目标是使得一个给定角度范围内的能量占总能量的比例最大，也即最大化如下比值</p>
+<p><span class="math display">\[\begin{equation}
+  \alpha = \frac{\displaystyle\iint_{\varOmega_1}\left|
+B(\theta,\varphi) \right|^2
+\sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi}{\displaystyle\int_0^\pi
+\int_0^{2\pi}\left| B(\theta,\varphi) \right|^2
+\sin\theta\,\mathrm{d}\varphi\,\mathrm{d}\theta}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(\varOmega_1\)</span>
+是主波束周围的一个区域。对于标准线性阵列，可以写成</p>
+<p><span class="math display">\[\begin{equation}
+  \alpha = \frac{\displaystyle\int_{-\psi_0}^{\psi_0}\left| B(\psi)
+\right|^2\,\mathrm{d}\psi}{\displaystyle\int_{-\pi}^{\pi}\left| B(\psi)
+\right|^2\,\mathrm{d}\psi}
+\end{equation}\]</span></p>
+<p>其分子和分母部分可分别写为</p>
+<p>$$<span class="math display">\[\begin{equation}
+  \begin{aligned}
+    &amp;\alpha_N &amp;&amp;\xlongequal{B(\psi) =
+\boldsymbol{w}^\mathrm{H}\boldsymbol{v}_\psi(\psi)}
+\int_{-\psi_0}^{\psi_0}\boldsymbol{w}^\mathrm{H}\boldsymbol{v}_\psi(\psi)
+\boldsymbol{v}_\psi^\mathrm{H}(\psi)\boldsymbol{w}\,\mathrm{d}\psi \\
+    &amp; &amp;&amp;= \boldsymbol{w}^\mathrm{H} \left[
+\int_{-\psi_0}^{\psi_0} \boldsymbol{v}_\psi(\psi)
+\boldsymbol{v}_\psi^\mathrm{H}(\psi) \,\mathrm{d}\psi
+\right]\boldsymbol{w} \\
+    &amp; &amp;&amp;=
+\boldsymbol{w}^\mathrm{H}\boldsymbol{A}\boldsymbol{w} \\
+
+    &amp;\alpha_D &amp;&amp;\xlongequal{B(\psi) =
+\boldsymbol{w}^\mathrm{H}\boldsymbol{v}_\psi(\psi)}  \int_{-\pi}^{\pi}\boldsymbol{w}^\mathrm{H}\boldsymbol{v}_\psi(\psi)
+\boldsymbol{v} \\
+    &amp; &amp;&amp;=
+\boldsymbol{w}^\mathrm{H}\boldsymbol{A}\boldsymbol{w}
+  \end{aligned}
+\end{equation}\]</span>$$</p>
+<p><span class="math display">\[\begin{equation}
+\end{equation}\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    \boldsymbol{A} &amp;\triangleq \int_{-\psi_0}^{\psi_0}
+\boldsymbol{v}_\psi(\psi) \boldsymbol{v}_\psi^\mathrm{H}(\psi)
+\,\mathrm{d}\psi \\
+    \boldsymbol{B} &amp;\triangleq \int_{-\pi}^{\pi}
+\boldsymbol{v}_\psi(\psi) \boldsymbol{v}_\psi^\mathrm{H}(\psi)
+\,\mathrm{d}\psi = 2\pi \boldsymbol{I}
+  \end{aligned}
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+  [\boldsymbol{A}]_{mn} = \int_{-\psi_0}^{\psi_0} e^{jm\psi} e^{-jn\psi}
+\,\mathrm{d}\psi = \frac{2\sin ((m-n)\psi_0)}{m-n} = 2\psi_0
+\,\mathrm{sinc}((m-n)\psi_0)
+\end{equation}\]</span></p>
+<p>因此</p>
+<p><span class="math display">\[\begin{equation}
+  \alpha =
+\frac{\boldsymbol{w}^\mathrm{H}\boldsymbol{A}\boldsymbol{w}}{2\pi
+\boldsymbol{w}^\mathrm{H}\boldsymbol{w}}
+\end{equation}\]</span></p>
 <aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
