@@ -23483,11 +23483,64 @@ g_l^n \exp (j\varphi_i^n- j\varphi_l^n) \exp \left[ -j
   T_\mathrm{se} = [A_w] ^{-1} = \left\| \boldsymbol{w} \right\|^2
 \end{equation}\]</span></p>
 <p>所以当白噪声增益增加时，敏感度减小。对于 <span class="math inline">\(N\)</span> 元阵列，白噪声增益最大为 <span class="math inline">\(N\)</span>,
-对应均匀加权的情况。所以，任意一个具有非均匀加权的阵列对参数的变化将比均匀加权阵列更敏感。</p>
+对应均匀加权的情况。所以，任意一个具有非均匀加权的阵列对参数的变化将比均匀加权阵列更敏感。第二项均匀地提高了旁瓣区域的期望值，在整个
+<span class="math inline">\(\boldsymbol{k}\)</span>
+空间产生了主要的影响。在很多阵列设计的问题中，我们希望能在一个干扰信号的方向放置一个完全零点（perfect
+null），使得 <span class="math inline">\(|B(\boldsymbol{k})|^2 =
+0\)</span>，如果 <span class="math inline">\((\sigma_\varphi^2,
+\sigma_\lambda^2, \sigma_g^2)\)</span>
+中的任何一个变量不为零，则不可能得到一个完全零点。</p>
+<p>  方向图期望值的下限依赖于敏感度函数 <span class="math inline">\(T_\mathrm{se}\)</span>
+和扰动的方差，限制了方向图零点的深度<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>。</p>
+<blockquote>
+<p>  下面举例分析。假设</p>
+<p><span class="math display">\[
+\sigma_T^2 \triangleq \sigma_g^2 + \sigma_\varphi^2 + \sigma_\lambda^2 =
+0.01
+\]</span></p>
+<p>则 <span class="math inline">\(A_w\)</span> 必须大于或等于 <span class="math inline">\(100\)</span>，才能在方向图上得到 <span class="math inline">\(-40\text{dB}\)</span>
+的零陷。这需要均匀加权阵列至少具有 <span class="math inline">\(100\)</span>
+个阵元，非均匀加权的阵列将需要更多阵元。</p>
+</blockquote>
+<p>  当设计最优阵列时，我们经常采用<strong><mark class="label primary">敏感度约束</mark></strong></p>
+<p><span class="math display">\[\begin{equation}
+  T_\mathrm{se} = \left\| \boldsymbol{w} \right\|^2 \leqslant
+T_\mathrm{o}
+\end{equation}\]</span></p>
+<p>其中 <span class="math inline">\(T_\mathrm{o}\)</span>
+是一个使得阵列的性能对扰动更加稳健的常数。上述约束也可以表述为<strong><mark class="label primary">白噪声增益约束</mark></strong></p>
+<p><span class="math display">\[\begin{equation}
+  A_w = (\left\| \boldsymbol{w} \right\|^2) ^{-1} \geqslant
+T_\mathrm{o}^{-1}
+\end{equation}\]</span></p>
+<h1 id="总结">总结</h1>
+<p>  本文给出了三个重要的阵列性能度量指标。我们看到权值矢量 <span class="math inline">\(\boldsymbol{w}\)</span>
+的模在所有的三个度量指标中都出现了</p>
+<ol type="1">
+<li>对于标准线阵，方向性 <span class="math inline">\(D = \left\|
+\boldsymbol{w} \right\|^{-2} \leqslant N\)</span>；</li>
+<li>对于任意阵列结构，白噪声阵列增益 <span class="math inline">\(A_w =
+\left\| \boldsymbol{w} \right\|^{-2}\)</span>；</li>
+<li>对于任意阵列结构，敏感度函数 <span class="math inline">\(T_\mathrm{se} = A_w^{-1} = \left\| \boldsymbol{w}
+\right\|^2\)</span>。</li>
+</ol>
+<p>可见 <span class="math inline">\(\left\| \boldsymbol{w}
+\right\|^2\)</span> 在很多讨论中都起着非常核心的作用。</p>
+<h1 id="参考文献">参考文献</h1>
+<ol type="1">
+<li>Van Trees, Harry L. <em>Optimum array processing: Part IV of
+detection, estimation, and modulation theory.</em>*_ John Wiley &amp;
+Sons, 2002.</li>
+<li>Van Trees, Harry L, 汤俊. <em>最优阵列处理技术.</em>*_
+清华大学出版社. 2008.</li>
+</ol>
 <aside id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>在大多数情况下，我们去掉下标 “<span class="math inline">\(s\)</span>”，因为假设 <span class="math inline">\(\boldsymbol{w}\)</span> 是包含调向的。<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>在数学上，零点意味 <span class="math inline">\(B(\boldsymbol{k}) =
+0\)</span>，但是实际方向图具有非零的值，该值和 <span class="math inline">\(B(\boldsymbol{k}_\mathrm{T})\)</span>
+的值的比值称为<strong><mark class="label primary">零点深度</mark></strong>。<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </aside>
 ]]></content>
