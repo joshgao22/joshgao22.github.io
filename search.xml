@@ -27406,4 +27406,107 @@ Electronic Systems, vol. 46, no. 1, pp. 425–443, Jan. 2010, doi:
         <tag>波达方向估计</tag>
       </tags>
   </entry>
+  <entry>
+    <title>MVDR 算法仿真</title>
+    <url>/posts/86ade7bc.html</url>
+    <content><![CDATA[<p>  MVDR （Minimum Variance Distortionless
+Response，最小方差无失真响应）算法是 Capon 于 1969
+年提出的经典波束形成算法，其解决的是无失真约束下输出噪声加干扰功率最小化问题。</p>
+<h1 id="阵列模型">阵列模型</h1>
+<p>  首先对阵列接收信号进行建模。假设 <span class="math inline">\(N\)</span> 元阵列天线在 <span class="math inline">\(t\)</span> 时刻的阵列接收信号和阵列输出信号分别为
+<span class="math inline">\(\mathbf{x}(t)\)</span> 和 <span class="math inline">\(y(t)\)</span>，则对于 <span class="math inline">\(K\)</span> 个入射信号，有</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{cases}
+    \mathbf{x}(t) = \mathbf{A}(\boldsymbol{\theta})\mathbf{s}(t) +
+\mathbf{n}(t) \\
+    y(t) = \mathbf{w}^\mathrm{H}\mathbf{x}(t)
+  \end{cases},\quad t = 1,\cdots,T
+\end{equation}\]</span></p>
+<p>其中</p>
+<ul>
+<li><p>阵列接收信号 <span class="math inline">\(\mathbf{x}(t) =
+[x_1(t),\cdots,x_N(t)]^\mathrm{T}\in\mathbb{C}^{N\times
+1}\)</span></p></li>
+<li><p>噪声 <span class="math inline">\(\mathbf{n}(t) =
+[n_1(t),\cdots,n_N(t)]^\mathrm{T}\in\mathbb{C}^{N\times
+1}\)</span></p></li>
+<li><p>入射信号 <span class="math inline">\(\mathbf{s}(t) =
+[s_1(t),\cdots,s_K(t)]^\mathrm{T}\in\mathbb{C}^{K\times
+1}\)</span></p></li>
+<li><p>阵列流形矩阵 <span class="math inline">\(\mathbf{A}(\boldsymbol{\theta}) =
+[\mathbf{a}(\theta_1),\cdots,\mathbf{a}(\theta_K)]\in
+\mathbb{C}^{N\times K}\)</span>，导向矢量 <span class="math inline">\(\mathbf{a}(\theta_i)\in\mathbb{C}^{N\times
+1}\)</span>，<span class="math inline">\(K\)</span> 个信号来向集合 <span class="math inline">\(\boldsymbol{\theta} =
+\{\theta_i\}_{i=1}^K\)</span></p></li>
+<li><p>波束形成复加权 <span class="math inline">\(\mathbf{w} =
+[w_1,\cdots,w_N]^\mathrm{T}\)</span></p></li>
+</ul>
+<span id="more"></span>
+<h1 id="mvdr-算法简述">MVDR 算法简述</h1>
+<p>  假设第 1 个信号是期望信号（desired signal），令其导向矢量 <span class="math inline">\(\mathbf{a}_\mathrm{d} =
+\mathbf{a}(\theta_1)\)</span>，则阵列接收信号可以进一步写为</p>
+<p><span class="math display">\[\begin{equation}
+  \mathbf{x}(t) =
+\underset{\mathbf{x}_\mathrm{d}(t)}{\underbrace{\mathbf{a}_\mathrm{d}s_1(t)}}
+  +
+  \underset{\mathbf{x}_\mathrm{i+n}(t)}{\underbrace{\sum_{k=2}^{K}\mathbf{a}(\theta_k)s_k(t)
++ \mathbf{n}(t)}}
+\end{equation}\]</span></p>
+<p>至此，可以给出 MVDR 问题的基本表述</p>
+<p><span class="math display">\[\begin{equation}
+  \begin{aligned}
+    &amp;\underset{\mathbf{w}}{\text{minimize}}
+&amp;&amp;\mathbf{w}^\mathrm{H}\mathbf{R}_{\mathrm{i+n}}\mathbf{w}
+    \\
+    &amp;\text{subject to} &amp;&amp;
+\mathbf{w}^\mathrm{H}\mathbf{a}_\mathrm{d} = 1
+  \end{aligned}
+\end{equation}\]</span></p>
+<p>其闭式解可以由 Lagrange 乘子法得到</p>
+<p><span class="math display">\[\begin{equation}
+  \mathbf{w} = \alpha\mathbf{R}_{\mathrm{i+n}}^{-1}\mathbf{a}_\mathrm{d}
+\end{equation}\]</span></p>
+<p>其中</p>
+<ul>
+<li><p>噪声加干扰协方差矩阵 <span class="math inline">\(\mathbf{R}_{\mathrm{i+n}} =
+\displaystyle\frac{1}{T}
+\sum_{t=1}^{T}\mathbf{x}_\mathrm{i+n}(t)\mathbf{x}_\mathrm{i+n}^\mathrm{H}(t)\)</span></p></li>
+<li><p>归一化因子（使得复加权对于期望信号的增益为 1） <span class="math inline">\(\alpha =
+\displaystyle\frac{1}{\mathbf{a}_\mathrm{d}^\mathrm{H}\mathbf{R}_{\mathrm{i+n}}^{-1}\mathbf{a}_\mathrm{d}}\)</span></p></li>
+</ul>
+<h1 id="mvdr-算法仿真">MVDR 算法仿真</h1>
+<h2 id="理想空域谱">理想空域谱</h2>
+<figure>
+<img data-src="../images/post/2024-02-01-algo-MVDR/2024-02-01-algo-MVDR-010-IdealCaponSpectrum.svg" width="800" alt="理想 Capon 谱">
+<figcaption aria-hidden="true">理想 Capon 谱</figcaption>
+</figure>
+<details class="note primary"><summary><p>MATLAB Code</p>
+</summary>
+<figure class="highlight matlab"><figcaption><span>mvdr_idea.m</span></figcaption><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">%% High-Resolution Frequency-Wavenumber Spectrum Analysis</span></span><br><span class="line"><span class="comment">% J. Capon, “High-Resolution Frequency-Wavenumber Spectrum Analysis,” _Proceedings</span></span><br><span class="line"><span class="comment">% of the IEEE_, vol. 57, no. 8, pp. 1408–1418, Aug. 1969, doi: &lt;https://doi.org/10.1109/PROC.1969.7278</span></span><br><span class="line"><span class="comment">% 10.1109/PROC.1969.7278&gt;.</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% H. L. Van Trees, _Optimum Array Processing: Part IV of Detection, Estimation,</span></span><br><span class="line"><span class="comment">% and Modulation Theory_. New York, NY: Wiley, 2002.</span></span><br><span class="line"></span><br><span class="line">clear</span><br><span class="line">close all</span><br><span class="line"><span class="comment">%% Parameters</span></span><br><span class="line"></span><br><span class="line">rng(<span class="number">253</span>)</span><br><span class="line"><span class="comment">% Array Parameters</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% elements in array</span></span><br><span class="line">elemNum = <span class="number">12</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% spacing wrt wavelength</span></span><br><span class="line">elemSpac = <span class="number">0.5</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% element locations</span></span><br><span class="line">elemLoc = <span class="number">0</span>:elemSpac:(elemNum<span class="number">-1</span>)*elemSpac;</span><br><span class="line"><span class="comment">% Signal Parameters</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% signal number</span></span><br><span class="line">sigNum = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% direction of arrival</span></span><br><span class="line">sigAng = <span class="built_in">rand</span>(<span class="number">1</span>,sigNum)*<span class="number">180</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% signal to noise ratio</span></span><br><span class="line">snr = [<span class="number">30</span>,<span class="number">70</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">% sample number</span></span><br><span class="line">sampleNum = <span class="number">9000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% parameter match check</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">length</span>(snr) ~= sigNum) | (<span class="built_in">length</span>(sigAng) ~= sigNum)</span><br><span class="line">  <span class="built_in">disp</span>(<span class="string">'WARN: Signal number and parameter number NOT match.'</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%% Impinging Waves/Signals</span></span><br><span class="line"><span class="comment">% Transmitted Signals</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% wave generation, here are some sets of uncorrelated white noise</span></span><br><span class="line">txWave = <span class="built_in">randn</span>(sigNum,sampleNum);</span><br><span class="line"></span><br><span class="line"><span class="comment">% transmit power control based on given snr</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">length</span>(snr) == <span class="number">1</span></span><br><span class="line">  txWave = db2mag(snr)*txWave;</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">length</span>(snr) &gt;= sigNum</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">length</span>(snr) &gt; sigNum</span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">'WARN: Extra SNRs are ignored.'</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:sigNum</span><br><span class="line">    txWave(<span class="built_in">i</span>,:) = db2mag(snr(<span class="built_in">i</span>))*txWave(<span class="built_in">i</span>,:);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">length</span>(snr) &lt; sigNum</span><br><span class="line">  <span class="built_in">disp</span>(<span class="string">'WARN: The last SNR is used for the rest of the signals.'</span>)</span><br><span class="line">  <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:sigNum</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">i</span> &lt;= <span class="built_in">length</span>(snr)</span><br><span class="line">      txWave(<span class="built_in">i</span>,:) = db2mag(snr(<span class="built_in">i</span>))*txWave(<span class="built_in">i</span>,:);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      txWave(<span class="built_in">i</span>,:) = db2mag(snr(<span class="keyword">end</span>))*txWave(<span class="built_in">i</span>,:);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% Array Manifold Matrix</span></span><br><span class="line"><span class="comment">% For each signal, the array manifold vector is</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $$\mathbf{a}\left(\theta \right)=\exp \left(-j\frac{2\pi \mathbf{d}}{\lambda</span></span><br><span class="line"><span class="comment">% \;}\cos \theta \;\right)$$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% in which the element locations are</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $$\mathbf{d}={\left\lbrack 0,\frac{\lambda }{2},\cdots ,\left(N-1\right)\frac{\lambda</span></span><br><span class="line"><span class="comment">% }{2}\right\rbrack }^{\mathrm{T}}$$</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">length</span>(sigAng) &gt; sigNum</span><br><span class="line">  <span class="built_in">disp</span>(<span class="string">'WARN: Extra angles are ignored.'</span>)</span><br><span class="line"><span class="keyword">elseif</span> <span class="built_in">length</span>(sigAng) &lt; sigNum</span><br><span class="line">  <span class="built_in">disp</span>(<span class="string">'ERROR: Angle number is less than signal number.'</span>)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">arrayMF = <span class="built_in">exp</span>(<span class="number">-1</span><span class="built_in">i</span>*<span class="built_in">pi</span>*elemLoc'*<span class="built_in">cos</span>(sigAng(<span class="number">1</span>:sigNum)/<span class="number">180</span>*<span class="built_in">pi</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> sigNum &gt; <span class="number">1</span></span><br><span class="line">  <span class="comment">% signal &amp; interference manifold vector</span></span><br><span class="line">  sigMF = arrayMF(:,<span class="number">1</span>);</span><br><span class="line">  intMF = arrayMF(:,<span class="number">2</span>:<span class="keyword">end</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">% impinging signal &amp; interference</span></span><br><span class="line">  rxSig = sigMF*txWave(<span class="number">1</span>,:);</span><br><span class="line">  rxIpn = intMF*txWave(<span class="number">2</span>:<span class="keyword">end</span>,:) + <span class="built_in">randn</span>(elemNum,sampleNum);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="comment">% signal manifold vector</span></span><br><span class="line">  sigMF = arrayMF;</span><br><span class="line"></span><br><span class="line">  <span class="comment">% impinging signal</span></span><br><span class="line">  rxSig = sigMF*txWave;</span><br><span class="line">  rxIpn = <span class="built_in">randn</span>(elemNum,sampleNum);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% Received Wave</span></span><br><span class="line"></span><br><span class="line">rxWave = rxSig + <span class="built_in">randn</span>(elemNum,sampleNum);</span><br><span class="line"><span class="comment">%% Array Processing</span></span><br><span class="line"><span class="comment">% The MVDR problem is to minimize output interference-plus-noise power under</span></span><br><span class="line"><span class="comment">% distortionless contraint of target signal</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $$\begin{array}{l}\underset{\mathbf{w}}{\mathrm{minimize}\;\;} \;{\mathbf{w}}^{\mathrm{H}}</span></span><br><span class="line"><span class="comment">% {\mathbf{R}}_{\mathrm{i}+\mathrm{n}} \mathbf{w}\\\mathrm{subecto}\;\mathrm{to}\;\;{\mathbf{w}}^{\mathrm{H}}</span></span><br><span class="line"><span class="comment">% \mathbf{a}=1\end{array}$$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% The problem can be solve using the Lagrange multiplier method, and the solution</span></span><br><span class="line"><span class="comment">% is</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $$\mathbf{w}=\alpha {\mathbf{R}}_{\mathrm{i}+\mathrm{n}}^{-1} \mathbf{a}$$</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% where $\alpha \;$is the normalization factor that ensures the power of array</span></span><br><span class="line"><span class="comment">% input and output desired signal remains unchanged</span></span><br><span class="line"><span class="comment">%</span></span><br><span class="line"><span class="comment">% $$\alpha =\frac{1}{{\mathbf{a}}^{\mathrm{H}} {\mathbf{R}}_{\mathrm{i}+\mathrm{n}}</span></span><br><span class="line"><span class="comment">% \mathbf{a}}$$</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% interference-plus-noise covariance matrix</span></span><br><span class="line">ipnCovar = rxIpn*rxIpn';</span><br><span class="line"></span><br><span class="line"><span class="comment">% MVDR weight vector</span></span><br><span class="line">weight = ipnCovar\sigMF/(sigMF'*(ipnCovar\sigMF));</span><br><span class="line"><span class="comment">%      = inv(ipnCovar)*sigMF/(sigMF'*inv(ipnCovar)*sigMF);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% output SINR</span></span><br><span class="line">sinrOut = pow2db(var(weight'*rxSig)/var(weight'*rxIpn));</span><br><span class="line"><span class="comment">%% Spectrum &amp; Figure</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% scan grid</span></span><br><span class="line">scanGrid = <span class="number">0</span>:<span class="number">0.1</span>:<span class="number">180</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">% spectrum</span></span><br><span class="line">spec = <span class="built_in">zeros</span>(<span class="built_in">size</span>(scanGrid));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="built_in">length</span>(scanGrid)</span><br><span class="line">  <span class="comment">% steering vector</span></span><br><span class="line">  scanMF = <span class="built_in">exp</span>(<span class="number">-1</span><span class="built_in">i</span>*<span class="built_in">pi</span>*elemLoc'*<span class="built_in">cos</span>(scanGrid(<span class="built_in">i</span>)/<span class="number">180</span>*<span class="built_in">pi</span>));</span><br><span class="line"></span><br><span class="line">  <span class="comment">% MVDR spectrum</span></span><br><span class="line">  spec(<span class="built_in">i</span>) = weight'*scanMF;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% normalized spectrum</span></span><br><span class="line">specNorm = pow2db(<span class="built_in">abs</span>(spec));</span><br><span class="line"></span><br><span class="line"><span class="comment">% spectrum &amp; signal location indicator</span></span><br><span class="line"><span class="built_in">plot</span>(scanGrid,specNorm)</span><br><span class="line"><span class="built_in">hold</span> on</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:sigNum</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span> == <span class="number">1</span></span><br><span class="line">    <span class="built_in">plot</span>([sigAng(<span class="built_in">i</span>),sigAng(<span class="built_in">i</span>)],[<span class="built_in">max</span>(specNorm),<span class="built_in">min</span>(specNorm)],<span class="string">'-.r'</span>);</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">plot</span>([sigAng(<span class="built_in">i</span>),sigAng(<span class="built_in">i</span>)],[<span class="built_in">max</span>(specNorm),<span class="built_in">min</span>(specNorm)],<span class="string">'-.g'</span>);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="built_in">hold</span> off</span><br><span class="line"></span><br><span class="line">axis tight</span><br><span class="line">title(<span class="string">'Ideal Capon Spectrum'</span>)</span><br><span class="line">xlabel(<span class="string">'Degree/°'</span>)</span><br><span class="line">ylabel(<span class="string">'Magnitude/dB'</span>)</span><br><span class="line">grid on</span><br><span class="line">grid minor</span><br></pre></td></tr></tbody></table></figure>
+
+</details>
+<h2 id="理想误码率">理想误码率</h2>
+<h2 id="失配输出-sinr">失配输出 SINR</h2>
+<h2 id="失配误码率">失配误码率</h2>
+<h1 id="reference">Reference</h1>
+<ol type="1">
+<li><p>J. Capon, “High-Resolution Frequency-Wavenumber Spectrum
+Analysis,” <em>Proceedings of the IEEE</em>, vol. 57, no. 8, pp.
+1408–1418, Aug. 1969, doi: <a href="https://doi.org/10.1109/PROC.1969.7278">10.1109/PROC.1969.7278</a>.</p></li>
+<li><p>H. L. Van Trees, <em>Optimum Array Processing: Part IV of
+Detection, Estimation, and Modulation Theory</em>. New York, NY: Wiley,
+2002.</p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Josh 的学习笔记</category>
+        <category>算法仿真</category>
+      </categories>
+      <tags>
+        <tag>Beamforming</tag>
+        <tag>波束成形</tag>
+        <tag>MVDR</tag>
+        <tag>误码率分析</tag>
+      </tags>
+  </entry>
 </search>
