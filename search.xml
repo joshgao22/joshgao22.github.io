@@ -29244,29 +29244,27 @@ concave</em>）的，如果 <span class="math inline">\(-f\)</span>
 <p>  函数是凸的，当且仅当其在与其定义域相交的任何直线上都是凸的。换言之，函数
 <span class="math inline">\(f\)</span> 是凸的，当且仅当对于任意 <span class="math inline">\(x\in\mathop{\bf dom}f\)</span> 和任意向量 <span class="math inline">\(v\)</span>，函数 <span class="math inline">\(g(t)=f(x+tv)\)</span> 是凸的（其定义域为 <span class="math inline">\(\{t\mid x+tv\in\mathop{\bf
 dom}f\}\)</span>）。这个性质非常有用，因为它让我们可以通过将函数限制在直线上来判断其是否是凸函数。</p>
-<details class="note info"><summary><p>理解</p>
-</summary>
-<p>这里可能是由于翻译问题导致不是很好理解，我们先看原文：</p>
+<div class="note info"><p>这里可能是由于翻译问题导致不是很好理解，我们先看原文：</p>
 <blockquote>
 <p>A function is convex if and only if it is convex when restricted to
 any line that intersects its domain. In other words f is convex if and
-only if for all <span class="math inline">\(x\in\dom f\)</span> and all
-<span class="math inline">\(v\)</span>, the function <span class="math inline">\(g(t) = f(x + tv)\)</span> is convex (on its
-domain, <span class="math inline">\(\{t\mid x+tv\in\dom f\}\)</span>).
-This property is very useful, since it allows us to check whether a
-function is convex by restricting it to a line.</p>
+only if for all <span class="math inline">\(x\in\mathbf{dom}\,
+f\)</span> and all <span class="math inline">\(v\)</span>, the function
+<span class="math inline">\(g(t) = f(x + tv)\)</span> is convex (on its
+domain, <span class="math inline">\(\{t\mid x+tv\in\mathbf{dom}\,
+f\}\)</span>). This property is very useful, since it allows us to check
+whether a function is convex by restricting it to a line.</p>
 </blockquote>
 <p>仍然不是很好理解。因此这里如下解释：</p>
 <ul>
 <li><p>限制在直线上：考虑一个函数 <span class="math inline">\(f\)</span>
-和其定义域内的任意一点 <span class="math inline">\(x\)</span>。再选择一个任意方向向量 <span class="math inline">\(v\)</span>。我们沿着这个方向 <span class="math inline">\(v\)</span> 从点 <span class="math inline">\(x\)</span> 出发，得到一条直线。任何点 <span class="math inline">\(x+tv\)</span>（其中 <span class="math inline">\(t\)</span> 是一个实数）都在这条
-直线上。这就叫做将函数限制在直线上。</p></li>
+和其定义域内的任意一点 <span class="math inline">\(x\)</span>。再选择一个任意方向向量 <span class="math inline">\(v\)</span>。我们沿着这个方向 <span class="math inline">\(v\)</span> 从点 <span class="math inline">\(x\)</span> 出发，得到一条直线。任何点 <span class="math inline">\(x+tv\)</span>（其中 <span class="math inline">\(t\)</span>
+是一个实数）都在这条直线上。这就叫做将函数限制在直线上。</p></li>
 <li><p>直线上的函数：我们定义一个新的函数 <span class="math inline">\(g(t)=f(x+tv)\)</span>。这个新的函数 <span class="math inline">\(g(t)\)</span> 表示原函数 <span class="math inline">\(f\)</span> 在直线<span class="math inline">\(x+tv\)</span>上的值。</p></li>
 <li><p>检查凸性：如果对于任意 <span class="math inline">\(x\)</span> 和
 <span class="math inline">\(v\)</span>，新的函数 <span class="math inline">\(g(t)\)</span> 是凸的，那么我们就说原函数 <span class="math inline">\(f\)</span> 是凸的。也就是说，如果 <span class="math inline">\(f\)</span> 在所有限制的直线上都是凸的，那么 <span class="math inline">\(f\)</span> 本身就是凸的。</p></li>
 </ul>
-
-</details>
+</div>
 <p>  对凸函数的<strong>分析</strong>（<em>analysis</em>）已经相当地透彻，这里不再继续深入。例如有这样一个简单的结论，凸函数在其定义域相对内部是连续的；它只可能在相对边界上不连续。</p>
 <h1 id="扩展值延伸">2. 扩展值延伸</h1>
 <p>  通常可以定义凸函数在定义域外的值为 <span class="math inline">\(\infty\)</span>，从而将这个凸函数延伸至全空间
