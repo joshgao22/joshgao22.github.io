@@ -30724,4 +30724,70 @@ optimization</em>. Cambridge, UK: Cambridge University Press, 2004.</li>
         <tag>凸函数</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Josh 的学习笔记之信息论（Part 1 —— 绪论）</title>
+    <url>/posts/71ccf914.html</url>
+    <content><![CDATA[<h1 id="信息的概念">信息的概念</h1>
+<h2 id="信息的定义">信息的定义</h2>
+<ol type="1">
+<li><p>Hartly 对信息的定义：信息是选择的自由度。</p></li>
+<li><p>Wiener 对信息的定义：</p>
+<ol type="1">
+<li>信息既不是物质又不是能量，信息就是信息。表明了信息是独立于物质和能量之外存在于客观世界的第三要素。</li>
+<li>信息是人们适应外部世界并且使这种适应反作用于外部世界的过程中，同外部世界进行互相交换的内容的名称。</li>
+</ol></li>
+<li><p>Shannon
+对信息的定义：信息是事物运动状态或存在方式的<strong>不确定性</strong>的描述。</p></li>
+</ol>
+<h2 id="信息消息和信号的区别">信息、消息和信号的区别</h2>
+<ol type="1">
+<li>信号：是信息的物理表达层，是三个层次中最具体的层次。</li>
+<li>消息(或符号)：是信息的数学表达层，可以定量地加以描述，它是具体物理信号的进一步数学抽象。可分为离散(数字)消息和连续(模拟)消息。</li>
+<li>信息：是指各个事物运动的状态及状态变化的方式，是抽象的意识或知识，是三个层次中最抽象的层次。</li>
+</ol>
+<blockquote>
+<p>信号是消息的载体，消息是信息的载体。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="信息论研究的对象目的和内容">信息论研究的对象、目的和内容</h1>
+<h2 id="研究对象">研究对象</h2>
+<p>应用概率论、随机过程、数理统计等方法来研究信息的传输、提取和处理系统中的一般规律。</p>
+<div data-align="center">
+<p><img data-src="../images/post/2021-11-27-josh-toi-part-1/2021-11-27-josh-toi-part-1-010-SystemModel.png" width="600px" alt="图1-1 信息传输系统的模型"></p>
+</div>
+<h2 id="研究目的">研究目的</h2>
+<p>提高信息系统的<strong>可靠性</strong>、<strong>有效性</strong>和<strong>安全性</strong>以便达到系统最优化。</p>
+<h2 id="研究内容">研究内容</h2>
+<ol type="1">
+<li><p>狭义信息论(Shannon
+信息论)：主要研究信息的测度、信道容量、信息率失真函数，与这三个概念相对应的香农三定理以及信源和信道编码。Shannon
+研究的对象是从信源到信宿的全过程，是收、发端联合最优化问题，重点是编码。</p>
+<blockquote>
+<p>Shannon 信息论的缺陷</p>
+<ol type="1">
+<li>Shannon
+定义信息的出发点是假定事物的状态可以用一个以经典集合论为基础的概率模型来描述，对实际存在的某些事物的运动状态要寻找一个合适的概率模型往往是非常困难的，并且这一模型不一定存在。</li>
+<li>Shannon
+定义信息的度量没有考虑收信者的主观性和主观意义，也撇开了信息的具体含义、具体用途、重要程度和引起的后果等元素，这就与实际情况不完全一致。</li>
+</ol>
+</blockquote></li>
+<li><p>一般信息论：主要是研究信息传输和处理问题。除了 Shannon
+基本理论之外，还包括噪声理论、信号滤波和预测、统计检测与估计理论、调制理论。重点研究接收端。</p></li>
+<li><p>广义信息论 <span class="math inline">\(^*\)</span>。</p></li>
+</ol>
+<h1 id="信息论发展简史与信息科学">信息论发展简史与信息科学<span class="math inline">\(^*\)</span></h1>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
+<link rel="stylesheet" href="/css/markmap.css">
+
+<script src="/js/markmap.js"></script>
+]]></content>
+      <categories>
+        <category>Josh 的学习笔记</category>
+        <category>信息论</category>
+      </categories>
+      <tags>
+        <tag>信息的概念</tag>
+        <tag>信息论的研究内容</tag>
+      </tags>
+  </entry>
 </search>
